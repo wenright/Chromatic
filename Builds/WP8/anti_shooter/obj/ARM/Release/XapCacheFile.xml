@@ -1,0 +1,27 @@
+﻿<xapCache source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Bin\ARM\Release\anti_shooter_Release_ARM.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="6/12/2014 5:08:42 PM">
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\obj\ARM\Release\anti_shooter.dll" archivePath="anti_shooter.dll" lastWriteTime="6/12/2014 5:08:39 PM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="5/8/2014 10:01:36 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="5/8/2014 10:01:36 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="5/8/2014 10:01:36 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="5/8/2014 10:01:36 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="5/8/2014 10:01:36 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="5/8/2014 10:01:36 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Data\mainData" archivePath="Data\mainData" lastWriteTime="6/12/2014 5:08:33 PM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Data\managedAssemblies.txt" archivePath="Data\managedAssemblies.txt" lastWriteTime="6/12/2014 5:08:38 PM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Data\PlayerConnectionConfigFile" archivePath="Data\PlayerConnectionConfigFile" lastWriteTime="6/12/2014 5:08:33 PM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Data\Resources\unity default resources" archivePath="Data\Resources\unity default resources" lastWriteTime="5/23/2014 9:47:50 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Data\Resources\unity_builtin_extra" archivePath="Data\Resources\unity_builtin_extra" lastWriteTime="6/12/2014 5:08:33 PM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Data\sharedassets0.assets" archivePath="Data\sharedassets0.assets" lastWriteTime="6/12/2014 5:08:33 PM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Bin\ARM\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="6/12/2014 5:00:12 PM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Bin\ARM\Release\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="5/8/2014 10:01:36 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Bin\ARM\Release\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="5/8/2014 10:01:36 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Assembly-UnityScript.dll" archivePath="Assembly-UnityScript.dll" lastWriteTime="6/12/2014 5:08:38 PM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\Players\ARM\Release\BridgeInterface.winmd" archivePath="BridgeInterface.winmd" lastWriteTime="5/26/2014 3:01:58 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\UnityEngine.dll" archivePath="UnityEngine.dll" lastWriteTime="6/12/2014 5:08:38 PM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\Players\ARM\Release\UnityPlayer.winmd" archivePath="UnityPlayer.winmd" lastWriteTime="5/26/2014 3:05:32 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\Players\ARM\Release\WinRTBridge.dll" archivePath="WinRTBridge.dll" lastWriteTime="5/26/2014 3:01:58 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\WinRTLegacy.dll" archivePath="WinRTLegacy.dll" lastWriteTime="6/12/2014 5:08:38 PM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\Players\ARM\Release\BridgeInterface.dll" archivePath="BridgeInterface.dll" lastWriteTime="5/26/2014 3:01:58 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\Players\ARM\Release\UnityPlayer.dll" archivePath="UnityPlayer.dll" lastWriteTime="5/26/2014 3:05:54 AM" />
+  <file source="C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Bin\ARM\Release\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="6/12/2014 4:39:52 PM" />
+</xapCache>
