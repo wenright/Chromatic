@@ -1,5 +1,5 @@
 ﻿//The speed at which the enemy moves towards the move location, should be between 0 and 1
-var LERP_SPEED : float;		//A higher number means faster movement
+var MOVE_SPEED : float = .03;		//A higher number means faster movement
 
 //The speed at which the object rotates around its center
 var ROTATE_SPEED : int = 50;
@@ -36,7 +36,8 @@ function Start () {
 function Update () {
 	transform.RotateAround(transform.position, transform.forward, ROTATE_SPEED * Time.deltaTime);
 	
+	MOVE_SPEED += .0001;
 	//Prevents annoying 2s lag and error messages
 	if (target)
-		transform.position = Vector2.Lerp(transform.position, target.position, LERP_SPEED);
+		transform.position = Vector2.MoveTowards(transform.position, target.transform.position, MOVE_SPEED);
 }
