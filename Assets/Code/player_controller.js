@@ -9,6 +9,8 @@ var color : Color = Color.white;
 
 private var score : int = 0;
 
+var explosion : GameObject;
+
 //The sprite renderer component of this object
 var sprite : SpriteRenderer;
 var purple :  Color = Color.magenta;
@@ -75,7 +77,9 @@ function OnTriggerEnter2D (other : Collider2D) {
 					color = orange;
 				else if(other.GetComponent(friendly).color == Color.blue)
 					color = purple;
-			}	
+			}
+			var exp1 : GameObject = Instantiate(explosion, transform.position, transform.rotation);
+			exp1.GetComponent(ParticleSystem).startColor = color;
 			Destroy(other.gameObject);
 		}
 			
@@ -88,6 +92,8 @@ function OnTriggerEnter2D (other : Collider2D) {
 			score += 1000;		//Change this to w/e, doesn't really matter what it is	
 		}
 		else {
+			var exp : GameObject = Instantiate(explosion, transform.position, transform.rotation);
+			exp.GetComponent(ParticleSystem).startColor = color;
 			Destroy (gameObject);
 		}
 	}

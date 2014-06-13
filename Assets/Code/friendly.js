@@ -12,7 +12,7 @@ function Update () {
 }
 
 function SetColor (num : int) {
-print(num);
+	print(num);
 	switch (num) {
 		case 0: color = Color.red;
 			break;
