@@ -1,9 +1,10 @@
 ﻿//The speed at which the player moves towards the move location, should be between 0 and 1
 var LERP_SPEED : float;		//A higher number means faster movement
-
+var width : float = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;
+var height : float = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y;
 //The last location that the player touches
 private var move_location : Vector2 = Vector2.zero;
-
+var friend : GameObject;
 //The color of the player, starts out white
 var color : Color = Color.white;
 
@@ -58,24 +59,44 @@ function OnTriggerEnter2D (other : Collider2D) {
 		if (color == Color.white)
 			color = other.GetComponent(friendly).color;
 		if(color != purple && color != green && color != green){
+			
 			if(color == Color.blue){
-				if(other.GetComponent(friendly).color == Color.red)
+				if(other.GetComponent(friendly).color == Color.red){
 					color = purple;
-				else if(other.GetComponent(friendly).color == Color.yellow)
+					
+				}
+				else if(other.GetComponent(friendly).color == Color.yellow){
 					color = green;
+				}
 			}
 			else if(color == Color.yellow){
-				if(other.GetComponent(friendly).color == Color.red)
+				if(other.GetComponent(friendly).color == Color.red){
 					color = orange;
-				else if(other.GetComponent(friendly).color == Color.blue)
+				}
+				else if(other.GetComponent(friendly).color == Color.blue){
 					color = green;
+				}
 			}
 			else if(color == Color.red){
-				if(other.GetComponent(friendly).color == Color.yellow)
+				if(other.GetComponent(friendly).color == Color.yellow){
 					color = orange;
-				else if(other.GetComponent(friendly).color == Color.blue)
+				}
+				else if(other.GetComponent(friendly).color == Color.blue){
 					color = purple;
+				}
 			}	
+			var px : float = Random.Range(-width, width);
+			var py : float = Random.Range(-height, height);
+			var f : GameObject = Instantiate(friend, Vector2(px, py), transform.rotation);
+			if(other.GetComponent(friendly).color == Color.red){
+				f.GetComponent(friendly).SetColor(0);
+			}
+			else if(other.GetComponent(friendly).color == Color.yellow){
+				f.GetComponent(friendly).SetColor(1);
+			}
+			else if(other.GetComponent(friendly).color == Color.blue){
+				f.GetComponent(friendly).SetColor(2);
+			}
 			Destroy(other.gameObject);
 		}
 			

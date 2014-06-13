@@ -1,5 +1,5 @@
 ﻿//The color of the enemy, starts out either red, yellow, or blue
-var color : Color = Color.white;
+var color : Color = Color.white;var friend : GameObject;
 
 //The speed at which the object rotates around its center
 var ROTATE_SPEED : int = 50;
