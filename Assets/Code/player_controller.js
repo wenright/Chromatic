@@ -4,6 +4,9 @@ var LERP_SPEED : float;		//A higher number means faster movement
 //The last location that the player touches
 private var move_location : Vector2 = Vector2.zero;
 
+//The color of the player, starts out white
+private var color : Color = Color.white;
+
 function Update () {
 	//Takes in player touches and stores the X and Y coordinates in terms of world coordinates
 	if (Input.touchCount > 0)
