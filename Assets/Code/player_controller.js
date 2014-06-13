@@ -21,14 +21,19 @@ var green : Color = Color.green;
 var orange : Color = Color(1, 0.65, 0, 1);
 var timer : int = 0;
 
+var highscore : int = 0;
+
 function Start () {
 	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;
 	height = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y;
+	
+	highscore = PlayerPrefs.GetInt("HighScore");
 }
 
 function OnGUI () {
 	//Super basic score counter
-	GUI.Label (Rect(0, 0, 120, 60), "Score: " + score);
+	GUI.Label (Rect(0, 0, 120, 60), "High Score: " + highscore);	//Set this as a variable at the beginning to use fewer calculations
+	GUI.Label (Rect(0, 30, 120, 60), "Score: " + score);
 	GUI.Label (Rect(0, 60, 120, 60), "Time: " + timer);
 }
 
@@ -136,6 +141,10 @@ function OnTriggerEnter2D (other : Collider2D) {
 		else {
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
+			
+			if (score > PlayerPrefs.GetInt("HighScore"))
+				PlayerPrefs.SetInt("HighScore", score);
+				
 			Destroy (gameObject);
 		}
 	}
