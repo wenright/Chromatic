@@ -11,14 +11,11 @@ var color : Color = Color.white;
 private var target : Transform;
 
 //The sprite renderer component of this object
-private var sprite : SpriteRenderer;
+var sprite : SpriteRenderer;
 
 function Start () {
 	//Finds the object tagged player
 	target = GameObject.FindGameObjectWithTag("Player").transform;
-
-	//Set the sprite variable to be the sprite renderer compoenent
-	sprite = GetComponent(SpriteRenderer);
 
 	//For now, this just makes it a random color
 	var num : int = Random.Range(1, 4);

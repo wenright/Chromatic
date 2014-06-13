@@ -5,6 +5,7 @@
     <AssemblyPart x:Name="UnityEngine" Source="UnityEngine.dll" />
     <AssemblyPart x:Name="WinRTBridge" Source="WinRTBridge.dll" />
     <AssemblyPart x:Name="WinRTLegacy" Source="WinRTLegacy.dll" />
+    <AssemblyPart x:Name="Boo.Lang" Source="Boo.Lang.dll" />
     <AssemblyPart x:Name="BridgeInterface" Source="BridgeInterface.dll" />
     <AssemblyPart x:Name="UnityPlayer" Source="UnityPlayer.dll" />
   </Deployment.Parts>

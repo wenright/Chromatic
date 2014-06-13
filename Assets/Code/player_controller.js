@@ -7,21 +7,14 @@ private var move_location : Vector2 = Vector2.zero;
 //The color of the player, starts out white
 var color : Color = Color.white;
 
-<<<<<<< HEAD
 private var score : int = 0;
 
-=======
 //The sprite renderer component of this object
->>>>>>> origin/master
 var sprite : SpriteRenderer;
 var purple :  Color = Color.magenta;
 var green : Color = Color.green;
 var orange : Color = Color(1, 0.65, 0, 1);
 var timer : int = 0;
-
-function Start () {
-	sprite = GetComponent(SpriteRenderer);
-}
 
 function OnGUI () {
 	//Super basic score counter
@@ -35,6 +28,10 @@ function Update () {
 	//Takes in mouse input instead
 	else if (Input.GetMouseButton(0))
 		move_location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		
+	//Interpolates the location of the player from its current location to the last location touched by the user
+	transform.position = Vector2.Lerp(transform.position, move_location, LERP_SPEED);		//TODO: make the speed constant
+	
 	//Checks if colored and counts down from 30, when 0 is reached, resets to white
 	if(timer <= 0){
 	  timer = 300;
@@ -50,15 +47,10 @@ function Update () {
 	  		sprite.color = color;
 	  	}		
 	}
-	//Interpolates the location of the player from its current location to the last location touched by the user
-	transform.position = Vector2.Lerp(transform.position, move_location, LERP_SPEED);
 	
 	//Exits the application if the player pressed the back button
 	if (Input.GetButtonDown("Exit"))
 		Application.Quit();
-	
-		
-		
 }
 
 function OnTriggerEnter2D (other : Collider2D) {

@@ -5,27 +5,23 @@ var color : Color = Color.white;
 var ROTATE_SPEED : int = 50;
 
 //The sprite renderer component of this object
-private var sprite : SpriteRenderer;
+var sprite : SpriteRenderer;
 
-function Start () {
-	sprite = GetComponent(SpriteRenderer);
+function Update () {
+	transform.RotateAround(transform.position, transform.forward, ROTATE_SPEED * Time.deltaTime);
+}
 
-	//For now, this just makes it a random color
-	var num : int = Random.Range(1, 4);
-	
+function SetColor (num : int) {
+print(num);
 	switch (num) {
-		case 1: color = Color.red;
+		case 0: color = Color.red;
 			break;
-		case 2: color = Color.yellow;
+		case 1: color = Color.yellow;
 			break;
-		case 3: color = Color.blue;
+		case 2: color = Color.blue;
 			break;
 		default: break;
 	}
 	
 	sprite.color = color;
-}
-
-function Update () {
-	transform.RotateAround(transform.position, transform.forward, ROTATE_SPEED * Time.deltaTime);
 }

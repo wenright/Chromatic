@@ -36,3 +36,5 @@ C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\obj\ARM\Rele
 C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\obj\ARM\Release\anti_shooter.dll
 C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\obj\ARM\Release\anti_shooter.pdb
 C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\obj\ARM\Release\XapCacheFile.xml
+C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Bin\ARM\Release\Boo.Lang.dll
+C:\Users\Will\Documents\GitHub\anti-shooter\Builds\WP8\anti_shooter\Bin\ARM\Release\Boo.Lang.pdb
