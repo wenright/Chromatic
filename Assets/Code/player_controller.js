@@ -27,12 +27,18 @@ function Update () {
 		move_location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 	//Checks if colored and counts down from 30, when 0 is reached, resets to white
 	if(timer <= 0){
-	  timer = 100;
+	  timer = 300;
 	  sprite.color = Color.white;
 	  color = Color.white;
 	 }
 	if(timer > 0 && color != Color.white){
 	  timer -= Time.deltaTime;
+	  if(timer < 100){
+	  	if(timer % 20 == 0)
+	  		sprite.color = Color.white;
+	  	else
+	  		sprite.color = color;
+	  	}		
 	}
 	//Interpolates the location of the player from its current location to the last location touched by the user
 	transform.position = Vector2.Lerp(transform.position, move_location, LERP_SPEED);
@@ -49,29 +55,30 @@ function OnTriggerEnter2D (other : Collider2D) {
 	if (other.tag == "Friendly") {
 		if (color == Color.white)
 			color = other.GetComponent(friendly).color;
-		else if(color == Color.blue){
-			if(other.GetComponent(friendly).color == Color.red)
-				color = purple;
-			else if(other.GetComponent(friendly).color == Color.yellow)
-				color = green;
-		}
-		else if(color == Color.yellow){
-			if(other.GetComponent(friendly).color == Color.red)
-				color = orange;
-			else if(other.GetComponent(friendly).color == Color.blue)
-				color = green;
-		}
-		else if(color == Color.red){
-			if(other.GetComponent(friendly).color == Color.yellow)
-				color = orange;
-			else if(other.GetComponent(friendly).color == Color.blue)
-				color = purple;
+		if(color != purple && color != green && color != green){
+			if(color == Color.blue){
+				if(other.GetComponent(friendly).color == Color.red)
+					color = purple;
+				else if(other.GetComponent(friendly).color == Color.yellow)
+					color = green;
+			}
+			else if(color == Color.yellow){
+				if(other.GetComponent(friendly).color == Color.red)
+					color = orange;
+				else if(other.GetComponent(friendly).color == Color.blue)
+					color = green;
+			}
+			else if(color == Color.red){
+				if(other.GetComponent(friendly).color == Color.yellow)
+					color = orange;
+				else if(other.GetComponent(friendly).color == Color.blue)
+					color = purple;
+			}	
+			Destroy(other.gameObject);
 		}
 			
 		
 		sprite.color = color;
-		
-		Destroy(other.gameObject);
 	}
 	else if (other.tag == "Enemy") {
 		print("You died! probably.  Unless you were the right color and you shouldnt have died because that hasnt been implemented yet, sorry :(");
