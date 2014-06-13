@@ -64,10 +64,6 @@ function Update () {
 	  		sprite.color = color;
 	  	}		
 	}
-	
-	//Exits the application if the player pressed the back button
-	if (Input.GetButtonDown("Exit"))
-		Application.Quit();
 }
 
 function OnTriggerEnter2D (other : Collider2D) {
@@ -152,7 +148,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			}
 				
 			Instantiate (game_over, Vector2.zero, transform.rotation);
-			Time.timeScale = 0;	//This is where we would return you to the main menu or restart the level or something
+			//Time.timeScale = 0;	//This is where we would return you to the main menu or restart the level or something
 			Destroy (gameObject);
 		}
 	}
