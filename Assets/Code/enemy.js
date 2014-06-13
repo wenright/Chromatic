@@ -39,5 +39,7 @@ function Start () {
 function Update () {
 	transform.RotateAround(transform.position, transform.forward, ROTATE_SPEED * Time.deltaTime);
 	
-	transform.position = Vector2.Lerp(transform.position, target.position, LERP_SPEED);
+	//Prevents annoying 2s lag and error messages
+	if (target)
+		transform.position = Vector2.Lerp(transform.position, target.position, LERP_SPEED);
 }

@@ -7,7 +7,12 @@ private var move_location : Vector2 = Vector2.zero;
 //The color of the player, starts out white
 var color : Color = Color.white;
 
+<<<<<<< HEAD
+private var score : int = 0;
+
+=======
 //The sprite renderer component of this object
+>>>>>>> origin/master
 var sprite : SpriteRenderer;
 var purple :  Color = Color.magenta;
 var green : Color = Color.green;
@@ -16,6 +21,11 @@ var timer : int = 0;
 
 function Start () {
 	sprite = GetComponent(SpriteRenderer);
+}
+
+function OnGUI () {
+	//Super basic score counter
+	GUI.Label (Rect(0, 0, 120, 60), "Score: " + score);
 }
 
 function Update () {
@@ -81,7 +91,12 @@ function OnTriggerEnter2D (other : Collider2D) {
 		sprite.color = color;
 	}
 	else if (other.tag == "Enemy") {
-		print("You died! probably.  Unless you were the right color and you shouldnt have died because that hasnt been implemented yet, sorry :(");
-		Destroy (gameObject);
+		if (color == other.GetComponent(enemy).color) {
+			Destroy(other.gameObject);
+			score += 1000;		//Change this to w/e, doesn't really matter what it is	
+		}
+		else {
+			Destroy (gameObject);
+		}
 	}
 }
