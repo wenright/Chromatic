@@ -6,6 +6,9 @@ var ROTATE_SPEED : int = 50;
 
 //The color of the enemy, starts out either orange, purple, or green
 var color : Color = Color.white;
+var purple : Color = Color(191/255.0F, 0, 1, 1);
+var green : Color = Color(0, 1, 0, 1);
+var orange : Color = Color(1, 127/255.0F, 0, 1);
 
 //The target that the enemy chases, typically the player, but could be anything
 private var target : Transform;
@@ -21,11 +24,11 @@ function Start () {
 	var num : int = Random.Range(1, 4);
 	
 	switch (num) {
-		case 1: color = Color(1, 0.65, 0, 1);		//Orange
+		case 1: color = orange;
 			break;
-		case 2: color = Color.magenta;
+		case 2: color = purple;
 			break;
-		case 3: color = Color.green;
+		case 3: color = green;
 			break;
 		default: break;
 	}

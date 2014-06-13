@@ -7,6 +7,9 @@ private var move_location : Vector2 = Vector2.zero;
 var friend : GameObject;
 //The color of the player, starts out white
 var color : Color = Color.white;
+var purple :  Color = Color(191/255.0F, 0, 1, 1);
+var green : Color = Color(0, 1, 0, 1);
+var orange : Color = Color(1, 127/255.0F, 0, 1);
 
 private var score : int = 0;
 
@@ -17,9 +20,7 @@ var explosion : GameObject;
 //The sprite renderer component of this object
 var sprite : SpriteRenderer;
 var game_over : GameObject;
-var purple :  Color = Color.magenta;
-var green : Color = Color.green;
-var orange : Color = Color(1, 0.65, 0, 1);
+
 var timer : int = 0;
 
 var highscore : int = 0;
@@ -51,7 +52,7 @@ function Update () {
 	
 	//Checks if colored and counts down from 30, when 0 is reached, resets to white
 	if(timer <= 0){
-	  timer = 300;
+	  timer = 200;
 	  sprite.color = Color.white;
 	  color = Color.white;
 	 }
@@ -108,23 +109,26 @@ function OnTriggerEnter2D (other : Collider2D) {
 					timer += ADDITIONAL_TIME;
 				}
 			}	
-			var px : float = Random.Range(-width, width);
-			var py : float = Random.Range(-height, height);
-			var f : GameObject = Instantiate(friend, Vector2(px, py), transform.rotation);
-			if(other.GetComponent(friendly).color == Color.red){
-				f.GetComponent(friendly).SetColor(0);
-			}
-			else if(other.GetComponent(friendly).color == Color.yellow){
-				f.GetComponent(friendly).SetColor(1);
-			}
-			else if(other.GetComponent(friendly).color == Color.blue){
-				f.GetComponent(friendly).SetColor(2);
-			}
-			exp = Instantiate(explosion, transform.position, transform.rotation);
-			exp.GetComponent(ParticleSystem).startColor = color;
-			Destroy(other.gameObject);
 		}
-			
+		else{
+			timer = 200; 
+			color = other.GetComponent(friendly).color;
+		}
+		var px : float = Random.Range(-width, width);
+		var py : float = Random.Range(-height, height);
+		var f : GameObject = Instantiate(friend, Vector2(px, py), transform.rotation);
+		if(other.GetComponent(friendly).color == Color.red){
+			f.GetComponent(friendly).SetColor(0);
+		}
+		else if(other.GetComponent(friendly).color == Color.yellow){
+			f.GetComponent(friendly).SetColor(1);
+		}
+		else if(other.GetComponent(friendly).color == Color.blue){
+			f.GetComponent(friendly).SetColor(2);
+		}
+		exp = Instantiate(explosion, transform.position, transform.rotation);
+		exp.GetComponent(ParticleSystem).startColor = color;
+		Destroy(other.gameObject);
 		sprite.color = color;
 	}
 	else if (other.tag == "Enemy") {
