@@ -123,7 +123,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .588235259, g: .948884428, b: 1, a: .0196078438}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -299,6 +299,7 @@ MonoBehaviour:
   height: 0
   friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
   color: {r: 1, g: 1, b: 1, a: 1}
+  ADDITIONAL_TIME: 50
   explosion: {fileID: 100000, guid: e5d7eceea8d9e1545ba4c6974edfbe56, type: 2}
   sprite: {fileID: 1417132797}
   purple: {r: 1, g: 0, b: 1, a: 1}

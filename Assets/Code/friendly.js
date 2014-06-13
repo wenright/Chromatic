@@ -21,17 +21,28 @@ function Start () {
 		dirx = -1;
 	if (Mathf.Round(Random.value) == 1)
 		diry = -1;
-		
-	print(width + "x" + height);
 }
 
 function Update () {
 	transform.RotateAround(transform.position, transform.forward, ROTATE_SPEED * Time.deltaTime);
 	
-	if (transform.position.x > width || transform.position.x < -width)
-		dirx *= -dirx;
-	if (transform.position.y > height || transform.position.y < -height)
-		diry *= -diry;
+	if (transform.position.x > width) {
+		dirx *= -1;
+		transform.position.x = width;
+	}
+	else if (transform.position.x < -width) {
+		dirx *= -1;
+		transform.position.x = -width;
+	}
+	
+	if (transform.position.y > height) {
+		diry *= -1;
+		transform.position.y = height;
+	}
+	else if (transform.position.y < -height) {
+		diry *= -1;
+		transform.position.y = -height;
+	}
 	
 	transform.position.x += Time.deltaTime * dirx;
 	transform.position.y += Time.deltaTime * diry;

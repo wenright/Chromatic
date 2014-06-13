@@ -10,6 +10,8 @@ var color : Color = Color.white;
 
 private var score : int = 0;
 
+var ADDITIONAL_TIME : int = 50;		//Make this zero if you don't like it
+
 var explosion : GameObject;
 
 //The sprite renderer component of this object
@@ -27,6 +29,7 @@ function Start () {
 function OnGUI () {
 	//Super basic score counter
 	GUI.Label (Rect(0, 0, 120, 60), "Score: " + score);
+	GUI.Label (Rect(0, 60, 120, 60), "Time: " + timer);
 }
 
 function Update () {
@@ -77,6 +80,9 @@ function OnTriggerEnter2D (other : Collider2D) {
 				else if(other.GetComponent(friendly).color == Color.yellow){
 					color = green;
 				}
+				else if (other.GetComponent(friendly).color == Color.blue) {
+					timer += ADDITIONAL_TIME;
+				}
 			}
 			else if(color == Color.yellow){
 				if(other.GetComponent(friendly).color == Color.red){
@@ -85,6 +91,9 @@ function OnTriggerEnter2D (other : Collider2D) {
 				else if(other.GetComponent(friendly).color == Color.blue){
 					color = green;
 				}
+				else if (other.GetComponent(friendly).color == Color.yellow) {
+					timer += ADDITIONAL_TIME;
+				}
 			}
 			else if(color == Color.red){
 				if(other.GetComponent(friendly).color == Color.yellow){
@@ -92,6 +101,9 @@ function OnTriggerEnter2D (other : Collider2D) {
 				}
 				else if(other.GetComponent(friendly).color == Color.blue){
 					color = purple;
+				}
+				else if (other.GetComponent(friendly).color == Color.red) {
+					timer += ADDITIONAL_TIME;
 				}
 			}	
 			var px : float = Random.Range(-width, width);
@@ -117,6 +129,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 		if (color == other.GetComponent(enemy).color) {
 			Destroy(other.gameObject);
 			score += 1000;		//Change this to w/e, doesn't really matter what it is
+			timer += ADDITIONAL_TIME;
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
 		}
