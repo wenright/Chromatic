@@ -8,6 +8,7 @@ function Update () {
 	//Takes in player touches and stores the X and Y coordinates in terms of world coordinates
 	if (Input.touchCount > 0)
 		move_location = Camera.main.ScreenToWorldPoint(Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y));
+	//Takes in mouse input instead
 	else if (Input.GetMouseButton(0))
 		move_location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 	
