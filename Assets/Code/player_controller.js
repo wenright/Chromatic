@@ -8,16 +8,12 @@ private var move_location : Vector2 = Vector2.zero;
 var color : Color = Color.white;
 
 //The sprite renderer component of this object
-<<<<<<< HEAD
 var sprite : SpriteRenderer;
 var purple :  Color = Color.magenta;
 var green : Color = Color.green;
 var orange : Color = Color(1, 0.65, 0, 1);
 var timer : int = 0;
-=======
-private var sprite : SpriteRenderer;
 
->>>>>>> FETCH_HEAD
 function Start () {
 	sprite = GetComponent(SpriteRenderer);
 }
