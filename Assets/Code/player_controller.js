@@ -1,7 +1,7 @@
 ﻿//The speed at which the player moves towards the move location, should be between 0 and 1
 var LERP_SPEED : float;		//A higher number means faster movement
-var width : float = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;
-var height : float = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y;
+var width : float;
+var height : float;
 //The last location that the player touches
 private var move_location : Vector2 = Vector2.zero;
 var friend : GameObject;
@@ -18,6 +18,11 @@ var purple :  Color = Color.magenta;
 var green : Color = Color.green;
 var orange : Color = Color(1, 0.65, 0, 1);
 var timer : int = 0;
+
+function Start () {
+	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;
+	height = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y;
+}
 
 function OnGUI () {
 	//Super basic score counter
