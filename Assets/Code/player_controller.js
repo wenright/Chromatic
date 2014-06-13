@@ -5,7 +5,14 @@ var LERP_SPEED : float;		//A higher number means faster movement
 private var move_location : Vector2 = Vector2.zero;
 
 //The color of the player, starts out white
-private var color : Color = Color.white;
+var color : Color = Color.white;
+
+//The sprite renderer component of this object
+var sprite : SpriteRenderer;
+
+function Start () {
+	sprite = GetComponent(SpriteRenderer);
+}
 
 function Update () {
 	//Takes in player touches and stores the X and Y coordinates in terms of world coordinates
@@ -21,4 +28,20 @@ function Update () {
 	//Exits the application if the player pressed the back button
 	if (Input.GetButtonDown("Exit"))
 		Application.Quit();
+}
+
+function OnTriggerEnter2D (other : Collider2D) {
+	if (other.tag == "Friendly") {
+		if (color == Color.white)
+			color = other.GetComponent(friendly).color;
+		else
+			print("todo: handle secondary colors.");
+		
+		sprite.color = color;
+		
+		Destroy(other.gameObject);
+	}
+	else if (other.tag == "Enemy") {
+
+	}
 }

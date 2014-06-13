@@ -1,9 +1,14 @@
 ﻿//The color of the enemy, starts out either orange, purple, or green
-private var color : Color = Color.white;
+var color : Color = Color.white;
+
+//The sprite renderer component of this object
+var sprite : SpriteRenderer;
 
 function Start () {
+	sprite = GetComponent(SpriteRenderer);
+
 	//For now, this just makes it a random color
-	var num : int = Mathf.range(1, 3);
+	var num : int = Random.Range(1, 4);
 	
 	switch (num) {
 		case 1: color = Color(1, 0.65, 0, 1);		//Orange
@@ -14,8 +19,10 @@ function Start () {
 			break;
 		default: break;
 	}
+	
+	sprite.color = color;
 }
 
 function Update () {
-
+	
 }
