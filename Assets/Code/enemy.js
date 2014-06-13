@@ -6,7 +6,7 @@ var ROTATE_SPEED : int = 50;
 
 //The color of the enemy, starts out either orange, purple, or green
 var color : Color = Color.white;
-var purple :  Color = Color(191/255.0F, 0, 1, 1);
+var purple : Color = Color(191/255.0F, 0, 1, 1);
 var green : Color = Color(0, 1, 0, 1);
 var orange : Color = Color(1, 127/255.0F, 0, 1);
 
