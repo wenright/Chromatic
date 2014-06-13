@@ -16,6 +16,7 @@ var explosion : GameObject;
 
 //The sprite renderer component of this object
 var sprite : SpriteRenderer;
+var game_over : GameObject;
 var purple :  Color = Color.magenta;
 var green : Color = Color.green;
 var orange : Color = Color(1, 0.65, 0, 1);
@@ -142,9 +143,16 @@ function OnTriggerEnter2D (other : Collider2D) {
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
 			
-			if (score > PlayerPrefs.GetInt("HighScore"))
+			if (score > PlayerPrefs.GetInt("HighScore")) {
 				PlayerPrefs.SetInt("HighScore", score);
+				print("New High Score!");
+			}
+			else if (score == PlayerPrefs.GetInt("HighScore")) {
+				print("Tied your old High Score.");
+			}
 				
+			Instantiate (game_over, Vector2.zero, transform.rotation);
+			Time.timeScale = 0;	//This is where we would return you to the main menu or restart the level or something
 			Destroy (gameObject);
 		}
 	}
