@@ -67,7 +67,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 	if (other.tag == "Friendly") {
 		if (color == Color.white)
 			color = other.GetComponent(friendly).color;
-		if(color != purple && color != green && color != green){
+		if(color != purple && color != orange && color != green){
 			
 			if(color == Color.blue){
 				if(other.GetComponent(friendly).color == Color.red){

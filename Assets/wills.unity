@@ -295,8 +295,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LERP_SPEED: .25
-  width: 6.66666698
-  height: 5
+  width: 0
+  height: 0
   friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
   color: {r: 1, g: 1, b: 1, a: 1}
   explosion: {fileID: 100000, guid: e5d7eceea8d9e1545ba4c6974edfbe56, type: 2}

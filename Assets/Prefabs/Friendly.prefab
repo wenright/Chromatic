@@ -56,6 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
+  friend: {fileID: 0}
   ROTATE_SPEED: 50
   sprite: {fileID: 21200000}
 --- !u!212 &21200000
