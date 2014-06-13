@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
-  sprite: {fileID: 0}
+  ROTATE_SPEED: 50
 --- !u!60 &147669773
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
-  sprite: {fileID: 0}
+  ROTATE_SPEED: 50
 --- !u!60 &269444360
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -401,7 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
-  sprite: {fileID: 0}
+  ROTATE_SPEED: 50
 --- !u!60 &593563227
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -483,7 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
-  sprite: {fileID: 0}
+  ROTATE_SPEED: 50
 --- !u!60 &810589504
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -712,7 +712,7 @@ MonoBehaviour:
   LERP_SPEED: .25
   color: {r: 1, g: 1, b: 1, a: 1}
   sprite: {fileID: 0}
-  purple: {r: 0, g: 0, b: 255, a: 1}
+  purple: {r: 1, g: 0, b: 1, a: 1}
   green: {r: 0, g: 1, b: 0, a: 1}
   orange: {r: 1, g: .649999976, b: 0, a: 1}
   timer: 0
@@ -858,7 +858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
-  sprite: {fileID: 0}
+  ROTATE_SPEED: 50
 --- !u!60 &1669414186
 PolygonCollider2D:
   m_ObjectHideFlags: 0

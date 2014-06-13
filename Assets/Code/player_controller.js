@@ -6,13 +6,9 @@ private var move_location : Vector2 = Vector2.zero;
 
 //The color of the player, starts out white
 var color : Color = Color.white;
-
-<<<<<<< HEAD
 private var score : int = 0;
 
-=======
 //The sprite renderer component of this object
->>>>>>> origin/master
 var sprite : SpriteRenderer;
 var purple :  Color = Color.magenta;
 var green : Color = Color.green;
