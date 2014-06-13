@@ -1,8 +1,11 @@
 ﻿//The color of the enemy, starts out either red, yellow, or blue
 var color : Color = Color.white;
 
+//The speed at which the object rotates around its center
+var ROTATE_SPEED : int = 50;
+
 //The sprite renderer component of this object
-var sprite : SpriteRenderer;
+private var sprite : SpriteRenderer;
 
 function Start () {
 	sprite = GetComponent(SpriteRenderer);
@@ -24,5 +27,5 @@ function Start () {
 }
 
 function Update () {
-
+	transform.RotateAround(transform.position, transform.forward, ROTATE_SPEED * Time.deltaTime);
 }

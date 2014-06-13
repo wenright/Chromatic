@@ -1,10 +1,23 @@
-﻿//The color of the enemy, starts out either orange, purple, or green
+﻿//The speed at which the enemy moves towards the move location, should be between 0 and 1
+var LERP_SPEED : float;		//A higher number means faster movement
+
+//The speed at which the object rotates around its center
+var ROTATE_SPEED : int = 50;
+
+//The color of the enemy, starts out either orange, purple, or green
 var color : Color = Color.white;
 
+//The target that the enemy chases, typically the player, but could be anything
+private var target : Transform;
+
 //The sprite renderer component of this object
-var sprite : SpriteRenderer;
+private var sprite : SpriteRenderer;
 
 function Start () {
+	//Finds the object tagged player
+	target = GameObject.FindGameObjectWithTag("Player").transform;
+
+	//Set the sprite variable to be the sprite renderer compoenent
 	sprite = GetComponent(SpriteRenderer);
 
 	//For now, this just makes it a random color
@@ -24,5 +37,7 @@ function Start () {
 }
 
 function Update () {
+	transform.RotateAround(transform.position, transform.forward, ROTATE_SPEED * Time.deltaTime);
 	
+	transform.position = Vector2.Lerp(transform.position, target.position, LERP_SPEED);
 }

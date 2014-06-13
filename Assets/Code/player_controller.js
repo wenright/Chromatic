@@ -8,11 +8,16 @@ private var move_location : Vector2 = Vector2.zero;
 var color : Color = Color.white;
 
 //The sprite renderer component of this object
+<<<<<<< HEAD
 var sprite : SpriteRenderer;
 var purple :  Color = Color.magenta;
 var green : Color = Color.green;
 var orange : Color = Color(1, 0.65, 0, 1);
 var timer : int = 0;
+=======
+private var sprite : SpriteRenderer;
+
+>>>>>>> FETCH_HEAD
 function Start () {
 	sprite = GetComponent(SpriteRenderer);
 }
@@ -73,6 +78,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 		Destroy(other.gameObject);
 	}
 	else if (other.tag == "Enemy") {
-
+		print("You died! probably.  Unless you were the right color and you shouldnt have died because that hasnt been implemented yet, sorry :(");
+		Destroy (gameObject);
 	}
 }
