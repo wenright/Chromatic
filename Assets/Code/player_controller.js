@@ -85,7 +85,6 @@ function OnTriggerEnter2D (other : Collider2D) {
 				}
 				else if(other.GetComponent(friendly).color == Color.blue){
 					color = purple;
-<<<<<<< HEAD
 				}
 			}	
 			var px : float = Random.Range(-width, width);
@@ -100,11 +99,6 @@ function OnTriggerEnter2D (other : Collider2D) {
 			else if(other.GetComponent(friendly).color == Color.blue){
 				f.GetComponent(friendly).SetColor(2);
 			}
-=======
-			}
-			var exp1 : GameObject = Instantiate(explosion, transform.position, transform.rotation);
-			exp1.GetComponent(ParticleSystem).startColor = color;
->>>>>>> FETCH_HEAD
 			Destroy(other.gameObject);
 		}
 			
