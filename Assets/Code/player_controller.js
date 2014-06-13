@@ -56,6 +56,8 @@ function Update () {
 }
 
 function OnTriggerEnter2D (other : Collider2D) {
+	var exp : GameObject;
+
 	if (other.tag == "Friendly") {
 		if (color == Color.white)
 			color = other.GetComponent(friendly).color;
@@ -78,21 +80,22 @@ function OnTriggerEnter2D (other : Collider2D) {
 				else if(other.GetComponent(friendly).color == Color.blue)
 					color = purple;
 			}
-			var exp1 : GameObject = Instantiate(explosion, transform.position, transform.rotation);
-			exp1.GetComponent(ParticleSystem).startColor = color;
+			exp = Instantiate(explosion, transform.position, transform.rotation);
+			exp.GetComponent(ParticleSystem).startColor = color;
 			Destroy(other.gameObject);
 		}
 			
-		
 		sprite.color = color;
 	}
 	else if (other.tag == "Enemy") {
 		if (color == other.GetComponent(enemy).color) {
 			Destroy(other.gameObject);
-			score += 1000;		//Change this to w/e, doesn't really matter what it is	
+			score += 1000;		//Change this to w/e, doesn't really matter what it is
+			exp = Instantiate(explosion, transform.position, transform.rotation);
+			exp.GetComponent(ParticleSystem).startColor = color;
 		}
 		else {
-			var exp : GameObject = Instantiate(explosion, transform.position, transform.rotation);
+			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
 			Destroy (gameObject);
 		}
