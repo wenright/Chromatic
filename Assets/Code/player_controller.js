@@ -101,11 +101,8 @@ function OnTriggerEnter2D (other : Collider2D) {
 			else if(other.GetComponent(friendly).color == Color.blue){
 				f.GetComponent(friendly).SetColor(2);
 			}
-<<<<<<< HEAD
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
-=======
->>>>>>> origin/master
 			Destroy(other.gameObject);
 		}
 			
