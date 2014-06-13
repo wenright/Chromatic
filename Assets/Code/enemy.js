@@ -15,7 +15,7 @@ var sprite : SpriteRenderer;
 
 function Start () {
 	//Finds the object tagged player
-	target = GameObject.FindGameObjectWithTag("Player").transform;
+	target = GameObject.FindGameObjectWithTag("Player").transform;		//TODO: getting error messages from player being dead and enemies spawning.
 
 	//For now, this just makes it a random color
 	var num : int = Random.Range(1, 4);
