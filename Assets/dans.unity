@@ -158,6 +158,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &287228828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 287228830}
+  - 114: {fileID: 287228829}
+  m_Layer: 0
+  m_Name: spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &287228829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 287228828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2811034ba5db6004db476ada1059bf93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
+  enemy: {fileID: 100000, guid: a0d7f8a4bd9310d48bb10514c331cda6, type: 2}
+--- !u!4 &287228830
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 287228828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
 --- !u!1001 &974554796
 Prefab:
   m_ObjectHideFlags: 0
@@ -201,6 +242,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: a53612101164e104c843ace727deaedf, type: 2}
+      propertyPath: game_over
+      value: 
+      objectReference: {fileID: 100000, guid: 6ca396f70555f3a4cbaae042967e1c02, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a53612101164e104c843ace727deaedf, type: 2}
   m_RootGameObject: {fileID: 1606230786}
@@ -238,12 +283,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LERP_SPEED: .25
+  width: 0
+  height: 0
+  friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
   color: {r: 1, g: 1, b: 1, a: 1}
+  ADDITIONAL_TIME: 50
+  explosion: {fileID: 100000, guid: e5d7eceea8d9e1545ba4c6974edfbe56, type: 2}
   sprite: {fileID: 1606230789}
+  game_over: {fileID: 100000, guid: 6ca396f70555f3a4cbaae042967e1c02, type: 2}
   purple: {r: 1, g: 0, b: 1, a: 1}
   green: {r: 0, g: 1, b: 0, a: 1}
   orange: {r: 1, g: .649999976, b: 0, a: 1}
   timer: 0
+  highscore: 0
 --- !u!58 &1606230788
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -254,7 +306,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Radius: .853333354
+  m_Radius: .430000007
   m_Center: {x: 0, y: 0}
 --- !u!212 &1606230789
 SpriteRenderer:

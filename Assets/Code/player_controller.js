@@ -17,9 +17,9 @@ var explosion : GameObject;
 //The sprite renderer component of this object
 var sprite : SpriteRenderer;
 var game_over : GameObject;
-var purple :  Color = Color.magenta;
-var green : Color = Color.green;
-var orange : Color = Color(1, 0.65, 0, 1);
+var purple :  Color = Color(191/255.0F, 0, 1, 1);
+var green : Color = Color(0, 1, 0, 1);
+var orange : Color = Color(1, 127/255.0F, 0, 1);
 var timer : int = 0;
 
 var highscore : int = 0;
@@ -120,11 +120,14 @@ function OnTriggerEnter2D (other : Collider2D) {
 			else if(other.GetComponent(friendly).color == Color.blue){
 				f.GetComponent(friendly).SetColor(2);
 			}
-			exp = Instantiate(explosion, transform.position, transform.rotation);
-			exp.GetComponent(ParticleSystem).startColor = color;
-			Destroy(other.gameObject);
 		}
-			
+		else{
+			timer += ADDITIONAL_TIME; 
+			color = other.GetComponent(friendly).color;
+		}
+		exp = Instantiate(explosion, transform.position, transform.rotation);
+		exp.GetComponent(ParticleSystem).startColor = color;
+		Destroy(other.gameObject);
 		sprite.color = color;
 	}
 	else if (other.tag == "Enemy") {
