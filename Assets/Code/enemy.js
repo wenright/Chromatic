@@ -23,15 +23,7 @@ function Start () {
 	//For now, this just makes it a random color
 	var num : int = Random.Range(1, 4);
 	
-	switch (num) {
-		case 1: color = orange;
-			break;
-		case 2: color = purple;
-			break;
-		case 3: color = green;
-			break;
-		default: break;
-	}
+	SetColor(num);
 	
 	sprite.color = color;
 }
@@ -53,4 +45,16 @@ function Update () {
 		transform.position = Vector2.MoveTowards(transform.position, target.transform.position, MOVE_SPEED);
 		
 	*/
+}
+
+function SetColor (num : int) {
+	switch (num) {
+		case 1: color = orange;
+			break;
+		case 2: color = purple;
+			break;
+		case 3: color = green;
+			break;
+		default: break;
+	}
 }
