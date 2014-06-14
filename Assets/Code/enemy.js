@@ -37,10 +37,20 @@ function Start () {
 }
 
 function Update () {
+	if (target) {
+		transform.LookAt(transform.position + Vector3(0,0,1), target.position - transform.position);
+		rigidbody2D.AddForce(transform.up * Time.deltaTime * 300);
+	}
+	
+	transform.position.z = 0;
+
+	/*		Old version of enemy, rotates and moves towards player
 	transform.RotateAround(transform.position, transform.forward, ROTATE_SPEED * Time.deltaTime);
 	
 	MOVE_SPEED += .0001;
 	//Prevents annoying 2s lag and error messages
 	if (target)
 		transform.position = Vector2.MoveTowards(transform.position, target.transform.position, MOVE_SPEED);
+		
+	*/
 }

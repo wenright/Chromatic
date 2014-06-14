@@ -21,10 +21,10 @@ function Start () {
 		
 		var px2 : float = Random.Range(-width, width);
 		
-		Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(Random.value, 1.5)), transform.rotation);
+		Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(Random.value, 1.1)), transform.rotation);
 		
 		yield WaitForSeconds(2);
 		
-		Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(1.5, Random.value)), transform.rotation);
+		Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value)), transform.rotation);
 	}
 }

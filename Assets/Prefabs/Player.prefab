@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5928c7e042b13c047911984100bcb3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LERP_SPEED: 0
+  LERP_SPEED: .25
   width: 0
   height: 0
   friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
