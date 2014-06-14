@@ -5,6 +5,7 @@ var height : float;
 //The last location that the player touches
 private var move_location : Vector2 = Vector2.zero;
 var friend : GameObject;
+var line : GameObject;
 //The color of the player, starts out white
 var color : Color = Color.white;
 var purple :  Color = Color(191/255.0F, 0, 1, 1);
@@ -64,6 +65,14 @@ function Update () {
 	  	else
 	  		sprite.color = color;
 	  	}		
+	}
+	
+	if (color == Color.white) {
+		line.transform.localScale.x = 0;
+	}
+	else {
+		line.transform.localScale.x = timer/30.0;
+		line.GetComponent(SpriteRenderer).color = color;
 	}
 }
 
