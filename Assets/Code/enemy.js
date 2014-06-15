@@ -1,5 +1,5 @@
 ﻿//The speed at which the enemy moves towards the move location, should be between 0 and 1
-var MOVE_SPEED : float = .03;		//A higher number means faster movement
+var MOVE_SPEED : float = 300;		//A higher number means faster movement
 
 //The speed at which the object rotates around its center
 var ROTATE_SPEED : int = 50;
@@ -50,9 +50,9 @@ function Update () {
 	//Move/rotate enemy
 	if (target) {
 		transform.LookAt(transform.position + Vector3(0,0,1), target.position - transform.position);
-		rigidbody2D.AddForce(transform.up * Time.deltaTime * 300);
+		rigidbody2D.AddForce(transform.up * Time.deltaTime * MOVE_SPEED);
 	}
-	
+	MOVE_SPEED += 1;
 	transform.position.z = 0;
 
 	//draw a GUI icon indicating incoming enemy if off screen

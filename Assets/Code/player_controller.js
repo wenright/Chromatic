@@ -28,6 +28,7 @@ var timer : int = 0;
 
 var highscore : int = 0;
 
+
 function Start () {
 	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;
 	height = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y;
@@ -49,25 +50,49 @@ function Update () {
 	//Takes in mouse input instead
 	else if (Input.GetMouseButton(0))
 		move_location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		
-	//Interpolates the location of the player from its current location to the last location touched by the user
-	transform.position = Vector2.Lerp(transform.position, move_location, LERP_SPEED);		//TODO: make the speed constant
+
+	transform.position = Vector2.MoveTowards(transform.position, move_location, Time.deltaTime * LERP_SPEED);		//TODO: make the speed constant
 	
-	//Checks if colored and counts down from 30, when 0 is reached, resets to white
-	if(timer <= 0){
-	  timer = 200;
-	  sprite.color = Color.white;
-	  color = Color.white;
-	 }
+	//Checks if colored and counts down from 200, when 0 is reached, resets to white
 	if(timer > 0 && color != Color.white){
 	  timer -= Time.deltaTime;
-	  if(timer < 100){
-	  	if(timer % 20 == 0)
-	  		sprite.color = Color.white;
-	  	else
-	  		sprite.color = color;
-	  	}		
+	  if(timer <= 100){
+	  	if(timer % 20 == 0){
+	  		transform.localScale = new Vector3(1.8, 1.8, 1);
+	  	}
+	  	else if(timer % 20 == 19){
+	  		transform.localScale = new Vector3(1.9, 1.9, 1);;
+	  	}
+	  	else if(timer % 20 == 18){
+	  		transform.localScale = new Vector3(2, 2, 1);
+	  	}
+	  	else if(timer % 20 == 17){
+	  		transform.localScale = new Vector3(2.15, 2.15, 1);
+	  	}
+	  	else if(timer % 20 == 16){
+	  		transform.localScale = new Vector3(2.15, 2.15, 1);
+	  	}
+	  	else if(timer % 20 == 15){
+	  		transform.localScale = new Vector3(2, 2, 1);
+	  	}
+	  	else if(timer % 20 == 14){
+	  		transform.localScale = new Vector3(1.9, 1.9, 1);
+	  	}
+	  	else if(timer % 20 == 13){
+	  		transform.localScale = new Vector3(1.8, 1.8, 1);
+	  	}
+	  	else{
+	  		transform.localScale = new Vector3(1.75, 1.75, 1);
+	  	}
+	  }	
 	}
+	else{
+		transform.localScale = new Vector3(1.75, 1.75, 1);
+		sprite.color = Color.white;
+	  	color = Color.white;
+	  	timer = 200;
+	}
+	
 	
 	if (color == Color.white) {
 		line.transform.localScale.x = 0;
@@ -125,11 +150,14 @@ function OnTriggerEnter2D (other : Collider2D) {
 			timer = 200; 
 			color = other.GetComponent(friendly).color;
 		}
-		
+		var counter: int = 0;
 		//Spawn a friendly
 		do {					//Worst case scenario, this loop could go on forever.  May want to add a counter and have this loop give up once it reaches a certain number
 			var px : float = Random.Range(-width, width);
 			var py : float = Random.Range(-height, height);
+			counter ++;
+			if(counter > 300)
+				break;
 		} while (!CheckPosition(px, py));
 		
 		var f : GameObject = Instantiate(friend, Vector2(px, py), transform.rotation);
