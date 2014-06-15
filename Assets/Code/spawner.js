@@ -1,6 +1,5 @@
 ﻿var friend : GameObject;
 var enemy : GameObject;
-
 var over : boolean = false;
 
 function Start () {
@@ -30,8 +29,8 @@ function Start () {
 			Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(Random.value * n, 1.1)), transform.rotation);
 		else
 			Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value * n)), transform.rotation);
-			
 		yield WaitForSeconds(2);
+		
 	}
 }
 

@@ -16,7 +16,7 @@ var GameController : GameObject;
 var SpawnController : GameObject;
 
 private var multiplier : int = 1;
-var BaseScore : int = 1000;
+var BaseScore : int = 100;
 var ScoreText : GameObject;
 
 var tolerance : float; 				//tolerance for spawning a friendly
@@ -205,7 +205,8 @@ function OnTriggerEnter2D (other : Collider2D) {
 				rage_mode = true;
 				rage_timer = timer;
 			}
-			timer += ADDITIONAL_TIME;
+			if(!rage_mode)
+				timer += ADDITIONAL_TIME;
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
 		}

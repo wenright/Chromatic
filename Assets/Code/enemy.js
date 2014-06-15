@@ -52,7 +52,7 @@ function Update () {
 		transform.LookAt(transform.position + Vector3(0,0,1), target.position - transform.position);
 		rigidbody2D.AddForce(transform.up * Time.deltaTime * MOVE_SPEED);
 	}
-	MOVE_SPEED += Time.deltaTime * 60;
+	MOVE_SPEED += Time.deltaTime * 50;
 	transform.position.z = 0;
 
 	//draw a GUI icon indicating incoming enemy if off screen
