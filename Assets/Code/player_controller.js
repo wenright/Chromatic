@@ -15,9 +15,15 @@ var orange : Color = Color(1, 127/255.0F, 0, 1);
 var GameController : GameObject;
 var SpawnController : GameObject;
 
+var multiplier : int = 1;
+var BaseScore : int = 1000;
+var ScoreText : GameObject;
+
 var tolerance : float; 				//tolerance for spawning a friendly
 
 private var score : int = 0;
+private var rage_mode : boolean = false;
+private var rage_timer : int = 0;
 
 var ADDITIONAL_TIME : int = 50;		//Make this zero if you don't like it
 
@@ -94,6 +100,21 @@ function Update () {
 		sprite.color = Color.white;
 	  	color = Color.white;
 	  	timer = MAX_TIME;
+	  	multiplier = 1;
+	}
+
+	if (rage_timer > 0) {
+		rage_timer -= Time.deltaTime;
+		var ran : int = Random.Range(1, 3);
+		switch (ran) {
+			case 1: color = orange;
+				break;
+			case 2: color = purple;
+				break;
+			case 3: color = green;
+				break;
+		default: break;
+		}
 	}
 	
 	
@@ -147,6 +168,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			color = other.GetComponent(friendly).color;
 		}
 		var counter: int = 0;
+		multiplier = 1;
 		//Spawn a friendly
 		do {					//Worst case scenario, this loop could go on forever.  May want to add a counter and have this loop give up once it reaches a certain number
 			var px : float = Random.Range(-width, width);
@@ -172,9 +194,17 @@ function OnTriggerEnter2D (other : Collider2D) {
 		sprite.color = color;
 	}
 	else if (other.tag == "Enemy") {
-		if (color == other.GetComponent(enemy).color) {
+		if (color == other.GetComponent(enemy).color || rage_mode) {
 			Destroy(other.gameObject);
-			score += 1000;		//Change this to w/e, doesn't really matter what it is
+			score += BaseScore * multiplier;		//Change this to w/e, doesn't really matter what it is
+			var sc_txt : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);
+			sc_txt.GetComponent(TextMesh).text = "" + (BaseScore * multiplier);
+			//sc_txt.GetComponent(TextMesh).color = other.GetComponent(enemy).color;		//<- if you want the color to be the same as the object destroyed
+			multiplier++;
+			if (multiplier == 5) {
+				rage_mode = true;
+				rage_timer = 100;
+			}
 			timer += ADDITIONAL_TIME;
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;

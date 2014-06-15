@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5928c7e042b13c047911984100bcb3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LERP_SPEED: 35
+  LERP_SPEED: 50
   width: 0
   height: 0
   friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
@@ -80,6 +80,9 @@ MonoBehaviour:
   orange: {r: 1, g: .498039216, b: 0, a: 1}
   GameController: {fileID: 0}
   SpawnController: {fileID: 0}
+  multiplier: 1
+  BaseScore: 1000
+  ScoreText: {fileID: 100000, guid: d3ee410e30b2c184c986b812a2dc1770, type: 2}
   tolerance: 1
   ADDITIONAL_TIME: 50
   explosion: {fileID: 100000, guid: e5d7eceea8d9e1545ba4c6974edfbe56, type: 2}

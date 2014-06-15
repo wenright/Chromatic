@@ -16,11 +16,10 @@ function Start () {
 		var f : GameObject = Instantiate(friend, Vector2(px, py), transform.rotation);
 		f.GetComponent(friendly).SetColor(i);
 	}
+	yield WaitForSeconds(2);
 	
 	//Basic enemy spawner, spawns one every 2 seconds
 	while (!over) {
-		yield WaitForSeconds(2);
-		
 		var n : int = 1;
 		if (Random.value > 0.5)
 			n = -1;
@@ -31,6 +30,8 @@ function Start () {
 			Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(Random.value * n, 1.1)), transform.rotation);
 		else
 			Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value * n)), transform.rotation);
+			
+		yield WaitForSeconds(2);
 	}
 }
 
