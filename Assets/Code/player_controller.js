@@ -15,7 +15,7 @@ var orange : Color = Color(1, 127/255.0F, 0, 1);
 var GameController : GameObject;
 var SpawnController : GameObject;
 
-var multiplier : int = 1;
+private var multiplier : int = 1;
 var BaseScore : int = 1000;
 var ScoreText : GameObject;
 
@@ -25,7 +25,7 @@ private var score : int = 0;
 private var rage_mode : boolean = false;
 private var rage_timer : int = 0;
 
-var ADDITIONAL_TIME : int = 50;		//Make this zero if you don't like it
+var ADDITIONAL_TIME : int = 75;		//Make this zero if you don't like it
 
 var explosion : GameObject;
 
@@ -33,9 +33,9 @@ var explosion : GameObject;
 var sprite : SpriteRenderer;
 var game_over : GameObject;
 
-var timer : int = 0;
+private var timer : int = 0;
 
-var highscore : int = 0;
+private var highscore : int = 0;
 
 
 function Start () {
@@ -113,10 +113,12 @@ function Update () {
 				break;
 			case 3: color = green;
 				break;
-		default: break;
+			default: break;
 		}
+		sprite.color = color;
 	}
-	
+	else
+		rage_mode = false;
 	
 	if (color == Color.white) {
 		line.transform.localScale.x = 0;
@@ -130,15 +132,13 @@ function Update () {
 function OnTriggerEnter2D (other : Collider2D) {
 	var exp : GameObject;
 	transform.localScale = new Vector3(1.75, 1.75, 1);
-	if (other.tag == "Friendly") {
+	if (other.tag == "Friendly" && !rage_mode) {
 		if (color == Color.white)
 			color = other.GetComponent(friendly).color;
 		if(color != purple && color != orange && color != green){
-			
 			if(color == Color.blue){
 				if(other.GetComponent(friendly).color == Color.red){
 					color = purple;
-					
 				}
 				else if(other.GetComponent(friendly).color == Color.yellow){
 					color = green;
@@ -163,7 +163,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			
 			timer = MAX_TIME;
 		}
-		else{
+		else {
 			timer = MAX_TIME; 
 			color = other.GetComponent(friendly).color;
 		}
@@ -203,7 +203,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			multiplier++;
 			if (multiplier == 5) {
 				rage_mode = true;
-				rage_timer = 100;
+				rage_timer = timer;
 			}
 			timer += ADDITIONAL_TIME;
 			exp = Instantiate(explosion, transform.position, transform.rotation);
