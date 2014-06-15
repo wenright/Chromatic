@@ -1,5 +1,5 @@
 ﻿//The speed at which the player moves towards the move location, should be between 0 and 1
-var LERP_SPEED : float;		//A higher number means faster movement
+var MOVE_SPEED : float;		//A higher number means faster movement
 var width : float;
 var height : float;
 //The last location that the player touches
@@ -50,8 +50,8 @@ function Update () {
 	//Takes in mouse input instead
 	else if (Input.GetMouseButton(0))
 		move_location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-	transform.position = Vector2.MoveTowards(transform.position, move_location, Time.deltaTime * LERP_SPEED);		//TODO: make the speed constant
+	if(Vector2.Distance(move_location, transform.position) < 7)
+		transform.position = Vector2.MoveTowards(transform.position, move_location, Time.deltaTime * MOVE_SPEED);		//TODO: make the speed constant
 	
 	//Checks if colored and counts down from 200, when 0 is reached, resets to white
 	if(timer > 0 && color != Color.white){
@@ -105,7 +105,7 @@ function Update () {
 
 function OnTriggerEnter2D (other : Collider2D) {
 	var exp : GameObject;
-
+	transform.localScale = new Vector3(1.75, 1.75, 1);
 	if (other.tag == "Friendly") {
 		if (color == Color.white)
 			color = other.GetComponent(friendly).color;
