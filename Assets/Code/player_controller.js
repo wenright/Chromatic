@@ -209,7 +209,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
 		}
-		else {
+		else if(color == Color.white) {
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
 			
@@ -225,6 +225,15 @@ function OnTriggerEnter2D (other : Collider2D) {
 			GameController.GetComponent(game_controller).GameOver();
 			SpawnController.GetComponent(spawner).GameOver();
 			Destroy (gameObject);
+		}
+		else{
+			multiplier = 0;
+			timer = 0;
+			color = Color.white;
+			Destroy(other.gameObject);
+			score -= BaseScore;
+			exp = Instantiate(explosion, transform.position, transform.rotation);
+			exp.GetComponent(ParticleSystem).startColor = color;
 		}
 	}
 }
