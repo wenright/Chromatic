@@ -6,11 +6,14 @@ var height : float;
 private var move_location : Vector2 = Vector2.zero;
 var friend : GameObject;
 var line : GameObject;
+var MAX_TIME : int = 200;
 //The color of the player, starts out white
 var color : Color = Color.white;
 var purple :  Color = Color(191/255.0F, 0, 1, 1);
 var green : Color = Color(0, 1, 0, 1);
 var orange : Color = Color(1, 127/255.0F, 0, 1);
+var GameController : GameObject;
+var SpawnController : GameObject;
 
 var tolerance : float; 				//tolerance for spawning a friendly
 
@@ -90,7 +93,7 @@ function Update () {
 		transform.localScale = new Vector3(1.75, 1.75, 1);
 		sprite.color = Color.white;
 	  	color = Color.white;
-	  	timer = 200;
+	  	timer = MAX_TIME;
 	}
 	
 	
@@ -119,9 +122,6 @@ function OnTriggerEnter2D (other : Collider2D) {
 				else if(other.GetComponent(friendly).color == Color.yellow){
 					color = green;
 				}
-				else if (other.GetComponent(friendly).color == Color.blue) {
-					timer += ADDITIONAL_TIME;
-				}
 			}
 			else if(color == Color.yellow){
 				if(other.GetComponent(friendly).color == Color.red){
@@ -129,9 +129,6 @@ function OnTriggerEnter2D (other : Collider2D) {
 				}
 				else if(other.GetComponent(friendly).color == Color.blue){
 					color = green;
-				}
-				else if (other.GetComponent(friendly).color == Color.yellow) {
-					timer += ADDITIONAL_TIME;
 				}
 			}
 			else if(color == Color.red){
@@ -141,13 +138,12 @@ function OnTriggerEnter2D (other : Collider2D) {
 				else if(other.GetComponent(friendly).color == Color.blue){
 					color = purple;
 				}
-				else if (other.GetComponent(friendly).color == Color.red) {
-					timer += ADDITIONAL_TIME;
-				}
-			}	
+			}
+			
+			timer = MAX_TIME;
 		}
 		else{
-			timer = 200; 
+			timer = MAX_TIME; 
 			color = other.GetComponent(friendly).color;
 		}
 		var counter: int = 0;
@@ -196,7 +192,8 @@ function OnTriggerEnter2D (other : Collider2D) {
 			}
 				
 			Instantiate (game_over, Vector2.zero, transform.rotation);
-			//Time.timeScale = 0;	//This is where we would return you to the main menu or restart the level or something
+			GameController.GetComponent(game_controller).GameOver();
+			SpawnController.GetComponent(spawner).GameOver();
 			Destroy (gameObject);
 		}
 	}

@@ -68,15 +68,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5928c7e042b13c047911984100bcb3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   MOVE_SPEED: 50
   width: 0
   height: 0
   friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
   line: {fileID: 100000, guid: 3359ece84c16386489a700018117ce78, type: 2}
+=======
+  LERP_SPEED: 35
+  width: 0
+  height: 0
+  friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
+  line: {fileID: 0}
+  MAX_TIME: 200
+>>>>>>> FETCH_HEAD
   color: {r: 1, g: 1, b: 1, a: 1}
   purple: {r: .749019623, g: 0, b: 1, a: 1}
   green: {r: 0, g: 1, b: 0, a: 1}
   orange: {r: 1, g: .498039216, b: 0, a: 1}
+  GameController: {fileID: 0}
+  SpawnController: {fileID: 0}
   tolerance: 1
   ADDITIONAL_TIME: 50
   explosion: {fileID: 100000, guid: e5d7eceea8d9e1545ba4c6974edfbe56, type: 2}

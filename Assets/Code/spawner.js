@@ -1,6 +1,8 @@
 ﻿var friend : GameObject;
 var enemy : GameObject;
 
+var over : boolean = false;
+
 function Start () {
 	var width : float = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;
 	var height : float = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y;
@@ -16,7 +18,7 @@ function Start () {
 	}
 	
 	//Basic enemy spawner, spawns one every 2 seconds
-	while (true) {
+	while (!over) {
 		yield WaitForSeconds(2);
 		
 		var n : int = 1;
@@ -30,4 +32,8 @@ function Start () {
 		else
 			Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value * n)), transform.rotation);
 	}
+}
+
+function GameOver () {
+	over = true;
 }
