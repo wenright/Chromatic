@@ -70,6 +70,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MOVE_SPEED: .0299999993
   ROTATE_SPEED: 50
+  width: 0
+  height: 0
+  label_x: 0
+  label_y: 0
+  label_width: 30
+  enemy_label: {fileID: 2800000, guid: 25f20bc027313aa418a2a9c06a9d2ba5, type: 3}
+  show_label: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   purple: {r: .749019623, g: 0, b: 1, a: 1}
   green: {r: 0, g: 1, b: 0, a: 1}

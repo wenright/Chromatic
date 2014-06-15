@@ -12,6 +12,8 @@ var purple :  Color = Color(191/255.0F, 0, 1, 1);
 var green : Color = Color(0, 1, 0, 1);
 var orange : Color = Color(1, 127/255.0F, 0, 1);
 
+var tolerance : float; 				//tolerance for spawning a friendly
+
 private var score : int = 0;
 
 var ADDITIONAL_TIME : int = 50;		//Make this zero if you don't like it
@@ -123,8 +125,13 @@ function OnTriggerEnter2D (other : Collider2D) {
 			timer = 200; 
 			color = other.GetComponent(friendly).color;
 		}
-		var px : float = Random.Range(-width, width);
-		var py : float = Random.Range(-height, height);
+		
+		//Spawn a friendly
+		do {					//Worst case scenario, this loop could go on forever.  May want to add a counter and have this loop give up once it reaches a certain number
+			var px : float = Random.Range(-width, width);
+			var py : float = Random.Range(-height, height);
+		} while (!CheckPosition(px, py));
+		
 		var f : GameObject = Instantiate(friend, Vector2(px, py), transform.rotation);
 		if(other.GetComponent(friendly).color == Color.red){
 			f.GetComponent(friendly).SetColor(0);
@@ -165,4 +172,22 @@ function OnTriggerEnter2D (other : Collider2D) {
 			Destroy (gameObject);
 		}
 	}
+}
+
+//Checks the x, y coordinates to see if any objects are too close.  Returns true if good location, false otherwise.
+function CheckPosition (x : float, y : float) {
+	if ((transform.position.x - x) < tolerance && (transform.position.y - y) < tolerance)
+		return false;
+
+	var f : GameObject[] = GameObject.FindGameObjectsWithTag("Friendly");
+	var e : GameObject[] = GameObject.FindGameObjectsWithTag("Enemy");
+	
+	for (var i : int = 0; i < f.Length; i++)
+		if ((f[i].transform.position.x - x) < tolerance && (f[i].transform.position.y - y) < tolerance)
+			return false;
+	for (var j : int = 0; j < e.Length; j++)
+		if ((e[j].transform.position.x - x) < tolerance && (e[j].transform.position.y - y) < tolerance)
+			return false;
+			
+	return true;
 }

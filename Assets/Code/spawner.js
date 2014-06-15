@@ -19,12 +19,15 @@ function Start () {
 	while (true) {
 		yield WaitForSeconds(2);
 		
-		var px2 : float = Random.Range(-width, width);
-		
-		Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(Random.value, 1.1)), transform.rotation);
-		
-		yield WaitForSeconds(2);
-		
-		Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value)), transform.rotation);
+		var n : int = 1;
+		if (Random.value > 0.5)
+			n = -1;
+	
+		//Test location coordinates to see if an object is near, and if so, spawn a different one
+	
+		if (Random.value > 0.5)
+			Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(Random.value * n, 1.1)), transform.rotation);
+		else
+			Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value * n)), transform.rotation);
 	}
 }

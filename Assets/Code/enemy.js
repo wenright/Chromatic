@@ -4,6 +4,16 @@ var MOVE_SPEED : float = .03;		//A higher number means faster movement
 //The speed at which the object rotates around its center
 var ROTATE_SPEED : int = 50;
 
+var width : float;
+var height : float;
+
+var label_x : float;
+var label_y : float;
+var label_width : int;
+
+var enemy_label : Texture2D;
+var show_label : boolean = false;
+
 //The color of the enemy, starts out either orange, purple, or green
 var color : Color = Color.white;
 var purple : Color = Color(191/255.0F, 0, 1, 1);
@@ -26,9 +36,18 @@ function Start () {
 	SetColor(num);
 	
 	sprite.color = color;
+	
+	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;
+	height = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y;
+}
+
+function OnGUI () {
+	if (show_label)
+		GUI.Label(Rect(label_x, label_y, label_width, label_width), enemy_label);
 }
 
 function Update () {
+	//Move/rotate enemy
 	if (target) {
 		transform.LookAt(transform.position + Vector3(0,0,1), target.position - transform.position);
 		rigidbody2D.AddForce(transform.up * Time.deltaTime * 300);
@@ -36,15 +55,22 @@ function Update () {
 	
 	transform.position.z = 0;
 
-	/*		Old version of enemy, rotates and moves towards player
-	transform.RotateAround(transform.position, transform.forward, ROTATE_SPEED * Time.deltaTime);
+	//draw a GUI icon indicating incoming enemy if off screen
+	show_label = (Mathf.Abs(transform.position.x) > width || Mathf.Abs(transform.position.y) > height);
 	
-	MOVE_SPEED += .0001;
-	//Prevents annoying 2s lag and error messages
-	if (target)
-		transform.position = Vector2.MoveTowards(transform.position, target.transform.position, MOVE_SPEED);
-		
-	*/
+	if (transform.position.x > width)
+		label_x = Screen.width - label_width;
+	else if (transform.position.x < -width)
+		label_x = 0;
+	else 
+		label_x = Camera.main.WorldToScreenPoint(transform.position).x;
+	
+	if (transform.position.y > height)
+		label_y = 0;
+	else if (transform.position.y < -height)
+		label_y = Screen.height - label_width;
+	else
+		label_y = Screen.height - Camera.main.WorldToScreenPoint(transform.position).y;
 }
 
 function SetColor (num : int) {
