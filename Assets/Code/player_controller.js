@@ -214,27 +214,33 @@ function OnTriggerEnter2D (other : Collider2D) {
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
 			
+			Instantiate (game_over, Vector3(0, 0, -1), transform.rotation);
+			var hs : GameObject = Instantiate(game_over, Vector3(0, -1, -1), transform.rotation);
+			
 			if (score > PlayerPrefs.GetInt("HighScore")) {
 				PlayerPrefs.SetInt("HighScore", score);
+				hs.GetComponent(TextMesh).text = "New High Score! " + score;
 				print("New High Score!");
 			}
-			else if (score == PlayerPrefs.GetInt("HighScore")) {
-				print("Tied your old High Score.");
+			else {
+				hs.GetComponent(TextMesh).text = "Score: " + score;
 			}
-				
-			Instantiate (game_over, Vector2.zero, transform.rotation);
+			
 			GameController.GetComponent(game_controller).GameOver();
 			SpawnController.GetComponent(spawner).GameOver();
 			Destroy (gameObject);
 		}
 		else{
-			multiplier = 0;
+			multiplier = 1;
 			timer = 0;
 			color = Color.white;
 			Destroy(other.gameObject);
 			score -= BaseScore;
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
+			var minus_text : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);
+			minus_text.GetComponent(TextMesh).text = "-" + BaseScore;
+			minus_text.GetComponent(TextMesh).color = Color.red;
 		}
 	}
 }

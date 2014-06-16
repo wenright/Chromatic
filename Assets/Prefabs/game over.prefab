@@ -56,12 +56,12 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Text: You Suck
+  m_Text: (Tap to Play Again)
   m_OffsetZ: 0
-  m_CharacterSize: .100000001
+  m_CharacterSize: .0399999991
   m_LineSpacing: 1
-  m_Anchor: 4
-  m_Alignment: 0
+  m_Anchor: 1
+  m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 128
   m_FontStyle: 0
@@ -69,7 +69,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4290969855
+    rgba: 4294967295
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

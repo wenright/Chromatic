@@ -1,6 +1,7 @@
 ﻿var friend : GameObject;
 var enemy : GameObject;
 var over : boolean = false;
+var wait_time : float = 2.0;
 
 function Start () {
 	var width : float = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;
@@ -29,8 +30,9 @@ function Start () {
 			Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(Random.value * n, 1.1)), transform.rotation);
 		else
 			Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value * n)), transform.rotation);
-		yield WaitForSeconds(2);
-		
+		yield WaitForSeconds(wait_time);
+		if (wait_time > 0.01)
+			wait_time -= 0.01;
 	}
 }
 
