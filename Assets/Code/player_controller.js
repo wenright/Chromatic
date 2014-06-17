@@ -1,53 +1,50 @@
-﻿//The speed at which the player moves towards the move location, should be between 0 and 1
-var MOVE_SPEED : float;		//A higher number means faster movement
+﻿//Please Add Variables to the proper area!!
+//SetUp
 var width : float;
 var height : float;
-//The last location that the player touches
+//Movement
+var MOVE_SPEED : float;
 private var move_location : Vector2 = Vector2.zero;
-var friend : GameObject;
-var line : GameObject;
-var MAX_TIME : int = 200;
-//The color of the player, starts out white
+var tolerance : float;//tolerance for spawning a friendly
+//Colors
 var color : Color = Color.white;
 var purple :  Color = Color(191/255.0F, 0, 1, 1);
 var green : Color = Color(0, 1, 0, 1);
-var orange : Color = Color(1, 127/255.0F, 0, 1);
+var orange : Color = Color(1, 127/255.0F, 0, 1); 				
+//Game Objects
 var GameController : GameObject;
 var SpawnController : GameObject;
-
-private var multiplier : int = 1;
-var BaseScore : int = 100;
-var ScoreText : GameObject;
-
-var tolerance : float; 				//tolerance for spawning a friendly
-
-private var score : int = 0;
-private var rage_mode : boolean = false;
-private var rage_timer : int = 0;
-
-var ADDITIONAL_TIME : int = 75;		//Make this zero if you don't like it
-
+var friend : GameObject;
+var line : GameObject;
 var explosion : GameObject;
-
-//The sprite renderer component of this object
-var sprite : SpriteRenderer;
+var ScoreText : GameObject;
+var sprite : SpriteRenderer; //The sprite renderer component of this object
 var game_over : GameObject;
-
+//Time
 private var timer : int = 0;
-
+var ADDITIONAL_TIME : int = 75;
+var MAX_TIME : int = 200;
+//Score
+private var multiplier : int = 1;
+private var score : int = 0;
 private var highscore : int = 0;
+var BaseScore : int = 100;
+//Rage
+private var rage_mode : boolean = false;
+private var rage_timer : int = 0;	
+//Misc (add random shit to be sorted here)
 
 
 function Start () {
-	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;
-	height = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y;
-	
-	highscore = PlayerPrefs.GetInt("HighScore");
+	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x; //Set width to viewport width
+	height = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y; //Set height to viewport height
+	Time.timeScale = 1; //set time back to normal if its not already
+	highscore = PlayerPrefs.GetInt("HighScore"); //Get the high score
 }
 
 function OnGUI () {
-	//Super basic score counter
-	GUI.Label (Rect(0, 0, 120, 60), "High Score: " + highscore);	//Set this as a variable at the beginning to use fewer calculations
+	//Super basic score counter(WILL BE REPLACED!!!)
+	GUI.Label (Rect(0, 0, 120, 60), "High Score: " + highscore);
 	GUI.Label (Rect(0, 30, 120, 60), "Score: " + score);
 	GUI.Label (Rect(0, 60, 120, 60), "Time: " + timer);
 }
@@ -59,13 +56,15 @@ function Update () {
 	//Takes in mouse input instead
 	else if (Input.GetMouseButton(0))
 		move_location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-	if(Vector2.Distance(move_location, transform.position) < 7)
-		transform.position = Vector2.MoveTowards(transform.position, move_location, Time.deltaTime * MOVE_SPEED);		//TODO: make the speed constant
+		
+	if(Vector2.Distance(move_location, transform.position) < 7) //checks to see if finger/mouse is within range
+		transform.position = Vector2.MoveTowards(transform.position, move_location, Time.deltaTime * MOVE_SPEED); //moves towards that location
 	
 	//Checks if colored and counts down from 200, when 0 is reached, resets to white
 	if(timer > 0 && color != Color.white){
 	  timer -= Time.deltaTime;
-	  if(timer <= 100){
+	   //Pulsing Animation Code-->
+	   if(timer <= 100){
 	  	if(timer % 20 == 0){
 	  		transform.localScale = new Vector3(1.8, 1.8, 1);
 	  	}
@@ -94,15 +93,17 @@ function Update () {
 	  		transform.localScale = new Vector3(1.75, 1.75, 1);
 	  	}
 	  }	
+	  //<--
 	}
 	else{
-		transform.localScale = new Vector3(1.75, 1.75, 1);
-		sprite.color = Color.white;
-	  	color = Color.white;
-	  	timer = MAX_TIME;
-	  	multiplier = 1;
+		//Time has run out
+		transform.localScale = new Vector3(1.75, 1.75, 1); //Set size back to normal
+		sprite.color = Color.white; //Set color to white
+	  	color = Color.white; //change the color variable to white
+	  	timer = MAX_TIME; //Reset timer
+	  	multiplier = 1; //Multiplier to 1
 	}
-
+	//Rage Code-->
 	if (rage_timer > 0) {
 		rage_timer -= Time.deltaTime;
 		var ran : int = Random.Range(1, 3);
@@ -119,13 +120,13 @@ function Update () {
 	}
 	else
 		rage_mode = false;
-	
+	//<--
 	if (color == Color.white) {
-		line.transform.localScale.x = 0;
+		line.transform.localScale.x = 0;//Reset timer to 0 size if white
 	}
 	else {
-		line.transform.localScale.x = timer/30.0;
-		line.GetComponent(SpriteRenderer).color = color;
+		line.transform.localScale.x = timer/30.0; //Make it the size of time_left/30
+		line.GetComponent(SpriteRenderer).color = color;//set the color to the current color
 	}
 }
 
@@ -133,8 +134,8 @@ function OnTriggerEnter2D (other : Collider2D) {
 	var exp : GameObject;
 	transform.localScale = new Vector3(1.75, 1.75, 1);
 	if (other.tag == "Friendly" && !rage_mode) {
-		if (color == Color.white)
-			color = other.GetComponent(friendly).color;
+//		if (color == Color.white)
+//			color = other.GetComponent(friendly).color;
 		if(color != purple && color != orange && color != green){
 			if(color == Color.blue){
 				if(other.GetComponent(friendly).color == Color.red){
@@ -211,10 +212,9 @@ function OnTriggerEnter2D (other : Collider2D) {
 			exp.GetComponent(ParticleSystem).startColor = color;
 		}
 		else if(color == Color.white) {
-			exp = Instantiate(explosion, transform.position, transform.rotation);
-			exp.GetComponent(ParticleSystem).startColor = color;
 			
 			Instantiate (game_over, Vector3(0, 0, -1), transform.rotation);
+			
 			var hs : GameObject = Instantiate(game_over, Vector3(0, -1, -1), transform.rotation);
 			
 			if (score > PlayerPrefs.GetInt("HighScore")) {
@@ -228,7 +228,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			
 			GameController.GetComponent(game_controller).GameOver();
 			SpawnController.GetComponent(spawner).GameOver();
-			Destroy (gameObject);
+			Time.timeScale = 0;
 		}
 		else{
 			multiplier = 1;
