@@ -11,8 +11,7 @@ anti-shooter
 
 ### Sounds
 * Picking up a color
+* Multiplier up
+* rage mode music/sound
 * Getting killed
 * Music
-
-
-First, I think we should come up with what we want it to look like.
