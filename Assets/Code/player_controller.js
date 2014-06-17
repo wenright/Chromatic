@@ -236,6 +236,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			color = Color.white;
 			Destroy(other.gameObject);
 			score -= BaseScore;
+			Camera.main.GetComponent(shake_script).Shake();
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
 			var minus_text : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);
