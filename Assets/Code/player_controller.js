@@ -134,35 +134,29 @@ function Update () {
 function OnTriggerEnter2D (other : Collider2D) {
 	var exp : GameObject; // creates the explosion gameobject
 	if (other.tag == "Friendly" && !rage_mode) {
-	transform.localScale = new Vector3(1.75, 1.75, 1); //makes sure size is set to full
-	////////////////////////////////////////////////
-	//TODO: MAKE BETTER!!
+		transform.localScale = new Vector3(1.75, 1.75, 1); //makes sure size is set to full
+		////////////////////////////////////////////////
+		//TODO: MAKE BETTER!!
 		if (color == Color.white)
 			color = other.GetComponent(friendly).color; //Sets base color
 		if(color != purple && color != orange && color != green){
 			if(color == Color.blue){
-				if(other.GetComponent(friendly).color == Color.red){
+				if(other.GetComponent(friendly).color == Color.red)
 					color = purple;
-				}
-				else if(other.GetComponent(friendly).color == Color.yellow){
+				else if(other.GetComponent(friendly).color == Color.yellow)
 					color = green;
-				}
 			}
 			else if(color == Color.yellow){
-				if(other.GetComponent(friendly).color == Color.red){
+				if(other.GetComponent(friendly).color == Color.red)
 					color = orange;
-				}
-				else if(other.GetComponent(friendly).color == Color.blue){
+				else if(other.GetComponent(friendly).color == Color.blue)
 					color = green;
-				}
 			}
 			else if(color == Color.red){
-				if(other.GetComponent(friendly).color == Color.yellow){
+				if(other.GetComponent(friendly).color == Color.yellow)
 					color = orange;
-				}
-				else if(other.GetComponent(friendly).color == Color.blue){
+				else if(other.GetComponent(friendly).color == Color.blue)
 					color = purple;
-				}
 			}
 			timer = MAX_TIME; //Reset time when you pick up a color
 		}
@@ -234,21 +228,25 @@ function OnTriggerEnter2D (other : Collider2D) {
 			SpawnController.GetComponent(spawner).GameOver();
 			Time.timeScale = 0;
 		}
-		else{ //if the ball has the wrong color
+		else {//if the ball has the wrong color
 			multiplier = 1; //reset multiplier
 			timer = 0; //reset timer
 			color = Color.white; //reset color
 			Destroy(other.gameObject); //destory other object
 			score -= BaseScore; //subtract penalty points
 			Camera.main.GetComponent(shake_script).Shake();//shake camera
+			explode ();
+			
 			exp = Instantiate(explosion, transform.position, transform.rotation);//explode
 			exp.GetComponent(ParticleSystem).startColor = color;//particles
+			
 			var minus_text : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);//minus text
 			minus_text.GetComponent(TextMesh).text = "-" + BaseScore;//print loss
 			minus_text.GetComponent(TextMesh).color = Color.red;//set loss to red
 		}
 	}
 }
+
 //Checks the x, y coordinates to see if any objects are too close.  Returns true if good location, false otherwise.
 function CheckPosition (x : float, y : float) {
 	if ((transform.position.x - x) < tolerance && (transform.position.y - y) < tolerance)
@@ -265,4 +263,16 @@ function CheckPosition (x : float, y : float) {
 			return false;
 			
 	return true;
+}
+
+//Takes all the rigidbodies in the scene and adds force pushing them away from the player
+function explode () {
+	var all_rigidbodies = FindObjectsOfType(Rigidbody2D);
+	
+	for (var r : Rigidbody2D in all_rigidbodies) {
+		var px : float = r.transform.position.x - transform.position.x;
+		var py : float = r.transform.position.y - transform.position.y;
+		
+		r.AddForce(Vector2(px, py) * 250);
+	}
 }
