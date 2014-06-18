@@ -26,6 +26,7 @@ var ADDITIONAL_TIME : int = 75;
 var MAX_TIME : int = 200;
 //Score
 private var multiplier : int = 1;
+private var best_multiplier : int = 0;
 private var score : int = 0;
 private var highscore : int = 0;
 var BaseScore : int = 100;
@@ -131,11 +132,13 @@ function Update () {
 }
 
 function OnTriggerEnter2D (other : Collider2D) {
-	var exp : GameObject;
-	transform.localScale = new Vector3(1.75, 1.75, 1);
+	var exp : GameObject; // creates the explosion gameobject
 	if (other.tag == "Friendly" && !rage_mode) {
-//		if (color == Color.white)
-//			color = other.GetComponent(friendly).color;
+	transform.localScale = new Vector3(1.75, 1.75, 1); //makes sure size is set to full
+	////////////////////////////////////////////////
+	//TODO: MAKE BETTER!!
+		if (color == Color.white)
+			color = other.GetComponent(friendly).color; //Sets base color
 		if(color != purple && color != orange && color != green){
 			if(color == Color.blue){
 				if(other.GetComponent(friendly).color == Color.red){
@@ -161,15 +164,15 @@ function OnTriggerEnter2D (other : Collider2D) {
 					color = purple;
 				}
 			}
-			
-			timer = MAX_TIME;
+			timer = MAX_TIME; //Reset time when you pick up a color
 		}
 		else {
-			timer = MAX_TIME; 
+			timer = MAX_TIME; //Reset time 
 			color = other.GetComponent(friendly).color;
 		}
+		////////////////////////////////////////////////
 		var counter: int = 0;
-		multiplier = 1;
+		multiplier = 1; //reset multiplier to 1
 		//Spawn a friendly
 		do {					//Worst case scenario, this loop could go on forever.  May want to add a counter and have this loop give up once it reaches a certain number
 			var px : float = Random.Range(-width, width);
@@ -195,57 +198,57 @@ function OnTriggerEnter2D (other : Collider2D) {
 		sprite.color = color;
 	}
 	else if (other.tag == "Enemy") {
-		if (color == other.GetComponent(enemy).color || rage_mode) {
+		if (color == other.GetComponent(enemy).color || rage_mode) { //if the ball is the correct color
 			Destroy(other.gameObject);
 			score += BaseScore * multiplier;		//Change this to w/e, doesn't really matter what it is
 			var sc_txt : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);
-			sc_txt.GetComponent(TextMesh).text = "" + (BaseScore * multiplier);
+			sc_txt.GetComponent(TextMesh).text = "X" + multiplier;
 			//sc_txt.GetComponent(TextMesh).color = other.GetComponent(enemy).color;		//<- if you want the color to be the same as the object destroyed
 			multiplier++;
+			if(multiplier > best_multiplier)
+				best_multiplier = multiplier; //sets high multiplier
 			if (multiplier == 5) {
-				rage_mode = true;
-				rage_timer = timer;
+				rage_mode = true; //turns on rage mode
+				rage_timer = timer; //sets timer to remainging time
 			}
 			if(!rage_mode)
-				timer += ADDITIONAL_TIME;
-			exp = Instantiate(explosion, transform.position, transform.rotation);
-			exp.GetComponent(ParticleSystem).startColor = color;
+				timer += ADDITIONAL_TIME; //add aditional time per kill not not on ragemode
+			exp = Instantiate(explosion, transform.position, transform.rotation); //explode
+			exp.GetComponent(ParticleSystem).startColor = color; //particles for explosion
 		}
-		else if(color == Color.white) {
+		else if(color == Color.white) { //if the ball is white
 			
-			Instantiate (game_over, Vector3(0, 0, -1), transform.rotation);
+			Instantiate (game_over, Vector3(0, 0, -1), transform.rotation); //Game over screen
 			
 			var hs : GameObject = Instantiate(game_over, Vector3(0, -1, -1), transform.rotation);
 			
 			if (score > PlayerPrefs.GetInt("HighScore")) {
-				PlayerPrefs.SetInt("HighScore", score);
-				hs.GetComponent(TextMesh).text = "New High Score! " + score;
-				print("New High Score!");
+				PlayerPrefs.SetInt("HighScore", score); //Saves highscore
+				hs.GetComponent(TextMesh).text = "New High Score! " + score;//prints highscore
 			}
 			else {
-				hs.GetComponent(TextMesh).text = "Score: " + score;
+				hs.GetComponent(TextMesh).text = "Score: " + score; //prints score
 			}
 			
 			GameController.GetComponent(game_controller).GameOver();
 			SpawnController.GetComponent(spawner).GameOver();
 			Time.timeScale = 0;
 		}
-		else{
-			multiplier = 1;
-			timer = 0;
-			color = Color.white;
-			Destroy(other.gameObject);
-			score -= BaseScore;
-			Camera.main.GetComponent(shake_script).Shake();
-			exp = Instantiate(explosion, transform.position, transform.rotation);
-			exp.GetComponent(ParticleSystem).startColor = color;
-			var minus_text : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);
-			minus_text.GetComponent(TextMesh).text = "-" + BaseScore;
-			minus_text.GetComponent(TextMesh).color = Color.red;
+		else{ //if the ball has the wrong color
+			multiplier = 1; //reset multiplier
+			timer = 0; //reset timer
+			color = Color.white; //reset color
+			Destroy(other.gameObject); //destory other object
+			score -= BaseScore; //subtract penalty points
+			Camera.main.GetComponent(shake_script).Shake();//shake camera
+			exp = Instantiate(explosion, transform.position, transform.rotation);//explode
+			exp.GetComponent(ParticleSystem).startColor = color;//particles
+			var minus_text : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);//minus text
+			minus_text.GetComponent(TextMesh).text = "-" + BaseScore;//print loss
+			minus_text.GetComponent(TextMesh).color = Color.red;//set loss to red
 		}
 	}
 }
-
 //Checks the x, y coordinates to see if any objects are too close.  Returns true if good location, false otherwise.
 function CheckPosition (x : float, y : float) {
 	if ((transform.position.x - x) < tolerance && (transform.position.y - y) < tolerance)
