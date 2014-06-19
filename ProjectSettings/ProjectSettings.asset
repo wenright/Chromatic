@@ -194,7 +194,8 @@ PlayerSettings:
   metroSplashScreenImage180: 
   metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenUseBackgroundColor: 0
-  metroCapabilities: {}
+  metroCapabilities:
+    InternetClient: 1
   metroUnprocessedPlugins: []
   metroCompilationOverrides: 1
   blackberryDeviceAddress: 

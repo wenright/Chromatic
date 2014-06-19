@@ -32,7 +32,11 @@ private var highscore : int = 0;
 var BaseScore : int = 100;
 //Rage
 private var rage_mode : boolean = false;
-private var rage_timer : int = 0;	
+private var rage_timer : int = 0;
+//Sounds
+var enemy_killed : AudioClip;
+var player_killed : AudioClip;
+var player_hit : AudioClip;
 //Misc (add random shit to be sorted here)
 
 
@@ -96,7 +100,7 @@ function Update () {
 	  }	
 	  //<--
 	}
-	else{
+	else {
 		//Time has run out
 		transform.localScale = new Vector3(1.75, 1.75, 1); //Set size back to normal
 		sprite.color = Color.white; //Set color to white
@@ -166,30 +170,30 @@ function OnTriggerEnter2D (other : Collider2D) {
 		}
 		////////////////////////////////////////////////
 		var counter: int = 0;
-		multiplier = 1; //reset multiplier to 1
-		//Spawn a friendly
+		multiplier = 1;
+		var temp_color : Color = other.GetComponent(friendly).color;
+		Destroy(other.gameObject);
+		exp = Instantiate(explosion, transform.position, transform.rotation);
+		exp.GetComponent(ParticleSystem).startColor = color;
+		sprite.color = color;
+		
+		yield WaitForSeconds(1);	//Wait a bit
+		
 		do {					//Worst case scenario, this loop could go on forever.  May want to add a counter and have this loop give up once it reaches a certain number
 			var px : float = Random.Range(-width, width);
 			var py : float = Random.Range(-height, height);
 			counter ++;
-			if(counter > 300)
+			if(counter > 100)
 				break;
 		} while (!CheckPosition(px, py));
 		
 		var f : GameObject = Instantiate(friend, Vector2(px, py), transform.rotation);
-		if(other.GetComponent(friendly).color == Color.red){
+		if(temp_color == Color.red)
 			f.GetComponent(friendly).SetColor(0);
-		}
-		else if(other.GetComponent(friendly).color == Color.yellow){
+		else if(temp_color == Color.yellow)
 			f.GetComponent(friendly).SetColor(1);
-		}
-		else if(other.GetComponent(friendly).color == Color.blue){
+		else if(temp_color == Color.blue)
 			f.GetComponent(friendly).SetColor(2);
-		}
-		exp = Instantiate(explosion, transform.position, transform.rotation);
-		exp.GetComponent(ParticleSystem).startColor = color;
-		Destroy(other.gameObject);
-		sprite.color = color;
 	}
 	else if (other.tag == "Enemy") {
 		if (color == other.GetComponent(enemy).color || rage_mode) { //if the ball is the correct color
@@ -209,6 +213,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				timer += ADDITIONAL_TIME; //add aditional time per kill not not on ragemode
 			exp = Instantiate(explosion, transform.position, transform.rotation); //explode
 			exp.GetComponent(ParticleSystem).startColor = color; //particles for explosion
+			audio.PlayOneShot(enemy_killed);
 		}
 		else if(color == Color.white) { //if the ball is white
 			
@@ -226,6 +231,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			
 			GameController.GetComponent(game_controller).GameOver();
 			SpawnController.GetComponent(spawner).GameOver();
+			audio.PlayOneShot(player_killed);
 			Time.timeScale = 0;
 		}
 		else {//if the ball has the wrong color
@@ -235,6 +241,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			Destroy(other.gameObject); //destory other object
 			score -= BaseScore; //subtract penalty points
 			Camera.main.GetComponent(shake_script).Shake();//shake camera
+			audio.PlayOneShot(player_hit);
 			explode ();
 			
 			exp = Instantiate(explosion, transform.position, transform.rotation);//explode
@@ -270,9 +277,11 @@ function explode () {
 	var all_rigidbodies = FindObjectsOfType(Rigidbody2D);
 	
 	for (var r : Rigidbody2D in all_rigidbodies) {
-		var px : float = r.transform.position.x - transform.position.x;
-		var py : float = r.transform.position.y - transform.position.y;
-		
-		r.AddForce(Vector2(px, py) * 250);
+		if (Vector2.Distance(r.transform.position, transform.position) < 6 && r.tag != "Player") {
+			var px : float = r.transform.position.x - transform.position.x;
+			var py : float = r.transform.position.y - transform.position.y;
+			
+			r.AddForce(Vector2(px, py) * 200);		//Figure out how to invert this so further = less of a push
+		}
 	}
 }
