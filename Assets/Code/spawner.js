@@ -37,5 +37,6 @@ function Start () {
 }
 
 function GameOver () {
+	yield WaitForSeconds(1);
 	over = true;
 }
