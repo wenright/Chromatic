@@ -6,6 +6,9 @@ var height : float;
 var MOVE_SPEED : float;
 private var move_location : Vector2 = Vector2.zero;
 var tolerance : float;//tolerance for spawning a friendly
+//Explosion variables
+var EXPLOSION_RADIUS : int;
+var EXPLOSION_FORCE : float;
 //Colors
 var color : Color = Color.white;
 var purple :  Color = Color(191/255.0F, 0, 1, 1);
@@ -207,6 +210,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				best_multiplier = multiplier; //sets high multiplier
 			if (multiplier == 5) {
 				rage_mode = true; //turns on rage mode
+				if (timer < MAX_TIME)	timer = MAX_TIME;
 				rage_timer = timer; //sets timer to remainging time
 			}
 			if(!rage_mode)
@@ -277,11 +281,11 @@ function explode () {
 	var all_rigidbodies = FindObjectsOfType(Rigidbody2D);
 	
 	for (var r : Rigidbody2D in all_rigidbodies) {
-		if (Vector2.Distance(r.transform.position, transform.position) < 6 && r.tag != "Player") {
+		if (Vector2.Distance(r.transform.position, transform.position) < EXPLOSION_RADIUS && r.tag != "Player") {
 			var px : float = r.transform.position.x - transform.position.x;
 			var py : float = r.transform.position.y - transform.position.y;
 			
-			r.AddForce(Vector2(px, py) * 200);		//Figure out how to invert this so further = less of a push
+			r.AddForce(Vector2(px, py).normalized * EXPLOSION_FORCE / Vector2.Distance(r.transform.position, transform.position));		//Figure out how to invert this so further = less of a push
 		}
 	}
 }

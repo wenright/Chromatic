@@ -1,4 +1,5 @@
-﻿//The speed at which the enemy moves towards the move location, should be between 0 and 1
+﻿//The spinny version of the enemy
+//The speed at which the enemy moves towards the move location, should be between 0 and 1
 var MOVE_SPEED : float = 300;		//A higher number means faster movement
 
 //The speed at which the object rotates around its center
@@ -52,7 +53,7 @@ function Update () {
 		transform.LookAt(transform.position + Vector3(0,0,1), target.position - transform.position);
 		rigidbody2D.AddForce(transform.up * Time.deltaTime * MOVE_SPEED);
 	}
-	MOVE_SPEED += Time.deltaTime * 50;
+	MOVE_SPEED += Time.deltaTime * 25;
 	transform.position.z = 0;
 
 	//draw a GUI icon indicating incoming enemy if off screen
@@ -73,7 +74,7 @@ function Update () {
 		label_y = Screen.height - Camera.main.WorldToScreenPoint(transform.position).y;
 		
 	//Rotate the square
-	//transform.rotation.z += Time.deltaTime;
+	transform.GetChild(0).rotation.z += Time.deltaTime;
 }
 
 function SetColor (num : int) {
