@@ -47,7 +47,6 @@ var dead : boolean = false;
 function Start () {
 	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x; //Set width to viewport width
 	height = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y; //Set height to viewport height
-	Time.timeScale = 1; //set time back to normal if its not already
 	highscore = PlayerPrefs.GetInt("HighScore"); //Get the high score
 	dead = false;
 }
