@@ -242,6 +242,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				SpawnController.GetComponent(spawner).GameOver();
 				audio.PlayOneShot(player_killed);
 				dead = true;
+				Destroy(gameObject);
 			}
 			else {//if the ball has the wrong color
 				multiplier = 1; //reset multiplier
@@ -286,12 +287,7 @@ function CheckPosition (x : float, y : float) {
 function explode () {
 	var all_rigidbodies = FindObjectsOfType(Rigidbody2D);
 	
-	for (var r : Rigidbody2D in all_rigidbodies) {
-		if (Vector2.Distance(r.transform.position, transform.position) < EXPLOSION_RADIUS && r.tag != "Player") {
-			var px : float = r.transform.position.x - transform.position.x;
-			var py : float = r.transform.position.y - transform.position.y;
-			
-			r.AddForce(Vector2(px, py).normalized * EXPLOSION_FORCE / Vector2.Distance(r.transform.position, transform.position));		//Figure out how to invert this so further = less of a push
-		}
-	}
+	for (var r : Rigidbody2D in all_rigidbodies)
+		if (Vector2.Distance(r.transform.position, transform.position) < EXPLOSION_RADIUS && r.tag != "Player")
+			r.AddForce(Vector2(r.transform.position.x - transform.position.x, r.transform.position.y - transform.position.y).normalized * EXPLOSION_FORCE / Vector2.Distance(r.transform.position, transform.position));
 }

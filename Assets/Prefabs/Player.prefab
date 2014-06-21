@@ -77,22 +77,22 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00200000009
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -5.23468316e-07
+      outSlope: -5.23468316e-07
       tangentMode: 0
     - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: .995939255
+      inSlope: -.00200079847
+      outSlope: -.00200079847
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -131,6 +131,8 @@ MonoBehaviour:
   height: 0
   MOVE_SPEED: 50
   tolerance: 1
+  EXPLOSION_RADIUS: 7
+  EXPLOSION_FORCE: 2000
   color: {r: 1, g: 1, b: 1, a: 1}
   purple: {r: .749019623, g: 0, b: 1, a: 1}
   green: {r: 0, g: 1, b: 0, a: 1}
@@ -149,6 +151,7 @@ MonoBehaviour:
   enemy_killed: {fileID: 8300000, guid: 331894e58260d994a9bcd2f598feeeed, type: 3}
   player_killed: {fileID: 8300000, guid: 08621b3e0ebad5e479bf7e13f651ec77, type: 3}
   player_hit: {fileID: 8300000, guid: 2ee6e3554e4aa834db32c88ac35d6587, type: 3}
+  dead: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
