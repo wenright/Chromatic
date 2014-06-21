@@ -1,23 +1,21 @@
 ﻿var over : boolean = false;
-var press: boolean;
+var can_restart: boolean = false;
 
 function Update () {
 	//Exits the application if the player pressed the back button
 	if (Input.GetButtonDown("Exit"))
 		Application.Quit();
-	if(press == null && (Input.touchCount > 0 || Input.GetButtonDown("Fire1"))){
-		press = true;
-	}
-	if(Input.touchCount == 0 || !Input.anyKeyDown) {
-		press = false;
-	}
-	if (over && !press && (Input.touchCount > 0 || Input.GetButtonDown("Fire1"))){
-		Time.timeScale = 1;
+		
+	if (over && !can_restart)
+		if (Input.touchCount == 0)
+			can_restart = true;
+
+	if (over && can_restart && (Input.touchCount > 0 || Input.GetButtonDown("Fire1")))
 		Application.LoadLevel(0);
-	}
 }
 
 function GameOver () {
+	if (Input.touchCount == 0)
+		can_restart = true;
 	over = true;
-	Time.timeScale = 0;
 }
