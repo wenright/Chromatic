@@ -7,8 +7,8 @@ var MOVE_SPEED : float;
 private var move_location : Vector2 = Vector2.zero;
 var tolerance : float;//tolerance for spawning a friendly
 //Explosion variables
-var EXPLOSION_RADIUS : int;
-var EXPLOSION_FORCE : float;
+var EXPLOSION_RADIUS : int = 7;
+var EXPLOSION_FORCE : float = 2000;
 //Colors
 var color : Color = Color.white;
 var purple :  Color = Color(191/255.0F, 0, 1, 1);
@@ -290,7 +290,8 @@ function CheckPosition (x : float, y : float) {
 function explode () {
 	var all_rigidbodies = FindObjectsOfType(Rigidbody2D);
 	
-	for (var r : Rigidbody2D in all_rigidbodies)
+	for (var r : Rigidbody2D in all_rigidbodies){
 		if (Vector2.Distance(r.transform.position, transform.position) < EXPLOSION_RADIUS && r.tag != "Player")
 			r.AddForce(Vector2(r.transform.position.x - transform.position.x, r.transform.position.y - transform.position.y).normalized * EXPLOSION_FORCE / Vector2.Distance(r.transform.position, transform.position));
+	}
 }
