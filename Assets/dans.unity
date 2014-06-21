@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
-  enemy: {fileID: 100000, guid: a0d7f8a4bd9310d48bb10514c331cda6, type: 2}
+  en: {fileID: 100000, guid: a0d7f8a4bd9310d48bb10514c331cda6, type: 2}
   over: 0
   wait_time: 2
 --- !u!4 &691807445
@@ -381,6 +381,7 @@ GameObject:
   - 58: {fileID: 1417132795}
   - 114: {fileID: 1417132796}
   - 50: {fileID: 1417132799}
+  - 82: {fileID: 1417132800}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -412,25 +413,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5928c7e042b13c047911984100bcb3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MOVE_SPEED: 50
   width: 0
   height: 0
-  friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
-  line: {fileID: 1394439219}
-  MAX_TIME: 200
+  MOVE_SPEED: 50
+  tolerance: 1
+  EXPLOSION_RADIUS: 0
+  EXPLOSION_FORCE: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   purple: {r: .749019623, g: 0, b: 1, a: 1}
   green: {r: 0, g: 1, b: 0, a: 1}
   orange: {r: 1, g: .498039216, b: 0, a: 1}
   GameController: {fileID: 137584734}
   SpawnController: {fileID: 691807443}
-  BaseScore: 100
-  ScoreText: {fileID: 100000, guid: d3ee410e30b2c184c986b812a2dc1770, type: 2}
-  tolerance: 1
-  ADDITIONAL_TIME: 50
+  friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
+  line: {fileID: 1394439219}
   explosion: {fileID: 100000, guid: e5d7eceea8d9e1545ba4c6974edfbe56, type: 2}
+  ScoreText: {fileID: 100000, guid: d3ee410e30b2c184c986b812a2dc1770, type: 2}
   sprite: {fileID: 1417132797}
   game_over: {fileID: 100000, guid: 6ca396f70555f3a4cbaae042967e1c02, type: 2}
+  ADDITIONAL_TIME: 50
+  MAX_TIME: 200
+  BaseScore: 100
+  enemy_killed: {fileID: 8300000, guid: 331894e58260d994a9bcd2f598feeeed, type: 3}
+  player_killed: {fileID: 8300000, guid: 08621b3e0ebad5e479bf7e13f651ec77, type: 3}
+  player_hit: {fileID: 8300000, guid: 2ee6e3554e4aa834db32c88ac35d6587, type: 3}
+  dead: 0
 --- !u!212 &1417132797
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -482,3 +489,62 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 2
   m_CollisionDetection: 0
+--- !u!82 &1417132800
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: a53612101164e104c843ace727deaedf,
+    type: 2}
+  m_PrefabInternal: {fileID: 186911272}
+  m_GameObject: {fileID: 1417132794}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .00200000009
+      value: 1
+      inSlope: -5.23468316e-07
+      outSlope: -5.23468316e-07
+      tangentMode: 0
+    - time: 1
+      value: .995939255
+      inSlope: -.00200079847
+      outSlope: -.00200079847
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2

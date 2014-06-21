@@ -147,8 +147,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 		var exp : GameObject; // creates the explosion gameobject
 		if (other.tag == "Friendly" && !rage_mode) {
 			transform.localScale = new Vector3(1.75, 1.75, 1); //makes sure size is set to full
-			////////////////////////////////////////////////
-			//TODO: MAKE BETTER!!
+			//Color -->
 			if (color == Color.white)
 				color = other.GetComponent(friendly).color; //Sets base color
 			if(color != purple && color != orange && color != green){
@@ -176,7 +175,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				timer = MAX_TIME; //Reset time 
 				color = other.GetComponent(friendly).color;
 			}
-			////////////////////////////////////////////////
+			//<--
 			var counter: int = 0;
 			multiplier = 1;
 			var temp_color : Color = other.GetComponent(friendly).color;
@@ -219,7 +218,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 					rage_timer = timer; //sets timer to remainging time
 				}
 				if(!rage_mode)
-					timer += ADDITIONAL_TIME; //add aditional time per kill not not on ragemode
+					timer += ADDITIONAL_TIME+((1/multiplier)*ADDITIONAL_TIME); //add aditional time per kill not not on ragemode
 				exp = Instantiate(explosion, transform.position, transform.rotation); //explode
 				exp.GetComponent(ParticleSystem).startColor = color; //particles for explosion
 				audio.PlayOneShot(enemy_killed);
@@ -238,6 +237,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 					hs.GetComponent(TextMesh).text = "Score: " + score; //prints score
 				}
 				
+
 				GameController.GetComponent(game_controller).GameOver();
 				SpawnController.GetComponent(spawner).GameOver();
 				audio.PlayOneShot(player_killed);
