@@ -1,5 +1,5 @@
 ﻿var friend : GameObject;
-var enemy : GameObject;
+var en : GameObject;
 var over : boolean = false;
 var wait_time : float = 2.0;
 
@@ -25,11 +25,12 @@ function Start () {
 			n = -1;
 	
 		//Test location coordinates to see if an object is near, and if so, spawn a different one
-	
+		var e : GameObject;
 		if (Random.value > 0.5)
-			Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(Random.value * n, 1.1)), transform.rotation);
+			e = Instantiate(en, Camera.main.ViewportToWorldPoint(Vector2(Random.value * n, 1.1)), transform.rotation);
 		else
-			Instantiate(enemy, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value * n)), transform.rotation);
+			e = Instantiate(en, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value * n)), transform.rotation);
+		e.GetComponent(enemy).SetColor(Random.Range(1, 4));
 		yield WaitForSeconds(wait_time);
 		if (wait_time > 0.01)
 			wait_time -= 0.01;
@@ -37,6 +38,6 @@ function Start () {
 }
 
 function GameOver () {
-	yield WaitForSeconds(1);
+	yield WaitForSeconds(2);
 	over = true;
 }

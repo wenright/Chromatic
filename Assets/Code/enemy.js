@@ -28,16 +28,9 @@ var sprite : SpriteRenderer;
 
 function Start () {
 	//Finds the object tagged player
-	target = GameObject.FindGameObjectWithTag("Player").transform;		//TODO: getting error messages from player being dead and enemies spawning.
-
-	//For now, this just makes it a random color
-	var num : int = Random.Range(1, 4);
+	target = GameObject.FindGameObjectWithTag("Player").transform;
 	
-	SetColor(num);
-	
-	sprite.color = color;
-	
-	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;
+	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;		//TODO: Seems a bit unnecessary to recalculate this every time an enemy spawns
 	height = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y;
 }
 
@@ -86,4 +79,6 @@ function SetColor (num : int) {
 			break;
 		default: break;
 	}
+	
+	sprite.color = color;
 }

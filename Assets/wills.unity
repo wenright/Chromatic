@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
-  enemy: {fileID: 100000, guid: a0d7f8a4bd9310d48bb10514c331cda6, type: 2}
+  en: {fileID: 100000, guid: a0d7f8a4bd9310d48bb10514c331cda6, type: 2}
   over: 0
   wait_time: 2
 --- !u!4 &691807445

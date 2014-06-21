@@ -117,7 +117,7 @@ function Update () {
 		//Rage Code-->
 		if (rage_timer > 0) {
 			rage_timer -= Time.deltaTime;
-			var ran : int = Random.Range(1, 3);
+			var ran : int = Random.Range(1, 4);
 			switch (ran) {
 				case 1: color = orange;
 					break;
