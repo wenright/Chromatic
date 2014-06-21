@@ -491,6 +491,7 @@ MonoBehaviour:
   enemy_killed: {fileID: 8300000, guid: 331894e58260d994a9bcd2f598feeeed, type: 3}
   player_killed: {fileID: 8300000, guid: 08621b3e0ebad5e479bf7e13f651ec77, type: 3}
   player_hit: {fileID: 8300000, guid: 2ee6e3554e4aa834db32c88ac35d6587, type: 3}
+  dead: 0
 --- !u!212 &1417132797
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -687,6 +688,10 @@ Prefab:
     - target: {fileID: 11400000, guid: a53612101164e104c843ace727deaedf, type: 2}
       propertyPath: EXPLOSION_FORCE
       value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5800000, guid: a53612101164e104c843ace727deaedf, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a53612101164e104c843ace727deaedf, type: 2}
