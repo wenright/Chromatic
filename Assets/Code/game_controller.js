@@ -11,7 +11,6 @@ function Update () {
 	if(Input.touchCount == 0 || !Input.anyKeyDown) {
 		press = false;
 	}
-	print(press);
 	if (over && !press && (Input.touchCount > 0 || Input.GetButtonDown("Fire1"))){
 		Application.LoadLevel(0);
 	}
