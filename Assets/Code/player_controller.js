@@ -22,6 +22,7 @@ var line : GameObject;
 var explosion : GameObject;
 var ScoreText : GameObject;
 var sprite : SpriteRenderer; //The sprite renderer component of this object
+var trail : TrailRenderer;
 var game_over : GameObject;
 //Time
 private var timer : int = 0;
@@ -110,6 +111,7 @@ function Update () {
 			transform.localScale = new Vector3(1.75, 1.75, 1); //Set size back to normal
 			sprite.color = Color.white; //Set color to white
 		  	color = Color.white; //change the color variable to white
+		  	trail.material.SetColor("_Color", color);
 		  	timer = MAX_TIME; //Reset timer
 		  	multiplier = 1; //Multiplier to 1
 		}
@@ -127,6 +129,7 @@ function Update () {
 				default: break;
 			}
 			sprite.color = color;
+			trail.material.SetColor("_Color", color);
 		}
 		else
 			rage_mode = false;
@@ -146,7 +149,8 @@ function OnTriggerEnter2D (other : Collider2D) {
 		var exp : GameObject; // creates the explosion gameobject
 		if (other.tag == "Friendly" && !rage_mode) {
 			transform.localScale = new Vector3(1.75, 1.75, 1); //makes sure size is set to full
-			//Color -->
+			////////////////////////////////////////////////
+			//TODO: MAKE BETTER!!
 			if (color == Color.white)
 				color = other.GetComponent(friendly).color; //Sets base color
 			if(color != purple && color != orange && color != green){
@@ -174,7 +178,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				timer = MAX_TIME; //Reset time 
 				color = other.GetComponent(friendly).color;
 			}
-			//<--
+			////////////////////////////////////////////////
 			var counter: int = 0;
 			multiplier = 1;
 			var temp_color : Color = other.GetComponent(friendly).color;
@@ -182,6 +186,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
 			sprite.color = color;
+			trail.material.SetColor("_Color", color);
 			
 			yield WaitForSeconds(1);	//Wait a bit
 			
@@ -217,7 +222,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 					rage_timer = timer; //sets timer to remainging time
 				}
 				if(!rage_mode)
-					timer += ADDITIONAL_TIME+((1/multiplier)*ADDITIONAL_TIME); //add aditional time per kill not not on ragemode
+					timer += ADDITIONAL_TIME; //add aditional time per kill not not on ragemode
 				exp = Instantiate(explosion, transform.position, transform.rotation); //explode
 				exp.GetComponent(ParticleSystem).startColor = color; //particles for explosion
 				audio.PlayOneShot(enemy_killed);
@@ -236,7 +241,6 @@ function OnTriggerEnter2D (other : Collider2D) {
 					hs.GetComponent(TextMesh).text = "Score: " + score; //prints score
 				}
 				
-
 				GameController.GetComponent(game_controller).GameOver();
 				SpawnController.GetComponent(spawner).GameOver();
 				audio.PlayOneShot(player_killed);
