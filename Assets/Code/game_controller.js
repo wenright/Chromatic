@@ -10,6 +10,5 @@ function Update () {
 }
 
 function GameOver () {
-	yield WaitForSeconds(2);
 	over = true;
 }
