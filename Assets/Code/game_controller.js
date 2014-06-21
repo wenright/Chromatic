@@ -12,6 +12,7 @@ function Update () {
 		press = false;
 	}
 	if (over && !press && (Input.touchCount > 0 || Input.GetButtonDown("Fire1"))){
+		Time.timeScale = 1;
 		Application.LoadLevel(0);
 	}
 }
