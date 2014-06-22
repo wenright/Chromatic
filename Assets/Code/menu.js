@@ -9,7 +9,11 @@
 		
 		if (GUI.Button(Rect((Screen.width / 2) + 50, Screen.height / 2, 50, 30), "No"))
 			PlayerPrefs.SetInt("first_time", 1);
-	}	
+	}
+	else {
+		if (GUI.Button(Rect(Screen.width / 2, 50, 60, 30), "Play"))
+			Application.LoadLevel(2);
+	}
 }
 
 function Update () {
