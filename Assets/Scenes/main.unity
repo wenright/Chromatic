@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c37577fc9f8500489243960189c84bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateInterval: .5
+  updateInterval: .200000003
 --- !u!132 &1111080571
 GUIText:
   m_ObjectHideFlags: 0
