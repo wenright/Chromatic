@@ -33,6 +33,7 @@ private var multiplier : int = 1;
 private var best_multiplier : int = 0;
 private var score : int = 0;
 private var highscore : int = 0;
+private var kills : int = 0;
 var BaseScore : int = 100;
 //Rage
 private var rage_mode : boolean = false;
@@ -61,7 +62,7 @@ function OnGUI () {
 }
 
 function Update () {
-	if (!dead) {
+	if (!dead) {	
 		//Takes in player touches and stores the X and Y coordinates in terms of world coordinates
 		if (Input.touchCount > 0)
 			move_location = Camera.main.ScreenToWorldPoint(Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y));
@@ -246,7 +247,8 @@ function OnTriggerEnter2D (other : Collider2D) {
 				SpawnController.GetComponent(spawner).GameOver();
 				audio.PlayOneShot(player_killed);
 				dead = true;
-				Destroy(gameObject);
+				//Destroy(gameObject);//Moving this to the upload function, so we can finish uploading then destroy the object
+				UploadScore();
 			}
 			else {//if the ball has the wrong color
 				multiplier = 1; //reset multiplier
@@ -295,4 +297,13 @@ function explode () {
 		if (Vector2.Distance(r.transform.position, transform.position) < EXPLOSION_RADIUS && r.tag != "Player")
 			r.AddForce(Vector2(r.transform.position.x - transform.position.x, r.transform.position.y - transform.position.y).normalized * EXPLOSION_FORCE / Vector2.Distance(r.transform.position, transform.position));
 	}
+}
+
+function UploadScore () {
+	//Upload score, kills, time, and player name to some server somewhere somehow
+	//Use PlayerPrefs.GetString("Name"); to return the name of the player
+	//Use yield www to wait for the upload to finish
+	
+	//Done uploading
+	Destroy(gameObject);
 }

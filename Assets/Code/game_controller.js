@@ -11,7 +11,7 @@ function Update () {
 			can_restart = true;
 
 	if (over && can_restart && (Input.touchCount > 0 || Input.GetButtonDown("Fire1")))
-		Application.LoadLevel(0);
+		Application.LoadLevel(2);
 }
 
 function GameOver () {
