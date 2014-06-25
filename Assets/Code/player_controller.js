@@ -51,6 +51,7 @@ function Start () {
 	height = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y; //Set height to viewport height
 	highscore = PlayerPrefs.GetInt("HighScore"); //Get the high score
 	dead = false;
+	trail.time = .1;
 }
 
 function OnGUI () {
