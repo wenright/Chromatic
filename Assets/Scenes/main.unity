@@ -396,6 +396,11 @@ Prefab:
       propertyPath: m_Colors.m_Color[3].rgba
       value: 1979711487
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a53612101164e104c843ace727deaedf, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -1500306622, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents:
     - {fileID: 9600002, guid: a53612101164e104c843ace727deaedf, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a53612101164e104c843ace727deaedf, type: 2}
@@ -582,7 +587,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
