@@ -1,4 +1,6 @@
-﻿//Please Add Variables to the proper area!!
+﻿#pragma strict
+
+//Please Add Variables to the proper area!!
 //SetUp
 var width : float;
 var height : float;
@@ -34,7 +36,8 @@ private var best_multiplier : int = 0;
 private var score : int = 0;
 private var highscore : int = 0;
 private var kills : int = 0;
-var BaseScore : int = 100;
+private var BaseScore : int = 100;
+private var combo_score : int = 0;
 //Rage
 private var rage_mode : boolean = false;
 private var rage_timer : int = 0;
@@ -51,15 +54,19 @@ function Start () {
 	height = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y; //Set height to viewport height
 	highscore = PlayerPrefs.GetInt("HighScore"); //Get the high score
 	dead = false;
+	kills = 0;
+	combo_score = 0;
 	trail.time = .1;
 }
 
+/*		//Basic score, timer, and high score. Useful for debug.
 function OnGUI () {
 	//Super basic score counter(WILL BE REPLACED!!!)
 	GUI.Label (Rect(0, 0, 120, 60), "High Score: " + highscore);
 	GUI.Label (Rect(0, 30, 120, 60), "Score: " + score);
 	GUI.Label (Rect(0, 60, 120, 60), "Time: " + timer);
 }
+*/
 
 function Update () {
 	if (!dead) {	
@@ -109,13 +116,19 @@ function Update () {
 		  //<--
 		}
 		else {
-			//Time has run out
+			//Time has run out.  This is called every frame FYI
 			transform.localScale = new Vector3(1.75, 1.75, 1); //Set size back to normal
 			sprite.color = Color.white; //Set color to white
-		  	color = Color.white; //change the color variable to white
-		  	trail.material.SetColor("_Color", color);
-		  	timer = MAX_TIME; //Reset timer
-		  	multiplier = 1; //Multiplier to 1
+			color = Color.white; //change the color variable to white
+			trail.material.SetColor("_Color", color);
+			timer = MAX_TIME; //Reset timer
+			multiplier = 1; //Multiplier to 1
+			if (combo_score > 0) {
+				//Instantiate a score text showing how many points were scored during that combo
+				var scr_txt : GameObject = Instantiate(ScoreText, transform.position + Vector3(0,1,0), Quaternion.Euler(0, 0, -25));
+				scr_txt.GetComponent(TextMesh).text = "+" + combo_score;	//We could have a switch statement here giving dif msgs like "Nice Combo!"
+				combo_score = 0;
+			}
 		}
 		//Rage Code-->
 		if (rage_timer > 0) {
@@ -212,6 +225,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			if (color == other.GetComponent(enemy).color || rage_mode) { //if the ball is the correct color
 				Destroy(other.gameObject);
 				score += BaseScore * multiplier;		//Change this to w/e, doesn't really matter what it is
+				combo_score += BaseScore * multiplier;
 				var sc_txt : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);
 				sc_txt.GetComponent(TextMesh).text = "X" + multiplier;
 				//sc_txt.GetComponent(TextMesh).color = other.GetComponent(enemy).color;		//<- if you want the color to be the same as the object destroyed
@@ -227,7 +241,9 @@ function OnTriggerEnter2D (other : Collider2D) {
 					timer += ADDITIONAL_TIME; //add aditional time per kill not not on ragemode
 				exp = Instantiate(explosion, transform.position, transform.rotation); //explode
 				exp.GetComponent(ParticleSystem).startColor = color; //particles for explosion
+				kills++;
 				audio.PlayOneShot(enemy_killed);
+				Camera.main.GetComponent(shake_script).LightShake();//shake camera
 			}
 			else if(color == Color.white) { //if the ball is white
 				
