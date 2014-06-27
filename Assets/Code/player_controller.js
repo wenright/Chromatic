@@ -77,8 +77,8 @@ function Update () {
 		else if (Input.GetMouseButton(0))
 			move_location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			
-		if(Vector2.Distance(move_location, transform.position) < 7) //checks to see if finger/mouse is within range
-			transform.position = Vector2.MoveTowards(transform.position, move_location, Time.deltaTime * MOVE_SPEED); //moves towards that location
+		//if(Vector2.Distance(move_location, transform.position) < 10) //checks to see if finger/mouse is within range (I took this out, got me killed a couple times. dont really like it)
+		transform.position = Vector2.MoveTowards(transform.position, move_location, Time.deltaTime * MOVE_SPEED); //moves towards that location
 		
 		//Checks if colored and counts down from 200, when 0 is reached, resets to white
 		if(timer > 0 && color != Color.white){
@@ -281,6 +281,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				Destroy(other.gameObject); //destory other object
 				score -= BaseScore; //subtract penalty points
 				Camera.main.GetComponent(shake_script).Shake();//shake camera
+				Handheld.Vibrate();
 				audio.PlayOneShot(player_hit);
 				explode ();
 				
