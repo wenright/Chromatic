@@ -1,6 +1,8 @@
 ﻿var player_name : String;
 var ask_for_name : boolean = false;
 var gui_skin : GUISkin;
+var status_text : String;
+var url : String = "http://wenright.github.io/";
 
 function OnGUI () {
 	if (ask_for_name) {
@@ -26,11 +28,18 @@ function OnGUI () {
 		
 		player_name = GUI.TextField(Rect((Screen.width / 2) - 60, 120, 120, 75), player_name);
 	}
+	
+	GUI.Label(Rect(0, Screen.height - 30, Screen.width, 60), status_text);
 }
 
 function Start () {
 	player_name = PlayerPrefs.GetString("Name");
 	ask_for_name = false;
+	
+	status_text = "";
+	var site : WWW = new WWW(url);
+	yield site;
+	status_text = site.text.Substring(27, 64);	//Make all status messages 50 characters or shorter
 }
 
 function Update () {

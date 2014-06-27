@@ -164,6 +164,14 @@ function OnTriggerEnter2D (other : Collider2D) {
 		var exp : GameObject; // creates the explosion gameobject
 		if (other.tag == "Friendly" && !rage_mode) {
 			transform.localScale = new Vector3(1.75, 1.75, 1); //makes sure size is set to full
+			
+			if (combo_score > 0) {
+				//Instantiate a score text showing how many points were scored during that combo
+				var scr_txt : GameObject = Instantiate(ScoreText, transform.position + Vector3(0,1,0), Quaternion.Euler(0, 0, -25));
+				scr_txt.GetComponent(TextMesh).text = "+" + combo_score;	//We could have a switch statement here giving dif msgs like "Nice Combo!"
+				combo_score = 0;
+			}
+			
 			////////////////////////////////////////////////
 			//TODO: MAKE BETTER!!
 			if (color == Color.white)
@@ -226,8 +234,8 @@ function OnTriggerEnter2D (other : Collider2D) {
 				Destroy(other.gameObject);
 				score += BaseScore * multiplier;		//Change this to w/e, doesn't really matter what it is
 				combo_score += BaseScore * multiplier;
-				var sc_txt : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);
-				sc_txt.GetComponent(TextMesh).text = "X" + multiplier;
+				var mul_txt : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);
+				mul_txt.GetComponent(TextMesh).text = "X" + multiplier;
 				//sc_txt.GetComponent(TextMesh).color = other.GetComponent(enemy).color;		//<- if you want the color to be the same as the object destroyed
 				multiplier++;
 				if(multiplier > best_multiplier)

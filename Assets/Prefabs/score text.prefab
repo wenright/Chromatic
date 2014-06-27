@@ -11,7 +11,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 102: {fileID: 10200000}
   - 114: {fileID: 11400000}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: score text
   m_TagString: Untagged
   m_Icon: {fileID: 0}

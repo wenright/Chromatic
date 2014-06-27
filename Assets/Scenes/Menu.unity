@@ -397,6 +397,8 @@ MonoBehaviour:
   player_name: 
   ask_for_name: 0
   gui_skin: {fileID: 11400000, guid: 62f0f9b3fcb09ab47ac1bb207234c820, type: 2}
+  status_text: 
+  url: http://wenright.github.io/
 --- !u!114 &726853907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +413,8 @@ MonoBehaviour:
   player_name: 
   ask_for_name: 0
   gui_skin: {fileID: 0}
+  status_text: 
+  url: http://wenright.github.io/
 --- !u!1 &753752025
 GameObject:
   m_ObjectHideFlags: 0
