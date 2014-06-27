@@ -16,3 +16,12 @@ function Shake () {
 	
 	transform.position = start_location;
 }
+
+function LightShake () {
+	for (var i : int = 0; i < repetitions / 2; i++) {
+		transform.position = start_location + Vector2(Random.value * intensity / 5, Random.value * intensity / 5);
+		yield WaitForSeconds(duration);
+	}
+	
+	transform.position = start_location;
+}
