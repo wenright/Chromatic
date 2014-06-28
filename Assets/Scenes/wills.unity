@@ -502,6 +502,7 @@ GameObject:
   - 50: {fileID: 1417132799}
   - 82: {fileID: 1417132800}
   - 96: {fileID: 1417132801}
+  - 96: {fileID: 1417132802}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -554,7 +555,6 @@ MonoBehaviour:
   game_over: {fileID: 100000, guid: 6ca396f70555f3a4cbaae042967e1c02, type: 2}
   ADDITIONAL_TIME: 50
   MAX_TIME: 200
-  BaseScore: 100
   enemy_killed: {fileID: 8300000, guid: 331894e58260d994a9bcd2f598feeeed, type: 3}
   player_killed: {fileID: 8300000, guid: 08621b3e0ebad5e479bf7e13f651ec77, type: 3}
   player_hit: {fileID: 8300000, guid: 2ee6e3554e4aa834db32c88ac35d6587, type: 3}
@@ -683,6 +683,48 @@ TrailRenderer:
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
   - {fileID: 2100000, guid: 28f1c20574b7ff145ba29ce02f360a21, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: .200000003
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .00999999978
+  m_Autodestruct: 0
+--- !u!96 &1417132802
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600002, guid: a53612101164e104c843ace727deaedf,
+    type: 2}
+  m_PrefabInternal: {fileID: 1496752232}
+  m_GameObject: {fileID: 1417132794}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
