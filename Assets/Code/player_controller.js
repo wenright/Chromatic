@@ -33,7 +33,7 @@ var trail : TrailRenderer;
 var game_over : GameObject;
 //Time
 private var timer : int = 0;
-var ADDITIONAL_TIME : int = 75;
+var ADDITIONAL_TIME : int = 90;
 var MAX_TIME : int = 200;
 //Score
 private var multiplier : int = 1;
@@ -245,7 +245,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				multiplier++;
 				if(multiplier > best_multiplier)
 					best_multiplier = multiplier; //sets high multiplier
-				if (multiplier == 5) {
+				if (multiplier == 7) {
 					rage_mode = true; //turns on rage mode
 					if (timer < MAX_TIME)	timer = MAX_TIME;
 					rage_timer = timer; //sets timer to remainging time
@@ -309,13 +309,15 @@ function CheckPosition (x : float, y : float) {
 	var f : GameObject[] = GameObject.FindGameObjectsWithTag("Friendly");
 	var e : GameObject[] = GameObject.FindGameObjectsWithTag("Enemy");
 	
+	
 	for (var i : int = 0; i < f.Length; i++)
 		if ((f[i].transform.position.x - x) < tolerance && (f[i].transform.position.y - y) < tolerance)
 			return false;
 	for (var j : int = 0; j < e.Length; j++)
 		if ((e[j].transform.position.x - x) < tolerance && (e[j].transform.position.y - y) < tolerance)
 			return false;
-			
+	if(transform.position.x - x < tolerance && transform.position.y - y < tolerance)
+		return false;		
 	return true;
 }
 
