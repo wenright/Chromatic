@@ -64,9 +64,6 @@ function Update () {
 		label_y = Screen.height - label_width;
 	else
 		label_y = Screen.height - Camera.main.WorldToScreenPoint(transform.position).y;
-		
-	//Rotate the square
-	//transform.rotation.z += Time.deltaTime;
 }
 
 function SetColor (num : int) {

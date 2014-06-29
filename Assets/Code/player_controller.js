@@ -175,7 +175,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			////////////////////////////////////////////////
 			//TODO: MAKE BETTER!!
 			if (color == Color.white)
-				color = other.GetComponent(friendly).color; //Sets base color
+				color = other.GetComponent(friendly).color; //Sets base color	
 			if(color != purple && color != orange && color != green){
 				if(color == Color.blue){
 					if(other.GetComponent(friendly).color == Color.red)
@@ -281,7 +281,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				Destroy(other.gameObject); //destory other object
 				score -= BaseScore; //subtract penalty points
 				Camera.main.GetComponent(shake_script).Shake();//shake camera
-				Handheld.Vibrate();
+				//Handheld.Vibrate();	//Kind of annoying...
 				audio.PlayOneShot(player_hit);
 				explode ();
 				
