@@ -36,7 +36,7 @@ function Update()
     if( timeleft <= 0.0 )
     {
         // display two fractional digits (f2 format)
-        guiText.text = "" + (accum/frames).ToString("f2");
+        guiText.text = "" + (accum/frames).ToString("f0");
         timeleft = updateInterval;
         accum = 0.0;
         frames = 0;
