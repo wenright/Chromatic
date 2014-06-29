@@ -18,7 +18,7 @@ static var green : Color = Color(0, 1, 0, 1);
 static var orange : Color = Color(1, 127/255.0F, 0, 1); 
 static var red : Color = Color.red;
 static var yellow: Color = Color.yellow;
-static var blue: Color = Color(0, 191/255.0F, 1, 1);
+static var blue: Color = Color(0, 200/255.0F, 1, 1);
 				
 //Game Objects
 var GameController : GameObject;

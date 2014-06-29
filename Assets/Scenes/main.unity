@@ -509,6 +509,18 @@ Prefab:
       value: 
       objectReference: {fileID: -1500306622, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 11400000, guid: a53612101164e104c843ace727deaedf, type: 2}
+      propertyPath: yellow.r
+      value: .760784328
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: a53612101164e104c843ace727deaedf, type: 2}
+      propertyPath: yellow.g
+      value: .760784328
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: a53612101164e104c843ace727deaedf, type: 2}
+      propertyPath: yellow.b
+      value: .760784328
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9600002, guid: a53612101164e104c843ace727deaedf, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a53612101164e104c843ace727deaedf, type: 2}
@@ -791,9 +803,6 @@ MonoBehaviour:
   EXPLOSION_RADIUS: 7
   EXPLOSION_FORCE: 2000
   color: {r: 1, g: 1, b: 1, a: 1}
-  purple: {r: .749019623, g: 0, b: 1, a: 1}
-  green: {r: 0, g: 1, b: 0, a: 1}
-  orange: {r: 1, g: .498039216, b: 0, a: 1}
   GameController: {fileID: 137584734}
   SpawnController: {fileID: 691807443}
   friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
