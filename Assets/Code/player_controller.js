@@ -13,12 +13,13 @@ var EXPLOSION_RADIUS : int = 7;
 var EXPLOSION_FORCE : float = 2000;
 //Colors
 var color : Color = Color.white;
-static var purple :  Color = Color(160/255.0F, 32/255.0F, 240/255.0F, 1);
-static var green : Color = Color(34/255.0F, 139/255.0F, 34/255.0F, 1);
+static var purple :  Color = Color(160/255.0F, 0, 240/255.0F, 1);
+static var green : Color = Color(20/255.0F, 220/255.0F, 0, 1);
 static var orange : Color = Color(1, 127/255.0F, 0, 1); 
-static var red : Color = Color(240/255.0F, 34/255.0F, 34/255.0F, 1);
-static var yellow: Color = Color(1, 225/255.0F, 0, 1);
-static var blue: Color = Color(0, 175/255.0F, 1, 1);
+static var red : Color = Color.red;
+static var yellow: Color = Color.yellow;
+static var blue: Color = Color.blue;
+
 				
 //Game Objects
 var GameController : GameObject;
