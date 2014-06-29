@@ -125,7 +125,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
+  m_BackGroundColor: {r: .0083261244, g: .0794505179, b: .102941155, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -229,6 +229,10 @@ Prefab:
     - target: {fileID: 400000, guid: 69bbe452ebd3648489c2cce5e95ec45c, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 69bbe452ebd3648489c2cce5e95ec45c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 69bbe452ebd3648489c2cce5e95ec45c, type: 2}
@@ -420,7 +424,7 @@ MonoBehaviour:
   friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
   en: {fileID: 100000, guid: a0d7f8a4bd9310d48bb10514c331cda6, type: 2}
   over: 0
-  wait_time: 2
+  wait_time: 1.5
 --- !u!4 &691807445
 Transform:
   m_ObjectHideFlags: 0

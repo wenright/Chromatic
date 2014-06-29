@@ -13,12 +13,18 @@ var EXPLOSION_RADIUS : int = 7;
 var EXPLOSION_FORCE : float = 2000;
 //Colors
 var color : Color = Color.white;
-static var purple :  Color = Color(191/255.0F, 0, 1, 1);
-static var green : Color = Color(0, 1, 0, 1);
+static var purple :  Color = Color(160/255.0F, 32/255.0F, 240/255.0F, 1);
+static var green : Color = Color(34/255.0F, 139/255.0F, 34/255.0F, 1);
 static var orange : Color = Color(1, 127/255.0F, 0, 1); 
+<<<<<<< HEAD
 static var red : Color = Color.red;
 static var yellow: Color = Color.yellow;
 static var blue: Color = Color(0, 200/255.0F, 1, 1);
+=======
+static var red : Color = Color(240/255.0F, 34/255.0F, 34/255.0F, 1);
+static var yellow: Color = Color(1, 225/255.0F, 0, 1);
+static var blue: Color = Color(0, 175/255.0F, 1, 1);
+>>>>>>> FETCH_HEAD
 				
 //Game Objects
 var GameController : GameObject;
@@ -179,7 +185,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			////////////////////////////////////////////////
 			//TODO: MAKE BETTER!!
 			if (color == Color.white)
-				color = other.GetComponent(friendly).color; //Sets base color
+				color = other.GetComponent(friendly).color; //Sets base color	
 			if(color != purple && color != orange && color != green){
 				if(color == blue){
 					if(other.GetComponent(friendly).color == red)
@@ -285,7 +291,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				Destroy(other.gameObject); //destory other object
 				score -= BaseScore; //subtract penalty points
 				Camera.main.GetComponent(shake_script).Shake();//shake camera
-				Handheld.Vibrate();
+				//Handheld.Vibrate();	//Kind of annoying...
 				audio.PlayOneShot(player_hit);
 				explode ();
 				
