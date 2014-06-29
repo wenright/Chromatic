@@ -214,6 +214,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
 			sprite.color = color;
+			Camera.main.GetComponent(game_controller).ChangeBackgroundColor(color);
 			trail.material.SetColor("_Color", color);
 			
 			yield WaitForSeconds(1);	//Wait a bit
@@ -323,10 +324,9 @@ function CheckPosition (x : float, y : float) {
 function explode () {
 	var all_rigidbodies = FindObjectsOfType(Rigidbody2D);
 	
-	for (var r : Rigidbody2D in all_rigidbodies){
+	for (var r : Rigidbody2D in all_rigidbodies)
 		if (Vector2.Distance(r.transform.position, transform.position) < EXPLOSION_RADIUS && r.tag != "Player" && r.tag != "Text")
 			r.AddForce(Vector2(r.transform.position.x - transform.position.x, r.transform.position.y - transform.position.y).normalized * EXPLOSION_FORCE / Vector2.Distance(r.transform.position, transform.position));
-	}
 }
 
 function UploadScore () {
