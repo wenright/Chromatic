@@ -1,5 +1,5 @@
 ﻿//The speed at which the enemy moves towards the move location, should be between 0 and 1
-var MOVE_SPEED : float = 300;		//A higher number means faster movement
+var MOVE_SPEED : float = Random.Range(250,350);		//A higher number means faster movement
 
 //The speed at which the object rotates around its center
 var ROTATE_SPEED : int = 50;
@@ -15,10 +15,7 @@ var enemy_label : Texture2D;
 private var show_label : boolean = false;
 
 //The color of the enemy, starts out either orange, purple, or green
-var color : Color = Color.white;
-private var purple : Color = Color(191/255.0F, 0, 1, 1);
-private var green : Color = Color(0, 1, 0, 1);
-private var orange : Color = Color(1, 127/255.0F, 0, 1);
+var color : Color = Color.white; 
 
 //The target that the enemy chases, typically the player, but could be anything
 private var target : Transform;
@@ -68,11 +65,11 @@ function Update () {
 
 function SetColor (num : int) {
 	switch (num) {
-		case 1: color = orange;
+		case 1: color = player_controller.orange;
 			break;
-		case 2: color = purple;
+		case 2: color = player_controller.purple;
 			break;
-		case 3: color = green;
+		case 3: color = player_controller.green;
 			break;
 		default: break;
 	}

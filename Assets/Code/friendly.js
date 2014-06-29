@@ -1,5 +1,5 @@
 ﻿//The color of the enemy, starts out either red, yellow, or blue
-var color : Color = Color.white;var friend : GameObject;
+var color : Color = Color.white;var friend : GameObject; 
 
 var width : float;
 var height : float;
@@ -50,11 +50,11 @@ function Update () {
 
 function SetColor (num : int) {
 	switch (num) {
-		case 0: color = Color.red;
+		case 0: color = player_controller.red;
 			break;
-		case 1: color = Color.yellow;
+		case 1: color = player_controller.yellow;
 			break;
-		case 2: color = Color.blue;
+		case 2: color = player_controller.blue;
 			break;
 		default: break;
 	}

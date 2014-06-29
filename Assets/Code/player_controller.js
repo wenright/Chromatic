@@ -13,9 +13,13 @@ var EXPLOSION_RADIUS : int = 7;
 var EXPLOSION_FORCE : float = 2000;
 //Colors
 var color : Color = Color.white;
-var purple :  Color = Color(191/255.0F, 0, 1, 1);
-var green : Color = Color(0, 1, 0, 1);
-var orange : Color = Color(1, 127/255.0F, 0, 1); 				
+static var purple :  Color = Color(191/255.0F, 0, 1, 1);
+static var green : Color = Color(0, 1, 0, 1);
+static var orange : Color = Color(1, 127/255.0F, 0, 1); 
+static var red : Color = Color.red;
+static var yellow: Color = Color.yellow;
+static var blue: Color = Color(0, 191/255.0F, 1, 1);
+				
 //Game Objects
 var GameController : GameObject;
 var SpawnController : GameObject;
@@ -177,22 +181,22 @@ function OnTriggerEnter2D (other : Collider2D) {
 			if (color == Color.white)
 				color = other.GetComponent(friendly).color; //Sets base color	
 			if(color != purple && color != orange && color != green){
-				if(color == Color.blue){
-					if(other.GetComponent(friendly).color == Color.red)
+				if(color == blue){
+					if(other.GetComponent(friendly).color == red)
 						color = purple;
-					else if(other.GetComponent(friendly).color == Color.yellow)
+					else if(other.GetComponent(friendly).color == yellow)
 						color = green;
 				}
-				else if(color == Color.yellow){
-					if(other.GetComponent(friendly).color == Color.red)
+				else if(color == yellow){
+					if(other.GetComponent(friendly).color == red)
 						color = orange;
-					else if(other.GetComponent(friendly).color == Color.blue)
+					else if(other.GetComponent(friendly).color == blue)
 						color = green;
 				}
-				else if(color == Color.red){
-					if(other.GetComponent(friendly).color == Color.yellow)
+				else if(color == red){
+					if(other.GetComponent(friendly).color == yellow)
 						color = orange;
-					else if(other.GetComponent(friendly).color == Color.blue)
+					else if(other.GetComponent(friendly).color == blue)
 						color = purple;
 				}
 				timer = MAX_TIME; //Reset time when you pick up a color
@@ -222,11 +226,11 @@ function OnTriggerEnter2D (other : Collider2D) {
 			} while (!CheckPosition(px, py));
 			
 			var f : GameObject = Instantiate(friend, Vector2(px, py), transform.rotation);
-			if(temp_color == Color.red)
+			if(temp_color == red)
 				f.GetComponent(friendly).SetColor(0);
-			else if(temp_color == Color.yellow)
+			else if(temp_color == yellow)
 				f.GetComponent(friendly).SetColor(1);
-			else if(temp_color == Color.blue)
+			else if(temp_color == blue)
 				f.GetComponent(friendly).SetColor(2);
 		}
 		else if (other.tag == "Enemy") {
