@@ -121,10 +121,11 @@ function Update () {
 		  //<--
 		}
 		else {
-			//Time has run out.  This is called every frame FYI
+			//Time has run out.  This is called every frame FYI. Should change that, it could get costly especially with GetComponents
 			transform.localScale = new Vector3(1.75, 1.75, 1); //Set size back to normal
 			sprite.color = Color.white; //Set color to white
 			color = Color.white; //change the color variable to white
+			Camera.main.GetComponent(game_controller).ChangeBackgroundColor(Color.white);
 			trail.material.SetColor("_Color", color);
 			timer = MAX_TIME; //Reset timer
 			multiplier = 1; //Multiplier to 1

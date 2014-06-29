@@ -2,6 +2,10 @@
 var can_restart: boolean = false;
 private var bg_color : Color = Color(2/255, 20/255, 26/255, 0.05);
 
+function Start () {
+	camera.backgroundColor = Color.white / 12;
+}
+
 function Update () {
 	//Exits the application if the player pressed the back button
 	if (Input.GetButtonDown("Exit"))
