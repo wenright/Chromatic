@@ -121,10 +121,11 @@ function Update () {
 		  //<--
 		}
 		else {
-			//Time has run out.  This is called every frame FYI
+			//Time has run out.  This is called every frame FYI. Should change that, it could get costly especially with GetComponents
 			transform.localScale = new Vector3(1.75, 1.75, 1); //Set size back to normal
 			sprite.color = Color.white; //Set color to white
 			color = Color.white; //change the color variable to white
+			Camera.main.GetComponent(game_controller).ChangeBackgroundColor(Color.white);
 			trail.material.SetColor("_Color", color);
 			timer = MAX_TIME; //Reset timer
 			multiplier = 1; //Multiplier to 1
@@ -214,6 +215,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 			exp = Instantiate(explosion, transform.position, transform.rotation);
 			exp.GetComponent(ParticleSystem).startColor = color;
 			sprite.color = color;
+			Camera.main.GetComponent(game_controller).ChangeBackgroundColor(color);
 			trail.material.SetColor("_Color", color);
 			
 			yield WaitForSeconds(1);	//Wait a bit
@@ -325,10 +327,9 @@ function CheckPosition (x : float, y : float) {
 function explode () {
 	var all_rigidbodies = FindObjectsOfType(Rigidbody2D);
 	
-	for (var r : Rigidbody2D in all_rigidbodies){
+	for (var r : Rigidbody2D in all_rigidbodies)
 		if (Vector2.Distance(r.transform.position, transform.position) < EXPLOSION_RADIUS && r.tag != "Player" && r.tag != "Text")
 			r.AddForce(Vector2(r.transform.position.x - transform.position.x, r.transform.position.y - transform.position.y).normalized * EXPLOSION_FORCE / Vector2.Distance(r.transform.position, transform.position));
-	}
 }
 
 function UploadScore () {
