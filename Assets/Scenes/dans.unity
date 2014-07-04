@@ -540,9 +540,6 @@ MonoBehaviour:
   EXPLOSION_RADIUS: 7
   EXPLOSION_FORCE: 2000
   color: {r: 1, g: 1, b: 1, a: 1}
-  purple: {r: .749019623, g: 0, b: 1, a: 1}
-  green: {r: 0, g: 1, b: 0, a: 1}
-  orange: {r: 1, g: .498039216, b: 0, a: 1}
   GameController: {fileID: 137584734}
   SpawnController: {fileID: 691807443}
   friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
@@ -554,7 +551,6 @@ MonoBehaviour:
   game_over: {fileID: 100000, guid: 6ca396f70555f3a4cbaae042967e1c02, type: 2}
   ADDITIONAL_TIME: 50
   MAX_TIME: 200
-  BaseScore: 100
   enemy_killed: {fileID: 8300000, guid: 331894e58260d994a9bcd2f598feeeed, type: 3}
   player_killed: {fileID: 8300000, guid: 08621b3e0ebad5e479bf7e13f651ec77, type: 3}
   player_hit: {fileID: 8300000, guid: 2ee6e3554e4aa834db32c88ac35d6587, type: 3}
@@ -691,7 +687,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Time: .200000003
-  m_StartWidth: 1
+  m_StartWidth: 1.29999995
   m_EndWidth: .100000001
   m_Colors:
     m_Color[0]:
@@ -762,7 +758,16 @@ Prefab:
       propertyPath: line
       value: 
       objectReference: {fileID: 1394439219}
-    m_RemovedComponents: []
+    - target: {fileID: 9600000, guid: a53612101164e104c843ace727deaedf, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9600000, guid: a53612101164e104c843ace727deaedf, type: 2}
+      propertyPath: m_StartWidth
+      value: 1.29999995
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9600002, guid: a53612101164e104c843ace727deaedf, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a53612101164e104c843ace727deaedf, type: 2}
   m_RootGameObject: {fileID: 1417132794}
   m_IsPrefabParent: 0
