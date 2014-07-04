@@ -50,6 +50,7 @@ var player_killed : AudioClip;
 var player_hit : AudioClip;
 //Misc (add random shit to be sorted here)
 var dead : boolean = false;
+var canDie : boolean = true;
 
 function Start () {
 	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x; //Set width to viewport width
@@ -125,6 +126,7 @@ function Update () {
 			Camera.main.GetComponent(game_controller).ChangeBackgroundColor(Color.white);
 			trail.material.SetColor("_Color", color);
 			timer = MAX_TIME; //Reset timer
+			canDie = true;
 			multiplier = 1; //Multiplier to 1
 			if (combo_score > 0) {
 				//Instantiate a score text showing how many points were scored during that combo
@@ -257,7 +259,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				audio.PlayOneShot(enemy_killed);
 				Camera.main.GetComponent(shake_script).LightShake();//shake camera
 			}
-			else if(color == Color.white) { //if the ball is white
+			else if(color == Color.white && canDie) { //if the ball is white
 				
 				Instantiate (game_over, Vector3(0, 0, -1), transform.rotation); //Game over screen
 				
@@ -288,7 +290,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				//Handheld.Vibrate();	//Kind of annoying...
 				audio.PlayOneShot(player_hit);
 				explode ();
-	
+				canDie = false;
 				exp = Instantiate(explosion, transform.position, transform.rotation);//explode
 				exp.GetComponent(ParticleSystem).startColor = Color.white;//particles
 				
