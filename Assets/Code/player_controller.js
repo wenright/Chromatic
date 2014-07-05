@@ -18,9 +18,7 @@ static var green : Color = Color(20/255.0F, 220/255.0F, 0, 1);
 static var orange : Color = Color(1, 127/255.0F, 0, 1); 
 static var red : Color = Color.red;
 static var yellow: Color = Color.yellow;
-static var blue: Color = Color.blue;
-
-				
+static var blue: Color = Color.blue;				
 //Game Objects
 var GameController : GameObject;
 var SpawnController : GameObject;
@@ -52,7 +50,7 @@ var player_killed : AudioClip;
 var player_hit : AudioClip;
 //Misc (add random shit to be sorted here)
 var dead : boolean = false;
-
+var canDie : boolean = true;
 
 function Start () {
 	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x; //Set width to viewport width
@@ -128,6 +126,7 @@ function Update () {
 			Camera.main.GetComponent(game_controller).ChangeBackgroundColor(Color.white);
 			trail.material.SetColor("_Color", color);
 			timer = MAX_TIME; //Reset timer
+			canDie = true;
 			multiplier = 1; //Multiplier to 1
 			if (combo_score > 0) {
 				//Instantiate a score text showing how many points were scored during that combo
@@ -260,7 +259,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				audio.PlayOneShot(enemy_killed);
 				Camera.main.GetComponent(shake_script).LightShake();//shake camera
 			}
-			else if(color == Color.white) { //if the ball is white
+			else if(color == Color.white && canDie) { //if the ball is white
 				
 				Instantiate (game_over, Vector3(0, 0, -1), transform.rotation); //Game over screen
 				
@@ -291,9 +290,9 @@ function OnTriggerEnter2D (other : Collider2D) {
 				//Handheld.Vibrate();	//Kind of annoying...
 				audio.PlayOneShot(player_hit);
 				explode ();
-				
+				canDie = false;
 				exp = Instantiate(explosion, transform.position, transform.rotation);//explode
-				exp.GetComponent(ParticleSystem).startColor = color;//particles
+				exp.GetComponent(ParticleSystem).startColor = Color.white;//particles
 				
 				var minus_text : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);//minus text
 				minus_text.GetComponent(TextMesh).text = "-" + BaseScore;//print loss
