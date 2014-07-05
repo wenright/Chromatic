@@ -33,6 +33,8 @@ function OnGUI () {
 }
 
 function Start () {
+	Application.LoadLevel(2);	//Take this out, this just skips menu/tutorial and goes straight to the game
+	
 	player_name = PlayerPrefs.GetString("Name");
 	ask_for_name = false;
 	

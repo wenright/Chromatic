@@ -3,7 +3,7 @@ var can_restart: boolean = false;
 private var bg_color : Color = Color(2/255, 20/255, 26/255, 0.05);
 
 function Start () {
-	camera.backgroundColor = Color.white / 12;
+	camera.backgroundColor = Color.white / 9;
 }
 
 function Update () {
@@ -28,5 +28,5 @@ function GameOver () {
 }
 
 function ChangeBackgroundColor (color : Color) {
-	bg_color = color / 12;
+	bg_color = color / 9;
 }
