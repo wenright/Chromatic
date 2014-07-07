@@ -247,11 +247,10 @@ GameObject:
   - 50: {fileID: 311520440}
   - 82: {fileID: 311520445}
   - 96: {fileID: 311520447}
-  - 96: {fileID: 311520446}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -286,13 +285,10 @@ MonoBehaviour:
   width: 0
   height: 0
   MOVE_SPEED: 50
-  tolerance: 1
+  tolerance: 3
   EXPLOSION_RADIUS: 7
   EXPLOSION_FORCE: 2000
   color: {r: 1, g: 1, b: 1, a: 1}
-  purple: {r: .749019623, g: 0, b: 1, a: 1}
-  green: {r: 0, g: 1, b: 0, a: 1}
-  orange: {r: 1, g: .498039216, b: 0, a: 1}
   GameController: {fileID: 0}
   SpawnController: {fileID: 0}
   friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
@@ -308,6 +304,7 @@ MonoBehaviour:
   player_killed: {fileID: 8300000, guid: 08621b3e0ebad5e479bf7e13f651ec77, type: 3}
   player_hit: {fileID: 8300000, guid: 2ee6e3554e4aa834db32c88ac35d6587, type: 3}
   dead: 0
+  canDie: 1
 --- !u!58 &311520442
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -414,48 +411,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!96 &311520446
-TrailRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9600002, guid: a53612101164e104c843ace727deaedf,
-    type: 2}
-  m_PrefabInternal: {fileID: 119851246}
-  m_GameObject: {fileID: 311520439}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Time: .200000003
-  m_StartWidth: 1
-  m_EndWidth: .100000001
-  m_Colors:
-    m_Color[0]:
-      serializedVersion: 2
-      rgba: 4294967295
-    m_Color[1]:
-      serializedVersion: 2
-      rgba: 4294967295
-    m_Color[2]:
-      serializedVersion: 2
-      rgba: 4294967295
-    m_Color[3]:
-      serializedVersion: 2
-      rgba: 4294967295
-    m_Color[4]:
-      serializedVersion: 2
-      rgba: 16777215
-  m_MinVertexDistance: .00999999978
-  m_Autodestruct: 0
 --- !u!96 &311520447
 TrailRenderer:
   m_ObjectHideFlags: 0
@@ -478,7 +433,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Time: .100000001
-  m_StartWidth: 1
+  m_StartWidth: 1.5
   m_EndWidth: .100000001
   m_Colors:
     m_Color[0]:
@@ -492,7 +447,7 @@ TrailRenderer:
       rgba: 4294967295
     m_Color[3]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 1979711487
     m_Color[4]:
       serializedVersion: 2
       rgba: 16777215

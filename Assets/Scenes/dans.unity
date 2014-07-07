@@ -505,7 +505,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -536,7 +536,7 @@ MonoBehaviour:
   width: 0
   height: 0
   MOVE_SPEED: 50
-  tolerance: 1
+  tolerance: 3
   EXPLOSION_RADIUS: 7
   EXPLOSION_FORCE: 2000
   color: {r: 1, g: 1, b: 1, a: 1}
@@ -555,6 +555,7 @@ MonoBehaviour:
   player_killed: {fileID: 8300000, guid: 08621b3e0ebad5e479bf7e13f651ec77, type: 3}
   player_hit: {fileID: 8300000, guid: 2ee6e3554e4aa834db32c88ac35d6587, type: 3}
   dead: 0
+  canDie: 1
 --- !u!212 &1417132797
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -686,7 +687,7 @@ TrailRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Time: .200000003
+  m_Time: .150000006
   m_StartWidth: 1.29999995
   m_EndWidth: .100000001
   m_Colors:
@@ -701,7 +702,7 @@ TrailRenderer:
       rgba: 4294967295
     m_Color[3]:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 1979711487
     m_Color[4]:
       serializedVersion: 2
       rgba: 16777215
