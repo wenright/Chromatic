@@ -309,7 +309,7 @@ GameObject:
   - 4: {fileID: 406602316}
   - 114: {fileID: 406602315}
   m_Layer: 0
-  m_Name: AdBanner
+  m_Name: Android AdBanner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,6 +388,10 @@ Prefab:
     - target: {fileID: 100000, guid: b185dd86a2a55754b953d18f9698d46f, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b185dd86a2a55754b953d18f9698d46f, type: 2}
+      propertyPath: m_Name
+      value: Android AdBanner
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b185dd86a2a55754b953d18f9698d46f, type: 2}
@@ -784,6 +788,7 @@ MonoBehaviour:
   player_killed: {fileID: 8300000, guid: 08621b3e0ebad5e479bf7e13f651ec77, type: 3}
   player_hit: {fileID: 8300000, guid: 2ee6e3554e4aa834db32c88ac35d6587, type: 3}
   dead: 0
+  canDie: 1
 --- !u!212 &1417132797
 SpriteRenderer:
   m_ObjectHideFlags: 0

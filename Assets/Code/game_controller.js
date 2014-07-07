@@ -16,7 +16,7 @@ function Update () {
 			can_restart = true;
 
 	if (over && can_restart && (Input.touchCount > 0 || Input.GetButtonDown("Fire1")))
-		Application.LoadLevel(1);
+		Application.LoadLevel(2);
 		
 	camera.backgroundColor = Color.Lerp(camera.backgroundColor, bg_color, .1);
 }
@@ -28,12 +28,8 @@ function GameOver () {
 }
 
 function ChangeBackgroundColor (color : Color) {
-<<<<<<< HEAD
-	bg_color = color / 9;
-=======
 	if(color == player_controller.green || color == player_controller.yellow || color == Color.white)
 		bg_color = color / 8;
 	else
 		bg_color = color / 6;
->>>>>>> origin/master
 }
