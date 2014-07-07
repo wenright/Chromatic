@@ -88,29 +88,31 @@ function Update () {
 		  timer -= Time.deltaTime;
 		   //Pulsing Animation Code-->
 		   if(timer <= 100){
+		   	if(timer % 50 == 0)
+		   		Camera.main.GetComponent(shake_script).LightShake();
 		  	if(timer % 20 == 0){
-		  		transform.localScale = new Vector3(1.8, 1.8, 1);
+		  		transform.localScale = new Vector3(2, 2, 1);
 		  	}
 		  	else if(timer % 20 == 19){
-		  		transform.localScale = new Vector3(1.9, 1.9, 1);;
+		  		transform.localScale = new Vector3(2.3, 2.3, 1);;
 		  	}
 		  	else if(timer % 20 == 18){
-		  		transform.localScale = new Vector3(2, 2, 1);
+		  		transform.localScale = new Vector3(2.7, 2.7, 1);
 		  	}
 		  	else if(timer % 20 == 17){
-		  		transform.localScale = new Vector3(2.15, 2.15, 1);
+		  		transform.localScale = new Vector3(3.2, 3.2, 1);
 		  	}
 		  	else if(timer % 20 == 16){
-		  		transform.localScale = new Vector3(2.15, 2.15, 1);
+		  		transform.localScale = new Vector3(3.2, 3.2, 1);
 		  	}
 		  	else if(timer % 20 == 15){
-		  		transform.localScale = new Vector3(2, 2, 1);
+		  		transform.localScale = new Vector3(2.7, 2.7, 1);
 		  	}
 		  	else if(timer % 20 == 14){
-		  		transform.localScale = new Vector3(1.9, 1.9, 1);
+		  		transform.localScale = new Vector3(2.3, 2.3, 1);
 		  	}
 		  	else if(timer % 20 == 13){
-		  		transform.localScale = new Vector3(1.8, 1.8, 1);
+		  		transform.localScale = new Vector3(2, 2, 1);
 		  	}
 		  	else{
 		  		transform.localScale = new Vector3(1.75, 1.75, 1);

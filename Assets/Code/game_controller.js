@@ -16,7 +16,7 @@ function Update () {
 			can_restart = true;
 
 	if (over && can_restart && (Input.touchCount > 0 || Input.GetButtonDown("Fire1")))
-		Application.LoadLevel(2);
+		Application.LoadLevel("main");
 		
 	camera.backgroundColor = Color.Lerp(camera.backgroundColor, bg_color, .1);
 }
