@@ -28,13 +28,9 @@ function GameOver () {
 }
 
 function ChangeBackgroundColor (color : Color) {
-<<<<<<< HEAD
-	if(color == player_controller.green || color == player_controller.yellow || color == Color.white)
-=======
 	if(color == player_controller.green || color == player_controller.yellow)
 		bg_color = color / 7;
 	else if(color == Color.white)
->>>>>>> origin/master
 		bg_color = color / 8;
 	else
 		bg_color = color / 6;
