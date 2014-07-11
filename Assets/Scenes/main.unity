@@ -430,7 +430,7 @@ MonoBehaviour:
   player: {fileID: 1417132796}
   over: 0
   wait_time: 1.75
-  player_color: {r: 1, g: 1, b: 1, a: 1}
+  prev_color: -1
 --- !u!4 &691807445
 Transform:
   m_ObjectHideFlags: 0

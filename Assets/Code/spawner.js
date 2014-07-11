@@ -3,7 +3,7 @@ var en : GameObject;
 var player : player_controller;
 var over : boolean = false;
 var wait_time : float = 2.0;
-var player_color : Color = Color.white;
+var prev_color : int = -1;
 
 function Start () {
 	var width : float = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;
@@ -22,8 +22,6 @@ function Start () {
 	//Basic enemy spawner, spawns one every x seconds
 	while (!over) {
 	
-		player_color = player.GetComponent(player_controller).color;
-		print(player_color);
 		//for (var j : int = 0; j < 5; j++) {		//uncommment this for a burst kind of spawn, its interesting but is kind of frustrating.
 			var n : int = 1;
 			if (Random.value > 0.5)
@@ -36,22 +34,18 @@ function Start () {
 			else
 				e = Instantiate(en, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value * n)), transform.rotation);
 			
-//			var temp_color : int = -1;
-//			if (Random.value < 0.75 || prev_color == -1) {
-//				temp_color = Random.Range(1, 4);
-//				e.GetComponent(enemy).SetColor(temp_color);
-//			}
-//			else {
-//				temp_color = prev_color;
-//				e.GetComponent(enemy).SetColor(prev_color);
-//			}
-//			
-//			prev_color = temp_color;
-
-			if(Random.value < 0.60 && player_color != Color.white)
-				e.GetComponent(enemy).SetColor(player_color);
-			else
-				e.GetComponent(enemy).SetColor(Random.Range(1, 4));
+			var temp_color : int = -1;
+			if (Random.value < 0.85 || prev_color == -1) {
+				temp_color = Random.Range(1, 4);
+				e.GetComponent(enemy).SetColor(temp_color);
+			}
+			else {
+				temp_color = prev_color;
+				e.GetComponent(enemy).SetColor(prev_color);
+			}
+			
+			prev_color = temp_color;
+		
 		//}
 		
 		
