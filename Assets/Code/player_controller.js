@@ -264,9 +264,10 @@ function OnTriggerEnter2D (other : Collider2D) {
 			}
 			else if(color == Color.white && canDie) { //if the ball is white
 				
-				Instantiate (game_over, Vector3(0, 0, -1), transform.rotation); //Game over screen
+				var go : GameObject = Instantiate (game_over, Vector3(0, -1, -1), transform.rotation); //Game over screen
+				go.gameObject.transform.localScale = Vector3.one * 0.7;
 				
-				var hs : GameObject = Instantiate(game_over, Vector3(0, -1, -1), transform.rotation);
+				var hs : GameObject = Instantiate(game_over, Vector3(0, 0, -1), transform.rotation);
 				
 				if (score > PlayerPrefs.GetInt("HighScore")) {
 					PlayerPrefs.SetInt("HighScore", score); //Saves highscore
