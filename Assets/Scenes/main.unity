@@ -427,8 +427,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
   en: {fileID: 100000, guid: a0d7f8a4bd9310d48bb10514c331cda6, type: 2}
+  player: {fileID: 1417132796}
   over: 0
   wait_time: 1.75
+  player_color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &691807445
 Transform:
   m_ObjectHideFlags: 0

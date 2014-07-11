@@ -76,3 +76,7 @@ function SetColor (num : int) {
 	
 	sprite.color = color;
 }
+
+function SetColor (colorIn : Color){
+	color = colorIn;
+}
