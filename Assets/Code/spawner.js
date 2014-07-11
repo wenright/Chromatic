@@ -32,7 +32,7 @@ function Start () {
 			else
 				e = Instantiate(en, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value * n)), transform.rotation);
 			var temp_color : int = -1;
-			if (Random.value < 0.75 || prev_color == -1) {
+			if (Random.value < 0.6 || prev_color == -1) {
 				temp_color = Random.Range(1, 4);
 				e.GetComponent(enemy).SetColor(temp_color);
 			}

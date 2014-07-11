@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a34b296e553d149e7873fa6cf373048a
+guid: b4a360b1b58a7b14aab92a2cccc1ada2
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -21,9 +21,9 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 64
+  maxTextureSize: 256
   textureSettings:
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: -1
     wrapMode: 1
@@ -36,7 +36,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 600
+  spritePixelsToUnits: 500
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
