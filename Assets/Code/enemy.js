@@ -2,7 +2,7 @@
 var MOVE_SPEED : float = Random.Range(250,350);		//A higher number means faster movement
 
 //The speed at which the object rotates around its center
-var ROTATE_SPEED : int = 50;
+var ROTATE_SPEED : float = 50;
 
 private var width : float;
 private var height : float;
@@ -39,7 +39,12 @@ function OnGUI () {
 function Update () {
 	//Move/rotate enemy
 	if (target) {
-		transform.LookAt(transform.position + Vector3(0,0,1), target.position - transform.position);
+		//transform.LookAt(transform.position + Vector3(0,0,1), target.position - transform.position);
+		var newRotation = Quaternion.LookRotation(transform.position - target.transform.position, Vector3.forward);
+		newRotation.x = 0.0;
+		newRotation.y = 0.0;
+		transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, ROTATE_SPEED * Time.deltaTime);
+
 		rigidbody2D.AddForce(transform.up * Time.deltaTime * MOVE_SPEED);
 	}
 	MOVE_SPEED += Time.deltaTime * 55;
