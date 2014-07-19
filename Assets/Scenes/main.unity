@@ -481,17 +481,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2811034ba5db6004db476ada1059bf93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friend: {fileID: 0}
-  en: {fileID: 0}
-  player: {fileID: 0}
+  friend: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
+  en: {fileID: 100000, guid: a0d7f8a4bd9310d48bb10514c331cda6, type: 2}
+  player: {fileID: 1417132796}
   over: 0
-<<<<<<< HEAD
-  wait_time: 2
-  player_color: {r: 1, g: 1, b: 1, a: 1}
-=======
   wait_time: 1.75
   prev_color: -1
->>>>>>> origin/master
 --- !u!4 &691807445
 Transform:
   m_ObjectHideFlags: 0

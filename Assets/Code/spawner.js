@@ -33,16 +33,9 @@ function Start () {
 				e = Instantiate(en, Camera.main.ViewportToWorldPoint(Vector2(Random.value * n, 1.1)), transform.rotation);
 			else
 				e = Instantiate(en, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value * n)), transform.rotation);
-<<<<<<< HEAD
-			
-			var temp_color : int = -1;
-			if (Random.value < 0.75 || prev_color == -1) {
-=======
-
 			
 			var temp_color : int = -1;
 			if (Random.value < 0.85 || prev_color == -1) {
->>>>>>> origin/master
 				temp_color = Random.Range(1, 4);
 				e.GetComponent(enemy).SetColor(temp_color);
 			}
@@ -52,15 +45,6 @@ function Start () {
 			}
 			
 			prev_color = temp_color;
-<<<<<<< HEAD
-
-			if(Random.value < 0.60 && player_color != Color.white)
-				e.GetComponent(enemy).SetColor(player_color);
-			else
-				e.GetComponent(enemy).SetColor(Random.Range(1, 4));
-=======
-		
->>>>>>> origin/master
 		//}
 		
 		
