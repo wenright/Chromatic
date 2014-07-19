@@ -31,8 +31,8 @@ var trail : TrailRenderer;
 var game_over : GameObject;
 //Time
 private var timer : int = 0;
-var ADDITIONAL_TIME : int = 90;
-var MAX_TIME : int = 200;
+var ADDITIONAL_TIME : int = 100;
+var MAX_TIME : int = 300;
 //Score
 private var multiplier : int = 1;
 private var best_multiplier : int = 0;
@@ -86,6 +86,7 @@ function Update () {
 		//Checks if colored and counts down from 200, when 0 is reached, resets to white
 		if(timer > 0 && color != Color.white){
 		  timer -= Time.deltaTime;
+		  transform.localScale = new Vector3(1.75, 1.75, 1);
 		   //Pulsing Animation Code-->
 		   if(timer <= 100){
 		   	if(timer % 50 == 0)
@@ -254,7 +255,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 					rage_timer = timer; //sets timer to remainging time
 				}
 				if(!rage_mode)
-					timer += ADDITIONAL_TIME; //add aditional time per kill not not on ragemode
+					timer += ADDITIONAL_TIME+ADDITIONAL_TIME/multiplier; //add aditional time per kill not not on ragemode
 				exp = Instantiate(explosion, transform.position, transform.rotation); //explode
 				exp.GetComponent(ParticleSystem).startColor = color; //particles for explosion
 				kills++;

@@ -33,5 +33,5 @@ function ChangeBackgroundColor (color : Color) {
 	else if(color == Color.white)
 		bg_color = color / 8;
 	else
-		bg_color = color / 6;
+		bg_color = color / 12;
 }
