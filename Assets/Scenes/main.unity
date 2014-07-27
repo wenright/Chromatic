@@ -184,14 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5860682569fdb9a4ca0344d8f3b069d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   repetitions: 15
   duration: .0170000009
   intensity: .400000006
-=======
-  repetitions: 0
-  duration: 0
-  intensity: 0
 --- !u!1001 &204837248
 Prefab:
   m_ObjectHideFlags: 0
@@ -244,7 +239,6 @@ Prefab:
   m_RootGameObject: {fileID: 964909462}
   m_IsPrefabParent: 0
   m_IsExploded: 1
->>>>>>> origin/master
 --- !u!1 &215610604
 GameObject:
   m_ObjectHideFlags: 0
