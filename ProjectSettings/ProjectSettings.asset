@@ -64,7 +64,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  iPhoneBundleIdentifier: com.WD40.monochrome
+  iPhoneBundleIdentifier: com.WD40.Chromatic
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   productGUID: b4930bc0767e443999ea789800a6f607

@@ -33,7 +33,6 @@ function Spawn () {
 				e = Instantiate(en, Camera.main.ViewportToWorldPoint(Vector2(Random.value * n, 1.1)), transform.rotation);
 			else
 				e = Instantiate(en, Camera.main.ViewportToWorldPoint(Vector2(1.1, Random.value * n)), transform.rotation);
-
 			
 			var temp_color : int = -1;
 			if (Random.value < 0.85 || prev_color == -1) {
@@ -46,7 +45,6 @@ function Spawn () {
 			}
 			
 			prev_color = temp_color;
-		
 		//}
 		
 		
