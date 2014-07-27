@@ -14,6 +14,7 @@ GameObject:
   - 50: {fileID: 5000000}
   - 82: {fileID: 8200000}
   - 96: {fileID: 9600000}
+  - 111: {fileID: 11100000}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -69,12 +70,12 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .829999983
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -137,7 +138,7 @@ TrailRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Time: .150000006
+  m_Time: .100000001
   m_StartWidth: 1.5
   m_EndWidth: .100000001
   m_Colors:
@@ -158,6 +159,21 @@ TrailRenderer:
       rgba: 16777215
   m_MinVertexDistance: .00999999978
   m_Autodestruct: 0
+--- !u!111 &11100000
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d35d2e3402dfa5f45aeb80f95adb2de9, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d35d2e3402dfa5f45aeb80f95adb2de9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,9 +203,9 @@ MonoBehaviour:
   game_over: {fileID: 100000, guid: 6ca396f70555f3a4cbaae042967e1c02, type: 2}
   ADDITIONAL_TIME: 50
   MAX_TIME: 200
-  enemy_killed: {fileID: 8300000, guid: 331894e58260d994a9bcd2f598feeeed, type: 3}
-  player_killed: {fileID: 8300000, guid: 08621b3e0ebad5e479bf7e13f651ec77, type: 3}
-  player_hit: {fileID: 8300000, guid: 2ee6e3554e4aa834db32c88ac35d6587, type: 3}
+  enemy_killed: {fileID: 8300000, guid: b55975c1e5b7e0c43a2f5a833ebcc5dd, type: 3}
+  player_hit: {fileID: 8300000, guid: e53babe6e92c3be4ba24b710096befc9, type: 3}
+  triangle_picked_up: {fileID: 8300000, guid: b0fb88987d9e58840be39fb9d15bcf7d, type: 3}
   dead: 0
   canDie: 1
 --- !u!212 &21200000

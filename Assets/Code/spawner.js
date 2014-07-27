@@ -5,7 +5,7 @@ var over : boolean = false;
 var wait_time : float = 2.0;
 var prev_color : int = -1;
 
-function Start () {
+function Spawn () {
 	var width : float = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x;
 	var height : float = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y;
 
@@ -51,9 +51,12 @@ function Start () {
 		
 		
 		yield WaitForSeconds(wait_time);
-		if (wait_time > 0.01)
-			wait_time -= 0.01;
 	}
+}
+
+function Update () {
+	if (wait_time > 0.01)
+			wait_time -= Time.deltaTime / 7000;
 }
 
 function GameOver () {

@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 60: {fileID: 6000000}
   - 114: {fileID: 11400000}
+  - 111: {fileID: 11100000}
   m_Layer: 0
   m_Name: Friendly
   m_TagString: Friendly
@@ -44,6 +45,22 @@ PolygonCollider2D:
     - - {x: .369244039, y: -.319610417}
       - {x: 4.17232513e-06, y: .319071174}
       - {x: -.369318247, y: -.319588393}
+--- !u!111 &11100000
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d35d2e3402dfa5f45aeb80f95adb2de9, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: b4b1e1e9300e3a6488082f84f98fee6b, type: 2}
+  - {fileID: 7400000, guid: d35d2e3402dfa5f45aeb80f95adb2de9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -46,8 +46,8 @@ private var rage_mode : boolean = false;
 private var rage_timer : int = 0;
 //Sounds
 var enemy_killed : AudioClip;
-var player_killed : AudioClip;
 var player_hit : AudioClip;
+var triangle_picked_up : AudioClip;
 //Misc (add random shit to be sorted here)
 var dead : boolean = false;
 var canDie : boolean = true;
@@ -171,6 +171,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 	if (!dead) {
 		var exp : GameObject; // creates the explosion gameobject
 		if (other.tag == "Friendly" && !rage_mode) {
+			//audio.PlayOneShot (triangle_picked_up);
 			transform.localScale = new Vector3(1.75, 1.75, 1); //makes sure size is set to full
 			
 			if (combo_score > 0) {
@@ -279,7 +280,6 @@ function OnTriggerEnter2D (other : Collider2D) {
 				
 				GameController.GetComponent(game_controller).GameOver();
 				SpawnController.GetComponent(spawner).GameOver();
-				audio.PlayOneShot(player_killed);
 				dead = true;
 				//Destroy(gameObject);//Moving this to the upload function, so we can finish uploading then destroy the object
 				UploadScore();
