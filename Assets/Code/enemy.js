@@ -9,7 +9,7 @@ private var height : float;
 
 private var label_x : float;
 private var label_y : float;
-private var label_width : int = 30;
+private var label_width : int = Screen.width/20;
 
 var enemy_label : Texture2D;
 private var show_label : boolean = false;
