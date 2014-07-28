@@ -334,7 +334,9 @@ function explode () {
 		if (Vector2.Distance(r.transform.position, transform.position) < EXPLOSION_RADIUS && r.tag != "Player" && r.tag != "Text")
 			r.AddForce(Vector2(r.transform.position.x - transform.position.x, r.transform.position.y - transform.position.y).normalized * EXPLOSION_FORCE / Vector2.Distance(r.transform.position, transform.position));
 }
-
+function getMultiplier(){
+	return multiplier; //to access this variable but it needs to stay private
+}
 function UploadScore () {
 	//Upload score, kills, time, and player name to some server somewhere somehow
 	//Use PlayerPrefs.GetString("Name"); to return the name of the player
