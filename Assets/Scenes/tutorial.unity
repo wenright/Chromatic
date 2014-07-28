@@ -261,6 +261,7 @@ GameObject:
   - 50: {fileID: 311520440}
   - 82: {fileID: 311520445}
   - 96: {fileID: 311520447}
+  - 111: {fileID: 311520446}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -314,9 +315,9 @@ MonoBehaviour:
   game_over: {fileID: 100000, guid: 6ca396f70555f3a4cbaae042967e1c02, type: 2}
   ADDITIONAL_TIME: 50
   MAX_TIME: 99999999
-  enemy_killed: {fileID: 8300000, guid: 331894e58260d994a9bcd2f598feeeed, type: 3}
-  player_killed: {fileID: 8300000, guid: 08621b3e0ebad5e479bf7e13f651ec77, type: 3}
-  player_hit: {fileID: 8300000, guid: 2ee6e3554e4aa834db32c88ac35d6587, type: 3}
+  enemy_killed: {fileID: 8300000, guid: b55975c1e5b7e0c43a2f5a833ebcc5dd, type: 3}
+  player_hit: {fileID: 8300000, guid: e53babe6e92c3be4ba24b710096befc9, type: 3}
+  triangle_picked_up: {fileID: 8300000, guid: b0fb88987d9e58840be39fb9d15bcf7d, type: 3}
   dead: 0
   canDie: 1
 --- !u!58 &311520442
@@ -352,7 +353,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: a35746f7ad0094b02b7ee3f1e93827e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: acef7b8527e86674a8125ca856b74c44, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &311520444
 Transform:
@@ -377,12 +378,12 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .829999983
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -425,6 +426,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!111 &311520446
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11100000, guid: a53612101164e104c843ace727deaedf,
+    type: 2}
+  m_PrefabInternal: {fileID: 119851246}
+  m_GameObject: {fileID: 311520439}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d35d2e3402dfa5f45aeb80f95adb2de9, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d35d2e3402dfa5f45aeb80f95adb2de9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!96 &311520447
 TrailRenderer:
   m_ObjectHideFlags: 0
@@ -574,6 +591,78 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!1 &947967002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100002, guid: 69bbe452ebd3648489c2cce5e95ec45c, type: 2}
+  m_PrefabInternal: {fileID: 1357213746}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 947967005}
+  - 23: {fileID: 947967004}
+  - 102: {fileID: 947967003}
+  m_Layer: 5
+  m_Name: Tap to Play
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!102 &947967003
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 10200000, guid: 69bbe452ebd3648489c2cce5e95ec45c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1357213746}
+  m_GameObject: {fileID: 947967002}
+  m_Text: Tap to Play
+  m_OffsetZ: 0
+  m_CharacterSize: .0399999991
+  m_LineSpacing: 1
+  m_Anchor: 1
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 128
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: 9b62c903fb7897047a89469abdd8e995, type: 3}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!23 &947967004
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: 69bbe452ebd3648489c2cce5e95ec45c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1357213746}
+  m_GameObject: {fileID: 947967002}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 9b62c903fb7897047a89469abdd8e995, type: 3}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!4 &947967005
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400002, guid: 69bbe452ebd3648489c2cce5e95ec45c, type: 2}
+  m_PrefabInternal: {fileID: 1357213746}
+  m_GameObject: {fileID: 947967002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.0500000007, y: .0500000007, z: 0}
+  m_LocalScale: {x: .100000001, y: .100000001, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1018434140}
+  m_RootOrder: 0
 --- !u!1 &1018434137
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +692,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71084bb10b9a9d42aabf2c94efd2c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otherThingToFade: {fileID: 947967002}
+  spawnerScript: {fileID: 0}
 --- !u!131 &1018434139
 GUITexture:
   m_ObjectHideFlags: 0
@@ -632,7 +723,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 947967005}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!1001 &1357213746
@@ -715,6 +807,7 @@ MonoBehaviour:
   tut_triangle: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
   tut_square: {fileID: 100000, guid: a0d7f8a4bd9310d48bb10514c331cda6, type: 2}
   done: 0
+  player: {fileID: 0}
 --- !u!132 &1820368582
 GUIText:
   m_ObjectHideFlags: 0
@@ -723,7 +816,7 @@ GUIText:
   m_GameObject: {fileID: 1820368580}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: Move by draggin your finger across the screen
+  m_Text: Tap to start
   m_Anchor: 4
   m_Alignment: 1
   m_PixelOffset: {x: 0, y: 0}
