@@ -7,6 +7,8 @@ var height : float;
 var dirx : int = 1;
 var diry : int = 1;
 
+private var size : float = 0.4;
+
 //The speed at which the object rotates around its center
 var ROTATE_SPEED : int = 50;
 
@@ -26,22 +28,22 @@ function Start () {
 function Update () {
 	transform.RotateAround(transform.position, transform.forward, ROTATE_SPEED * Time.deltaTime);
 	
-	if (transform.position.x > width) {
+	if (transform.position.x > width - size) {
 		dirx *= -1;
-		transform.position.x = width;
+		transform.position.x = width - size;
 	}
-	else if (transform.position.x < -width) {
+	else if (transform.position.x < -width + size) {
 		dirx *= -1;
-		transform.position.x = -width;
+		transform.position.x = -width + size;
 	}
 	
-	if (transform.position.y > height) {
+	if (transform.position.y > height - size) {
 		diry *= -1;
-		transform.position.y = height;
+		transform.position.y = height - size;
 	}
-	else if (transform.position.y < -height) {
+	else if (transform.position.y < -height + size) {
 		diry *= -1;
-		transform.position.y = -height;
+		transform.position.y = -height + size;
 	}
 	
 	transform.position.x += Time.deltaTime * dirx;

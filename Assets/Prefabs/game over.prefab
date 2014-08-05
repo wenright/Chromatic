@@ -11,6 +11,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 102: {fileID: 10200000}
   - 82: {fileID: 8200000}
+  - 111: {fileID: 11100000}
   m_Layer: 0
   m_Name: game over
   m_TagString: Untagged
@@ -129,6 +130,21 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!111 &11100000
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d35d2e3402dfa5f45aeb80f95adb2de9, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d35d2e3402dfa5f45aeb80f95adb2de9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -48,6 +48,7 @@ function Update () {
 		rigidbody2D.AddForce(transform.up * Time.deltaTime * MOVE_SPEED);
 	}
 	MOVE_SPEED += Time.deltaTime * 55;
+	ROTATE_SPEED += Time.deltaTime * 0.32;
 	transform.position.z = 0;
 
 	//draw a GUI icon indicating incoming enemy if off screen

@@ -47,7 +47,7 @@ function Update () {
 			//Tutorial button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), tutorialButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the tutorial button");
-				
+				Application.LoadLevel("tutorial");
 			}
 		}
 		else if (Input.GetButtonDown("Fire1")) {
@@ -76,6 +76,7 @@ function Update () {
 			//Tutorial button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), tutorialButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the tutorial button");
+				Application.LoadLevel("Tutorial");
 			}
 		}
 	}

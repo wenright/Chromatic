@@ -3,6 +3,7 @@ var tut_triangle : GameObject;
 var tut_square : GameObject;
 var done : boolean;
 var player : player_controller;
+var fader : fade_in;
 
 function Start () {
 	done = false;
@@ -14,6 +15,7 @@ function Update () {
 }
 
 function do_a_thing () {
+	fader.Fade ();
 	done = true;		//this tut goes too fast, gotta fix the player so they stay the color longer just for the tutorial
 	
 	text.text = "Move your finger near the circle to move!";
@@ -46,10 +48,10 @@ function do_a_thing () {
 	s1.GetComponent(enemy).SetColor(2);
 	while(player.getMultiplier() < 2){
 		yield WaitForSeconds(0.5);
-	}	
-	text.text = "Nice! Returning to main menu!";
+	}
+	text.text = "Nice! Get combos to rack up more points";
 	yield WaitForSeconds(2.5);
-	text.text = "Remember, get combos to rack up more points";
+	text.text = "Returning to menu!";
 	yield WaitForSeconds(3);
 	Application.LoadLevel("main");
 	

@@ -294,7 +294,7 @@ ParticleSystem:
     enabled: 1
     type: 2
     radius: 1
-    angle: 25
+    angle: 90
     length: 5
     boxX: 1
     boxY: 1

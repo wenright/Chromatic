@@ -21,12 +21,12 @@ AnimationClip:
         value: {x: .100000001, y: .100000001, z: .100000001}
         inSlope: {x: 5.30357122, y: 5.30357122, z: 5.30357122}
         outSlope: {x: 5.30357122, y: 5.30357122, z: 5.30357122}
-        tangentMode: 57
+        tangentMode: 0
       - time: .311111122
         value: {x: 1.75, y: 1.75, z: 1.75}
-        inSlope: {x: 5.30357122, y: 5.30357122, z: 5.30357122}
-        outSlope: {x: 5.30357122, y: 5.30357122, z: 5.30357122}
-        tangentMode: -2
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: 
@@ -68,9 +68,9 @@ AnimationClip:
         tangentMode: 10
       - time: .311111122
         value: 1.75
-        inSlope: 5.30357122
-        outSlope: 5.30357122
-        tangentMode: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.x
@@ -87,9 +87,9 @@ AnimationClip:
         tangentMode: 10
       - time: .311111122
         value: 1.75
-        inSlope: 5.30357122
-        outSlope: 5.30357122
-        tangentMode: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.y
@@ -106,9 +106,9 @@ AnimationClip:
         tangentMode: 10
       - time: .311111122
         value: 1.75
-        inSlope: 5.30357122
-        outSlope: 5.30357122
-        tangentMode: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_LocalScale.z
