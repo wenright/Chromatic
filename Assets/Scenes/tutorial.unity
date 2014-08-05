@@ -807,7 +807,7 @@ MonoBehaviour:
   tut_triangle: {fileID: 100000, guid: 54b57d9a640d3f244b3cc2e7cc8005ec, type: 2}
   tut_square: {fileID: 100000, guid: a0d7f8a4bd9310d48bb10514c331cda6, type: 2}
   done: 0
-  player: {fileID: 0}
+  player: {fileID: 311520441}
 --- !u!132 &1820368582
 GUIText:
   m_ObjectHideFlags: 0
