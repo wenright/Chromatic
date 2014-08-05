@@ -7,6 +7,7 @@ var height : float;
 //Movement
 var MOVE_SPEED : float;
 private var move_location : Vector2 = Vector2.zero;
+var canMove : boolean = false;//Used to prevent player from moving to button position at beginning of game. Check this box for tutorial, but not main.
 var tolerance : float;//tolerance for spawning a friendly
 //Explosion variables
 var EXPLOSION_RADIUS : int = 7;
@@ -74,10 +75,10 @@ function OnGUI () {
 function Update () {
 	if (!dead) {	
 		//Takes in player touches and stores the X and Y coordinates in terms of world coordinates
-		if (Input.touchCount > 0)
+		if (Input.touchCount > 0 && canMove)
 			move_location = Camera.main.ScreenToWorldPoint(Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y));
 		//Takes in mouse input instead
-		else if (Input.GetMouseButton(0))
+		else if (Input.GetMouseButton(0) && canMove)
 			move_location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			
 		//if(Vector2.Distance(move_location, transform.position) < 10) //checks to see if finger/mouse is within range (I took this out, got me killed a couple times. dont really like it)
@@ -334,9 +335,15 @@ function explode () {
 		if (Vector2.Distance(r.transform.position, transform.position) < EXPLOSION_RADIUS && r.tag != "Player" && r.tag != "Text")
 			r.AddForce(Vector2(r.transform.position.x - transform.position.x, r.transform.position.y - transform.position.y).normalized * EXPLOSION_FORCE / Vector2.Distance(r.transform.position, transform.position));
 }
+
 function getMultiplier(){
 	return multiplier; //to access this variable but it needs to stay private
 }
+
+function playAnimation () {
+	animation.Play ();
+}
+
 function UploadScore () {
 	//Upload score, kills, time, and player name to some server somewhere somehow
 	//Use PlayerPrefs.GetString("Name"); to return the name of the player

@@ -40,8 +40,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71084bb10b9a9d42aabf2c94efd2c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  otherThingToFade: {fileID: 0}
   spawnerScript: {fileID: 0}
+  menuButtons: {fileID: 0}
 --- !u!131 &13100000
 GUITexture:
   m_ObjectHideFlags: 1

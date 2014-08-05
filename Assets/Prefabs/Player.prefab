@@ -167,11 +167,11 @@ Animation:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d35d2e3402dfa5f45aeb80f95adb2de9, type: 2}
+  m_Animation: {fileID: 7400000, guid: a31fc8635d47c0742a440a8babcb0aea, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: d35d2e3402dfa5f45aeb80f95adb2de9, type: 2}
+  - {fileID: 7400000, guid: a31fc8635d47c0742a440a8babcb0aea, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!114 &11400000
@@ -188,6 +188,7 @@ MonoBehaviour:
   width: 0
   height: 0
   MOVE_SPEED: 50
+  canMove: 0
   tolerance: 3
   EXPLOSION_RADIUS: 7
   EXPLOSION_FORCE: 2000
