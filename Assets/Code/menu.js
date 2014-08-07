@@ -12,9 +12,11 @@ var regularSoundButton : Sprite;
 
 private var buttonRadius : float = 1.0;
 private var canPress : boolean;
+private var canPressMute : boolean;
 
 function Start () {
 	canPress = true;
+	canPressMute = true;
 	
 	if (PlayerPrefs.GetInt("Volume") == 0) {
 		muteButton.GetComponent (SpriteRenderer).sprite = altMuteButton;
@@ -40,8 +42,9 @@ function Update () {
 				Application.LoadLevel ("highscores");
 			}
 			//Mute button
-			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), muteButton.transform.position) <= buttonRadius) {
+			else if (canPressMute && Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), muteButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the volume button");
+				buttonDelay ();
 				if (camera.main.GetComponent(AudioListener).volume == 1) {
 					camera.main.GetComponent(AudioListener).volume = 0;
 					PlayerPrefs.SetInt("Volume", 0);	//We could make a volume slider, but I dont think its necessary. Maybe if we have sound and music going at the same time.
@@ -71,8 +74,9 @@ function Update () {
 				Application.LoadLevel ("highscores");
 			}
 			//Mute button
-			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), muteButton.transform.position) <= buttonRadius) {
+			else if (canPressMute && Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), muteButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the volume button");
+				buttonDelay ();
 				if (camera.main.GetComponent(AudioListener).volume == 1) {
 					camera.main.GetComponent(AudioListener).volume = 0;
 					PlayerPrefs.SetInt("Volume", 0);	//We could make a volume slider, but I dont think its necessary. Maybe if we have sound and music going at the same time.
@@ -91,4 +95,10 @@ function Update () {
 			}
 		}
 	}
+}
+
+function buttonDelay () {
+	canPressMute = false;
+	yield WaitForSeconds (0.1);
+	canPressMute = true;
 }
