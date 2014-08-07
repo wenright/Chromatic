@@ -99,6 +99,7 @@ function Update () {
 
 function buttonDelay () {
 	canPressMute = false;
-	yield WaitForSeconds (0.1);
+	while (Input.touchCount > 0)
+		yield WaitForSeconds (0.01);
 	canPressMute = true;
 }
