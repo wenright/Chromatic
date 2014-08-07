@@ -1,6 +1,8 @@
 fileFormatVersion: 2
 guid: 25f20bc027313aa418a2a9c06a9d2ba5
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: exclaim
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -24,9 +26,9 @@ TextureImporter:
   maxTextureSize: 256
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

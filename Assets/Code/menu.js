@@ -37,11 +37,21 @@ function Update () {
 			//Score button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), scoreButton.transform.position) <= buttonRadius) {
 				print("Clicked on the score button");
-				
+				Application.LoadLevel ("highscores");
 			}
 			//Mute button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), muteButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the volume button");
+				if (camera.main.GetComponent(AudioListener).volume == 1) {
+					camera.main.GetComponent(AudioListener).volume = 0;
+					PlayerPrefs.SetInt("Volume", 0);	//We could make a volume slider, but I dont think its necessary. Maybe if we have sound and music going at the same time.
+					muteButton.GetComponent (SpriteRenderer).sprite = altMuteButton;
+				}
+				else {
+					camera.main.GetComponent(AudioListener).volume = 1;
+					PlayerPrefs.SetInt("Volume", 1);
+					muteButton.GetComponent (SpriteRenderer).sprite = regularSoundButton;
+				}
 				
 			}
 			//Tutorial button
@@ -58,13 +68,14 @@ function Update () {
 			//Score button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), scoreButton.transform.position) <= buttonRadius) {
 				print("Clicked on the score button");
+				Application.LoadLevel ("highscores");
 			}
 			//Mute button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), muteButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the volume button");
 				if (camera.main.GetComponent(AudioListener).volume == 1) {
 					camera.main.GetComponent(AudioListener).volume = 0;
-					PlayerPrefs.SetInt("Volume", 0);	//We could make a volume slider, but I dont think its necessary
+					PlayerPrefs.SetInt("Volume", 0);	//We could make a volume slider, but I dont think its necessary. Maybe if we have sound and music going at the same time.
 					muteButton.GetComponent (SpriteRenderer).sprite = altMuteButton;
 				}
 				else {

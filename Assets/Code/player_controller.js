@@ -271,9 +271,27 @@ function OnTriggerEnter2D (other : Collider2D) {
 				
 				var hs : GameObject = Instantiate(game_over, Vector3(0, 0, -1), transform.rotation);
 				
-				if (score > PlayerPrefs.GetInt("HighScore")) {
-					PlayerPrefs.SetInt("HighScore", score); //Saves highscore
+				if (score > PlayerPrefs.GetInt("highscore4")) {
 					hs.GetComponent(TextMesh).text = "New High Score! " + score;//prints highscore
+					
+					if (score > PlayerPrefs.GetInt ("highscore1")) {
+						PlayerPrefs.SetInt ("highscore4", PlayerPrefs.GetInt ("highscore3"));
+						PlayerPrefs.SetInt ("highscore3", PlayerPrefs.GetInt ("highscore2"));
+						PlayerPrefs.SetInt ("highscore2", PlayerPrefs.GetInt ("highscore1"));
+						PlayerPrefs.SetInt ("highscore1", score);
+					}
+					else if (score > PlayerPrefs.GetInt ("highscore2")) {
+						PlayerPrefs.SetInt ("highscore4", PlayerPrefs.GetInt ("highscore3"));
+						PlayerPrefs.SetInt ("highscore3", PlayerPrefs.GetInt ("highscore2"));
+						PlayerPrefs.SetInt ("highscore2", score);
+					}
+					else if (score > PlayerPrefs.GetInt ("highscore3")) {
+						PlayerPrefs.SetInt ("highscore4", PlayerPrefs.GetInt ("highscore3"));
+						PlayerPrefs.SetInt ("highscore3", score);
+					}
+					else {
+						PlayerPrefs.SetInt ("highscore4", score);
+					}
 				}
 				else {
 					hs.GetComponent(TextMesh).text = "Score: " + score; //prints score
