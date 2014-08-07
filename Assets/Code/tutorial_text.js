@@ -10,14 +10,24 @@ function Start () {
 }
 
 function Update () {
+<<<<<<< HEAD
 	if (!done && (Input.touchCount > 0 || Input.GetButton("Fire1")))
+=======
+	if ((Input.touchCount > 0 || Input.GetButtonDown("Fire1") && !done)){
+		done = true;
+>>>>>>> origin/master
 		do_a_thing();
+	}
 }
 
 function do_a_thing () {
 	done = true;
 	fader.Fade ();
+<<<<<<< HEAD
 	
+=======
+			
+>>>>>>> origin/master
 	text.text = "Move your finger near the circle to move!";
 	var prevPos = player.transform.position;
     var actualPos = player.transform.position;
