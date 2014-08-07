@@ -10,13 +10,13 @@ function Start () {
 }
 
 function Update () {
-	if ((Input.touchCount > 0 || Input.GetButtonDown("Fire1") && !done))
+	if (!done && (Input.touchCount > 0 || Input.GetButton("Fire1")))
 		do_a_thing();
 }
 
 function do_a_thing () {
+	done = true;
 	fader.Fade ();
-	done = true;		//this tut goes too fast, gotta fix the player so they stay the color longer just for the tutorial
 	
 	text.text = "Move your finger near the circle to move!";
 	var prevPos = player.transform.position;
@@ -33,7 +33,7 @@ function do_a_thing () {
 	text.text = "This triangle is your friend.\nPick it up to change your color.";
 	var t1 : GameObject = Instantiate(tut_triangle, Vector3(3, 2, 0), transform.rotation);
 	t1.GetComponent(friendly).SetColor(0);	//Red
-	while(player.color != player.red){
+	while(player.color != player.red){ 
 		yield WaitForSeconds(0.5);
 	}
 	text.text = "Now pick up a second color to\nchange into a scondary color.";
