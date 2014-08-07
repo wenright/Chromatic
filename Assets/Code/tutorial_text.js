@@ -10,14 +10,15 @@ function Start () {
 }
 
 function Update () {
-	if ((Input.touchCount > 0 || Input.GetButtonDown("Fire1") && !done))
+	if ((Input.touchCount > 0 || Input.GetButtonDown("Fire1") && !done)){
+		done = true;
 		do_a_thing();
+	}
 }
 
 function do_a_thing () {
 	fader.Fade ();
-	done = true;		//this tut goes too fast, gotta fix the player so they stay the color longer just for the tutorial
-	
+			
 	text.text = "Move your finger near the circle to move!";
 	var prevPos = player.transform.position;
     var actualPos = player.transform.position;
