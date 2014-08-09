@@ -88,12 +88,12 @@ TextMesh:
   m_GameObject: {fileID: 100000}
   m_Text: X5
   m_OffsetZ: 10
-  m_CharacterSize: .0399999991
+  m_CharacterSize: .150000006
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 128
+  m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 9b62c903fb7897047a89469abdd8e995, type: 3}
