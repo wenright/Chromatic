@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+var sound : AudioClip;
+
 var fader : fade_in;
 
 var playButton : GameObject;
@@ -34,16 +36,19 @@ function Update () {
 			//Play button
 			if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), playButton.transform.position) <= buttonRadius) {
 				canPress = false;
+				audio.PlayOneShot (sound);
 				fader.Fade ();
 			}
 			//Score button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), scoreButton.transform.position) <= buttonRadius) {
 				print("Clicked on the score button");
+				audio.PlayOneShot (sound);
 				Application.LoadLevel ("highscores");
 			}
 			//Mute button
 			else if (canPressMute && Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), muteButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the volume button");
+				audio.PlayOneShot (sound);
 				buttonDelay ();
 				if (camera.main.GetComponent(AudioListener).volume == 1) {
 					camera.main.GetComponent(AudioListener).volume = 0;
@@ -60,22 +65,26 @@ function Update () {
 			//Tutorial button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), tutorialButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the tutorial button");
+				audio.PlayOneShot (sound);
 				Application.LoadLevel("tutorial");
 			}
 		}
 		else if (Input.GetButtonDown("Fire1")) {
 			if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), playButton.transform.position) <= buttonRadius) {
 				canPress = false;
+				audio.PlayOneShot (sound);
 				fader.Fade ();
 			}
 			//Score button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), scoreButton.transform.position) <= buttonRadius) {
 				print("Clicked on the score button");
+				audio.PlayOneShot (sound);
 				Application.LoadLevel ("highscores");
 			}
 			//Mute button
 			else if (canPressMute && Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), muteButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the volume button");
+				audio.PlayOneShot (sound);
 				buttonDelay ();
 				if (camera.main.GetComponent(AudioListener).volume == 1) {
 					camera.main.GetComponent(AudioListener).volume = 0;
@@ -91,6 +100,7 @@ function Update () {
 			//Tutorial button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), tutorialButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the tutorial button");
+				audio.PlayOneShot (sound);
 				Application.LoadLevel("Tutorial");
 			}
 		}
