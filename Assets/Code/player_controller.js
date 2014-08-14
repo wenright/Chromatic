@@ -125,8 +125,8 @@ function Update () {
 		else {
 			//Time has run out.  This is called every frame FYI. Should change that, it could get costly especially with GetComponents
 			transform.localScale = new Vector3(1.75, 1.75, 1); //Set size back to normal
-			sprite.color = Color.white; //Set color to white
 			color = Color.white; //change the color variable to white
+			sprite.color = Color.Lerp (sprite.color, color, 0.1);
 			Camera.main.GetComponent(game_controller).ChangeBackgroundColor(Color.white);
 			trail.material.SetColor("_Color", color);
 			timer = MAX_TIME; //Reset timer
@@ -152,7 +152,7 @@ function Update () {
 					break;
 				default: break;
 			}
-			sprite.color = color;
+			sprite.color = Color.Lerp (sprite.color, color, 0.9);
 			trail.material.SetColor("_Color", color);
 		}
 		else
@@ -163,7 +163,7 @@ function Update () {
 		}
 		else {
 			line.transform.localScale.x = timer/30.0; //Make it the size of time_left/30
-			line.GetComponent(SpriteRenderer).color = color;//set the color to the current color
+			line.GetComponent(SpriteRenderer).color = Color.Lerp (line.GetComponent(SpriteRenderer).color, color, 0.1);//set the color to the current color
 		}
 	}
 }
