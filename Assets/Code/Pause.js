@@ -22,10 +22,10 @@ function Update () {
 			else {
 				GetComponent (SpriteRenderer).color.a = Mathf.Lerp (GetComponent (SpriteRenderer).color.a, 0, lerpSpeed);
 					
-				if (GetComponent (SpriteRenderer).color.a > 0.7 && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.getTouch(0).position), transform.position) < buttonRadius)
+				if (GetComponent (SpriteRenderer).color.a > 0.7 && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.GetTouch(0).position), transform.position) < buttonRadius)
 					Pause ();
 					
-				if (paused && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.getTouch (0).position), backToMenuButton.transform.position) < buttonRadius) {
+				if (paused && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.GetTouch (0).position), backToMenuButton.transform.position) < buttonRadius) {
 					Application.LoadLevel ("main");
 				}
 			}
