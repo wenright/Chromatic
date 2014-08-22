@@ -4,9 +4,12 @@ var buttonRadius : int = 1;
 var lerpSpeed : float = 0.3;
 var canPause : boolean = false;
 var paused : boolean = false;
+var pauseSprite : Sprite;
+var playSprite : Sprite;
 
 var pauseText : GUIText;
 var backToMenuButton : GameObject;
+
 
 function Start () {
 	pauseText.color.a = 0;
@@ -53,6 +56,12 @@ function Update () {
 function Pause () {
 	print ("Pause button pressed!");
 	paused = !paused;
+	if(paused == true){
+		GetComponent (SpriteRenderer).sprite = playSprite;
+	}
+	else{
+		GetComponent (SpriteRenderer).sprite = pauseSprite;
+	}
 	backToMenuButton.GetComponent(SpriteRenderer).color.a = Mathf.Abs (backToMenuButton.GetComponent(SpriteRenderer).color.a - 1);
 	pauseText.color.a = Mathf.Abs (pauseText.color.a - 1);
 	Time.timeScale = Mathf.Abs (Time.timeScale - 1);
