@@ -81,7 +81,7 @@ function Update () {
 		else if (Input.GetMouseButton(0) && canMove)
 			move_location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			
-		//if(Vector2.Distance(move_location, transform.position) < 10) //checks to see if finger/mouse is within range (I took this out, got me killed a couple times. dont really like it)
+		if(Vector2.Distance(move_location, transform.position) < 7) //checks to see if finger/mouse is within range
 		transform.position = Vector2.MoveTowards(transform.position, move_location, Time.deltaTime * MOVE_SPEED); //moves towards that location
 		
 		//Checks if colored and counts down from 200, when 0 is reached, resets to white
@@ -125,8 +125,8 @@ function Update () {
 		else {
 			//Time has run out.  This is called every frame FYI. Should change that, it could get costly especially with GetComponents
 			transform.localScale = new Vector3(1.75, 1.75, 1); //Set size back to normal
-			sprite.color = Color.white; //Set color to white
 			color = Color.white; //change the color variable to white
+			sprite.color = Color.Lerp (sprite.color, color, 0.1);
 			Camera.main.GetComponent(game_controller).ChangeBackgroundColor(Color.white);
 			trail.material.SetColor("_Color", color);
 			timer = MAX_TIME; //Reset timer
@@ -152,7 +152,7 @@ function Update () {
 					break;
 				default: break;
 			}
-			sprite.color = color;
+			sprite.color = Color.Lerp (sprite.color, color, 0.9);
 			trail.material.SetColor("_Color", color);
 		}
 		else
@@ -163,7 +163,7 @@ function Update () {
 		}
 		else {
 			line.transform.localScale.x = timer/30.0; //Make it the size of time_left/30
-			line.GetComponent(SpriteRenderer).color = color;//set the color to the current color
+			line.GetComponent(SpriteRenderer).color = Color.Lerp (line.GetComponent(SpriteRenderer).color, color, 0.1);//set the color to the current color
 		}
 	}
 }
@@ -271,26 +271,33 @@ function OnTriggerEnter2D (other : Collider2D) {
 				
 				var hs : GameObject = Instantiate(game_over, Vector3(0, 0, -1), transform.rotation);
 				
-				if (score > PlayerPrefs.GetInt("highscore4")) {
+				if (score > PlayerPrefs.GetInt("highscore5")) {
 					hs.GetComponent(TextMesh).text = "New High Score! " + score;//prints highscore
 					
 					if (score > PlayerPrefs.GetInt ("highscore1")) {
+						PlayerPrefs.SetInt ("highscore5", PlayerPrefs.GetInt ("highscore4"));
 						PlayerPrefs.SetInt ("highscore4", PlayerPrefs.GetInt ("highscore3"));
 						PlayerPrefs.SetInt ("highscore3", PlayerPrefs.GetInt ("highscore2"));
 						PlayerPrefs.SetInt ("highscore2", PlayerPrefs.GetInt ("highscore1"));
 						PlayerPrefs.SetInt ("highscore1", score);
 					}
 					else if (score > PlayerPrefs.GetInt ("highscore2")) {
+						PlayerPrefs.SetInt ("highscore5", PlayerPrefs.GetInt ("highscore4"));
 						PlayerPrefs.SetInt ("highscore4", PlayerPrefs.GetInt ("highscore3"));
 						PlayerPrefs.SetInt ("highscore3", PlayerPrefs.GetInt ("highscore2"));
 						PlayerPrefs.SetInt ("highscore2", score);
 					}
 					else if (score > PlayerPrefs.GetInt ("highscore3")) {
+						PlayerPrefs.SetInt ("highscore5", PlayerPrefs.GetInt ("highscore4"));
 						PlayerPrefs.SetInt ("highscore4", PlayerPrefs.GetInt ("highscore3"));
 						PlayerPrefs.SetInt ("highscore3", score);
 					}
-					else {
+					else if (score > PlayerPrefs.GetInt ("highscore4")){
+						PlayerPrefs.SetInt ("highscore5", PlayerPrefs.GetInt ("highscore4"));
 						PlayerPrefs.SetInt ("highscore4", score);
+					}
+					else {
+						PlayerPrefs.SetInt ("highscore5", PlayerPrefs.GetInt ("highscore4"));
 					}
 				}
 				else {

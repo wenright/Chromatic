@@ -1,6 +1,7 @@
 ﻿var spawnerScript : spawner;
 var menuButtons : GameObject[];
 var player_C : player_controller;
+var pauser : Pause;
 
 private var done : boolean = false;
 
@@ -21,6 +22,8 @@ function Fade () {
 		
 		yield WaitForSeconds(0.01);
 	}
+	if (pauser)
+		pauser.canPause = true;
 	transform.GetComponent(GUITexture).color.a = 0;
 	for (var k : int = 0; k < menuButtons.Length; k++)
 		menuButtons[k].GetComponent(SpriteRenderer).color.a = 0;

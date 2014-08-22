@@ -116,7 +116,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Text: (Tap to Play Again)
+  m_Text: (Tap to Return to the Menu)
   m_OffsetZ: 0
   m_CharacterSize: .0399999991
   m_LineSpacing: 1

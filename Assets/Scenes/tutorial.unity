@@ -628,6 +628,7 @@ MonoBehaviour:
   spawnerScript: {fileID: 0}
   menuButtons: []
   player_C: {fileID: 311520441}
+  pauser: {fileID: 0}
 --- !u!131 &1018434139
 GUITexture:
   m_ObjectHideFlags: 0
