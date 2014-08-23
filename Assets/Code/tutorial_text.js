@@ -48,6 +48,10 @@ function do_a_thing () {
 	s1.GetComponent(enemy).SetColor(2);
 	while(player.getMultiplier() < 2){
 		yield WaitForSeconds(0.5);
+		if(player.color == Color.white && s1 == null){
+			s1 = Instantiate(tut_square, Vector3(0, 5, 0), transform.rotation);
+			s1.GetComponent(enemy).SetColor(2);
+		}
 	}
 	text.text = "Nice! Get combos to rack up more points";
 	yield WaitForSeconds(2.5);

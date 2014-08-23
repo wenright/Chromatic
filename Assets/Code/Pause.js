@@ -19,7 +19,7 @@ function Start () {
 function Update () {
 	if (canPause) {
 		#if (UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE) && !UNITY_EDITOR		
-			if (Input.touchCount == 0 && !paused) {
+			if (Input.touchCount == 0) {
 				GetComponent (SpriteRenderer).color.a = Mathf.Lerp (GetComponent (SpriteRenderer).color.a, 1, lerpSpeed);
 			}
 			else {
