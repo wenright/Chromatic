@@ -251,7 +251,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				multiplier++;
 				if(multiplier > best_multiplier)
 					best_multiplier = multiplier; //sets high multiplier
-				if (multiplier == 7) {
+				if (multiplier == 6) {
 					rage_mode = true; //turns on rage mode
 					if (timer < MAX_TIME)	timer = MAX_TIME;
 					rage_timer = timer; //sets timer to remainging time
