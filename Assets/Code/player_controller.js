@@ -306,6 +306,8 @@ function OnTriggerEnter2D (other : Collider2D) {
 				
 				GameController.GetComponent(game_controller).GameOver();
 				SpawnController.GetComponent(spawner).GameOver();
+				exp = Instantiate(explosion, transform.position, transform.rotation);//explode
+				exp.GetComponent(ParticleSystem).startColor = Color.white;//particles
 				dead = true;
 				//Destroy(gameObject);//Moving this to the upload function, so we can finish uploading then destroy the object
 				UploadScore();
@@ -322,7 +324,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				explode ();
 				canDie = false;
 				exp = Instantiate(explosion, transform.position, transform.rotation);//explode
-				exp.GetComponent(ParticleSystem).startColor = Color.white;//particles
+				exp.GetComponent(ParticleSystem).startColor = Color.white;//particles		//Should the particles maybe be the color that the player was? or white?
 				
 				var minus_text : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);//minus text
 				minus_text.GetComponent(TextMesh).text = "-" + BaseScore;//print loss
