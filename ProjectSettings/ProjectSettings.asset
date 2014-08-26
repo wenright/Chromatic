@@ -10,7 +10,7 @@ PlayerSettings:
   targetGlesGraphics: 1
   targetResolution: 0
   accelerometerFrequency: 0
-  companyName: Greenhorn Games
+  companyName: Greenhorn Mobile
   productName: Chromatic
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -105,7 +105,10 @@ PlayerSettings:
     m_Icons:
     - m_Icon: {fileID: 2800000, guid: d8c6de37788277141bcf9b8651f2ec09, type: 3}
       m_Size: 128
-  m_BuildTargetBatching: []
+  m_BuildTargetBatching:
+  - m_BuildTarget: Android
+    m_StaticBatching: 1
+    m_DynamicBatching: 1
   webPlayerTemplate: APPLICATION:Black Background
   m_TemplateCustomTags: {}
   XboxTitleId: 
