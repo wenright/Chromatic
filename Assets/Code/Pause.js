@@ -22,7 +22,6 @@ function Start () {
 
 function Update () {
 	if (canPause) {
-<<<<<<< HEAD
 		#if (UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE) && !UNITY_EDITOR
 			if (paused && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.GetTouch (0).position), backToMenuButton.transform.position) < buttonRadius) {
 				Time.timeScale = 1;
@@ -30,11 +29,6 @@ function Update () {
 			}
 			if (Input.touchCount == 0) {
 				GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 1, lerpSpeed);
-=======
-		#if (UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE) && !UNITY_EDITOR		
-			if (Input.touchCount == 0) {
-				GetComponent (SpriteRenderer).color.a = Mathf.Lerp (GetComponent (SpriteRenderer).color.a, 1, lerpSpeed);
->>>>>>> origin/master
 			}
 			else {
 				if (Input.GetTouch (0).phase != TouchPhase.began) {
