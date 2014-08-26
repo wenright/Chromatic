@@ -50,6 +50,7 @@ var enemy_killed : AudioClip;
 var player_hit : AudioClip;
 var triangle_picked_up : AudioClip;
 //Misc (add random shit to be sorted here)
+var pauseButton : Pause;
 var dead : boolean = false;
 var canDie : boolean = true;
 
@@ -309,6 +310,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				exp = Instantiate(explosion, transform.position, transform.rotation);//explode
 				exp.GetComponent(ParticleSystem).startColor = Color.white;//particles
 				dead = true;
+				pauseButton.playerIsDead = true;
 				//Destroy(gameObject);//Moving this to the upload function, so we can finish uploading then destroy the object
 				UploadScore();
 			}

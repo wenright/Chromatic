@@ -11,17 +11,25 @@ var pauseText : GUIText;
 var backToMenuButton : GameObject;
 
 var canPressPause : boolean;
+var playerIsDead : boolean;
 
 
 function Start () {
 	pauseText.color.a = 0;
 	backToMenuButton.GetComponent(SpriteRenderer).color.a = 0;
 	
+	transform.position = Camera.main.ScreenToWorldPoint (Vector2 (Screen.width - 50, Screen.height - 50));
+	transform.position.z = 0;
+	
+	backToMenuButton.transform.position = Camera.main.ScreenToWorldPoint (Vector2 (50, Screen.height - 50));
+	backToMenuButton.transform.position.z = 0;
+	
 	canPressPause = true;
+	playerIsDead = false;
 }
 
 function Update () {
-	if (canPause) {
+	if (canPause && !playerIsDead) {
 		#if (UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE) && !UNITY_EDITOR
 			if (paused && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.GetTouch (0).position), backToMenuButton.transform.position) < buttonRadius) {
 				Time.timeScale = 1;
