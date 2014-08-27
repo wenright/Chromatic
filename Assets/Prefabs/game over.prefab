@@ -12,7 +12,7 @@ GameObject:
   - 102: {fileID: 10200000}
   - 82: {fileID: 8200000}
   - 111: {fileID: 11100000}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: game over
   m_TagString: Untagged
   m_Icon: {fileID: 0}
