@@ -8,6 +8,7 @@ var playButton : GameObject;
 var scoreButton : GameObject;
 var muteButton : GameObject;
 var tutorialButton : GameObject;
+var splash : GameObject;
 
 var altMuteButton : Sprite;
 var regularSoundButton : Sprite;

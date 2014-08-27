@@ -638,7 +638,7 @@ GUITexture:
   m_GameObject: {fileID: 1018434137}
   m_Enabled: 1
   m_Texture: {fileID: 2800000, guid: 69adef43f10ef42f88baeaa64ddfc28b, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: .501960814}
+  m_Color: {r: .0549019612, g: .0549019612, b: .0549019612, a: .501960814}
   m_PixelInset:
     serializedVersion: 2
     x: -64
@@ -716,6 +716,18 @@ Prefab:
       propertyPath: player_C
       value: 
       objectReference: {fileID: 311520441}
+    - target: {fileID: 13100000, guid: 69bbe452ebd3648489c2cce5e95ec45c, type: 2}
+      propertyPath: m_Color.r
+      value: .0549019612
+      objectReference: {fileID: 0}
+    - target: {fileID: 13100000, guid: 69bbe452ebd3648489c2cce5e95ec45c, type: 2}
+      propertyPath: m_Color.g
+      value: .0549019612
+      objectReference: {fileID: 0}
+    - target: {fileID: 13100000, guid: 69bbe452ebd3648489c2cce5e95ec45c, type: 2}
+      propertyPath: m_Color.b
+      value: .0549019612
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 69bbe452ebd3648489c2cce5e95ec45c, type: 2}
   m_RootGameObject: {fileID: 1018434137}
