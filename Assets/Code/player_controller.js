@@ -46,6 +46,8 @@ private var combo_score : int = 0;
 private var rage_mode : boolean = false;
 private var rage_timer : int = 0;
 //Sounds
+var pianoNotes : AudioClip[];
+//Old sounds
 var enemy_killed : AudioClip;
 var player_hit : AudioClip;
 var triangle_picked_up : AudioClip;
@@ -62,6 +64,9 @@ function Start () {
 	kills = 0;
 	combo_score = 0;
 	trail.time = .1;
+	
+	if (pianoNotes.Length != 6)
+		print ("Make sure to assign the piano notes");
 }
 
 /*		//Basic score, timer, and high score. Useful for debug.
@@ -262,7 +267,8 @@ function OnTriggerEnter2D (other : Collider2D) {
 				exp = Instantiate(explosion, transform.position, transform.rotation); //explode
 				exp.GetComponent(ParticleSystem).startColor = color; //particles for explosion
 				kills++;
-				audio.PlayOneShot(enemy_killed);
+				print ((multiplier - 1) % 6);
+				audio.PlayOneShot(pianoNotes[(multiplier - 1) % 6]);
 				Camera.main.GetComponent(shake_script).LightShake();//shake camera
 			}
 			else if(color == Color.white && canDie) { //if the ball is white
