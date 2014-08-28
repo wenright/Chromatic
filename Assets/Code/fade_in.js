@@ -21,7 +21,7 @@ function Fade () {
 			if(menuButtons[j].GetComponent(SpriteRenderer))
 				menuButtons[j].GetComponent(SpriteRenderer).color.a -= 0.1;
 			else
-				menuButtons[j].GetComponent(TextMesh).color.a -= 0.1;
+				menuButtons[j].GetComponent(GUIText).color.a -= 0.1;
 		}
 		
 		yield WaitForSeconds(0.01);
@@ -33,7 +33,7 @@ function Fade () {
 		if(menuButtons[k].GetComponent(SpriteRenderer))
 			menuButtons[k].GetComponent(SpriteRenderer).color.a = 0;
 		else 
-			menuButtons[k].GetComponent(TextMesh).color.a = 0;
+			menuButtons[k].GetComponent(GUIText).color.a = 0;
 		
 		}
 	
