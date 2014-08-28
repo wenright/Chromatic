@@ -133,6 +133,7 @@ function Update () {
 			transform.localScale = new Vector3(1.75, 1.75, 1); //Set size back to normal
 			color = Color.white; //change the color variable to white
 			sprite.color = Color.Lerp (sprite.color, color, 0.1);
+			line.GetComponent(SpriteRenderer).color = Color.white;
 			Camera.main.GetComponent(game_controller).ChangeBackgroundColor(Color.white);
 			trail.material.SetColor("_Color", color);
 			timer = MAX_TIME; //Reset timer
