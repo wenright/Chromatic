@@ -28,6 +28,7 @@ function Fade () {
 	}
 	if (pauser)
 		pauser.canPause = true;
+
 	for (var k : int = 0; k < menuButtons.Length; k++){
 		if(menuButtons[k].GetComponent(SpriteRenderer))
 			menuButtons[k].GetComponent(SpriteRenderer).color.a = 0;
