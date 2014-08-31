@@ -170,7 +170,7 @@ function Update () {
 		}
 		else {
 			line.transform.localScale.x = timer/30.0; //Make it the size of time_left/30
-			line.GetComponent(SpriteRenderer).color = Color.Lerp (line.GetComponent(SpriteRenderer).color, color, 0.1);//set the color to the current color
+			line.GetComponent(SpriteRenderer).color = color;//set the color to the current color
 		}
 	}
 }

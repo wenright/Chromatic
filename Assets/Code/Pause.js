@@ -18,10 +18,10 @@ function Start () {
 	pauseText.color.a = 0;
 	backToMenuButton.GetComponent(SpriteRenderer).color.a = 0;
 	
-	transform.position = Camera.main.ScreenToWorldPoint (Vector2 (Screen.width - 50, Screen.height - 50));
+	transform.position = Camera.main.ScreenToWorldPoint (Vector2 (Screen.width - 150, Screen.height - 75));
 	transform.position.z = 0;
 	
-	backToMenuButton.transform.position = Camera.main.ScreenToWorldPoint (Vector2 (50, Screen.height - 50));
+	backToMenuButton.transform.position = Camera.main.ScreenToWorldPoint (Vector2 (150, Screen.height - 75));
 	backToMenuButton.transform.position.z = 0;
 	
 	canPressPause = true;
@@ -39,7 +39,7 @@ function Update () {
 				GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 1, lerpSpeed);
 			}
 			else {
-				if (Input.GetTouch (0).phase != TouchPhase.began) {
+				if (Input.GetTouch (0).phase != TouchPhase.Began) {
 					GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 1, lerpSpeed);
 				}
 				else {
