@@ -51,7 +51,6 @@ var pianoNotes : AudioClip[];
 var triangle_hit : AudioClip;
 var player_hit : AudioClip;
 var rage_sound: AudioClip;
-var rage_end : AudioClip;
 //Misc (add random shit to be sorted here)
 var pauseButton : Pause;
 var dead : boolean = false;
