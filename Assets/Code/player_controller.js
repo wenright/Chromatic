@@ -48,9 +48,10 @@ private var rage_timer : int = 0;
 //Sounds
 var pianoNotes : AudioClip[];
 //Old sounds
-var enemy_killed : AudioClip;
+var triangle_hit : AudioClip;
 var player_hit : AudioClip;
-var triangle_picked_up : AudioClip;
+var rage_sound: AudioClip;
+var rage_end : AudioClip;
 //Misc (add random shit to be sorted here)
 var pauseButton : Pause;
 var dead : boolean = false;
@@ -164,6 +165,7 @@ function Update () {
 		}
 		else
 			rage_mode = false;
+
 		//<--
 		if (color == Color.white) {
 			line.transform.localScale.x = 0;//Reset timer to 0 size if white
@@ -179,7 +181,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 	if (!dead) {
 		var exp : GameObject; // creates the explosion gameobject
 		if (other.tag == "Friendly" && !rage_mode) {
-			//audio.PlayOneShot (triangle_picked_up);
+			audio.PlayOneShot (triangle_hit);
 			transform.localScale = new Vector3(1.75, 1.75, 1); //makes sure size is set to full
 			
 			if (combo_score > 0) {
@@ -260,8 +262,9 @@ function OnTriggerEnter2D (other : Collider2D) {
 					best_multiplier = multiplier; //sets high multiplier
 				if (multiplier == 6) {
 					rage_mode = true; //turns on rage mode
+					audio.PlayOneShot(rage_sound);
 					if (timer < MAX_TIME)	timer = MAX_TIME;
-					rage_timer = timer; //sets timer to remainging time
+					rage_timer = MAX_TIME; //sets timer to remainging time
 				}
 				if(!rage_mode)
 					timer += ADDITIONAL_TIME+ADDITIONAL_TIME/multiplier; //add aditional time per kill not not on ragemode
