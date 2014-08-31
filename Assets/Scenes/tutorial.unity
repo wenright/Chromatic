@@ -320,9 +320,12 @@ MonoBehaviour:
   game_over: {fileID: 100000, guid: 6ca396f70555f3a4cbaae042967e1c02, type: 2}
   ADDITIONAL_TIME: 50
   MAX_TIME: 99999999
-  enemy_killed: {fileID: 8300000, guid: b55975c1e5b7e0c43a2f5a833ebcc5dd, type: 3}
+  pianoNotes: []
+  triangle_hit: {fileID: 0}
   player_hit: {fileID: 8300000, guid: e53babe6e92c3be4ba24b710096befc9, type: 3}
-  triangle_picked_up: {fileID: 8300000, guid: b0fb88987d9e58840be39fb9d15bcf7d, type: 3}
+  rage_sound: {fileID: 0}
+  rage_end: {fileID: 0}
+  pauseButton: {fileID: 0}
   dead: 0
   canDie: 1
 --- !u!58 &311520442
@@ -783,7 +786,7 @@ GUIText:
   m_TabSize: 4
   m_Font: {fileID: 12800000, guid: 9b62c903fb7897047a89469abdd8e995, type: 3}
   m_Material: {fileID: 0}
-  m_FontSize: 18
+  m_FontSize: 32
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
