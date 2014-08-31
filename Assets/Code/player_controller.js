@@ -51,7 +51,6 @@ var pianoNotes : AudioClip[];
 var triangle_hit : AudioClip;
 var player_hit : AudioClip;
 var rage_sound: AudioClip;
-var rage_end : AudioClip;
 //Misc (add random shit to be sorted here)
 var pauseButton : Pause;
 var dead : boolean = false;
@@ -181,11 +180,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 	if (!dead) {
 		var exp : GameObject; // creates the explosion gameobject
 		if (other.tag == "Friendly" && !rage_mode) {
-<<<<<<< HEAD
 			audio.PlayOneShot (triangle_hit);
-=======
-			audio.PlayOneShot (triangle_picked_up);
->>>>>>> FETCH_HEAD
 			transform.localScale = new Vector3(1.75, 1.75, 1); //makes sure size is set to full
 			
 			if (combo_score > 0) {
