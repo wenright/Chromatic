@@ -179,7 +179,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 	if (!dead) {
 		var exp : GameObject; // creates the explosion gameobject
 		if (other.tag == "Friendly" && !rage_mode) {
-			//audio.PlayOneShot (triangle_picked_up);
+			audio.PlayOneShot (triangle_picked_up);
 			transform.localScale = new Vector3(1.75, 1.75, 1); //makes sure size is set to full
 			
 			if (combo_score > 0) {
