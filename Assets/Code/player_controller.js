@@ -256,6 +256,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				var mul_txt : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);
 				mul_txt.GetComponent(TextMesh).text = "X" + multiplier;
 				//sc_txt.GetComponent(TextMesh).color = other.GetComponent(enemy).color;		//<- if you want the color to be the same as the object destroyed
+				audio.PlayOneShot(pianoNotes[(multiplier - 1) % 6]);
 				multiplier++;
 				if(multiplier > best_multiplier)
 					best_multiplier = multiplier; //sets high multiplier
@@ -270,8 +271,6 @@ function OnTriggerEnter2D (other : Collider2D) {
 				exp = Instantiate(explosion, transform.position, transform.rotation); //explode
 				exp.GetComponent(ParticleSystem).startColor = color; //particles for explosion
 				kills++;
-				print ((multiplier - 1) % 6);
-				audio.PlayOneShot(pianoNotes[(multiplier - 1) % 6]);
 				Camera.main.GetComponent(shake_script).LightShake();//shake camera
 			}
 			else if(color == Color.white && canDie) { //if the ball is white

@@ -31,22 +31,31 @@ function Start () {
 function Update () {
 	if (canPause && !playerIsDead) {
 		#if (UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE) && !UNITY_EDITOR
+			//Load main level
 			if (paused && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.GetTouch (0).position), backToMenuButton.transform.position) < buttonRadius) {
 				Time.timeScale = 1;
 				Application.LoadLevel ("main");
 			}
+			
+			//If player is not touching the screen
 			if (Input.touchCount == 0) {
 				GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 1, lerpSpeed);
 			}
+			//Player is touching the screen
 			else {
+				//If this is the first frame when the player begins to tap the screen
 				if (Input.GetTouch (0).phase != TouchPhase.Began) {
 					GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 1, lerpSpeed);
 				}
+				//This is every frame after the player has first touched the screen
 				else {
-					GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 0, lerpSpeed);
+					if (!paused)
+						GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 0, lerpSpeed);
 					
-					if (GetComponent (SpriteRenderer).color.a > 0.7 && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.GetTouch(0).position), transform.position) < buttonRadius)
+					if (GetComponent (SpriteRenderer).color.a > 0.7 && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.GetTouch(0).position), transform.position) < buttonRadius) {
 						Pause ();
+						pauseDelay ();
+					}
 				}
 			}
 		#else
@@ -55,14 +64,17 @@ function Update () {
 				Application.LoadLevel ("main");
 			}
 			
-			if (!Input.GetButtonDown ("Fire1")) {
+			if (!Input.GetButton ("Fire1")) {
 				GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 1, lerpSpeed);
+				
 			}
 			else {
-				GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 0, lerpSpeed);
+				if (!paused)
+					GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 0, lerpSpeed);
 					
 				if (canPressPause && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.mousePosition), transform.position) < buttonRadius) {
 					Pause ();
+					pauseDelay ();
 				}
 			}
 		#endif
@@ -73,7 +85,6 @@ function Update () {
 }
 
 function Pause () {
-	print ("Pause button pressed!");
 	paused = !paused;
 	if(paused == true){
 		GetComponent (SpriteRenderer).sprite = playSprite;
@@ -84,4 +95,12 @@ function Pause () {
 	backToMenuButton.GetComponent(SpriteRenderer).color.a = Mathf.Abs (backToMenuButton.GetComponent(SpriteRenderer).color.a - 1);
 	pauseText.color.a = Mathf.Abs (pauseText.color.a - 1);
 	Time.timeScale = Mathf.Abs (Time.timeScale - 1);
+}
+
+function pauseDelay () {
+	canPressPause = false;
+	var curTime : float = Time.realtimeSinceStartup;
+	while (Time.realtimeSinceStartup - curTime  < 0.25)
+		yield;
+	canPressPause = true;
 }
