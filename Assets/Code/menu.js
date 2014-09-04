@@ -43,7 +43,6 @@ function Update () {
 			//Score button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), scoreButton.transform.position) <= buttonRadius) {
 				print("Clicked on the score button");
-				audio.PlayOneShot (sound);
 				Application.LoadLevel ("highscores");
 			}
 			//Mute button
@@ -66,7 +65,6 @@ function Update () {
 			//Tutorial button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), tutorialButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the tutorial button");
-				audio.PlayOneShot (sound);
 				Application.LoadLevel("tutorial");
 			}
 		}

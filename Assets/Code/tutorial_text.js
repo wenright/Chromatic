@@ -36,7 +36,7 @@ function do_a_thing () {
 	while(player.color != player.red){ 
 		yield WaitForSeconds(0.5);
 	}
-	text.text = "Now pick up a second color to\nchange into a scondary color.";
+	text.text = "Now pick up a second color to\nchange into a secondary color.";
 	var t2 : GameObject = Instantiate(tut_triangle, Vector3(-2, 1.5, 0), transform.rotation);
 	t2.GetComponent(friendly).SetColor(2);	//blue
 	while(player.color != player.purple){
