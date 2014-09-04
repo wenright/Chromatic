@@ -1322,7 +1322,7 @@ MonoBehaviour:
   ADDITIONAL_TIME: 50
   MAX_TIME: 200
   pianoNotes:
-  - {fileID: 8300000, guid: 76ef1627626e94b45b3ba365461e2171, type: 3}
+  - {fileID: 0}
   - {fileID: 8300000, guid: 183a7469060081d419e4e3c0ad77e0c2, type: 3}
   - {fileID: 8300000, guid: e4852bbd0776f7141af8587644ca838c, type: 3}
   - {fileID: 8300000, guid: 3772474101dd1584fb793fc0e4fedac1, type: 3}
