@@ -1322,13 +1322,13 @@ MonoBehaviour:
   ADDITIONAL_TIME: 50
   MAX_TIME: 200
   pianoNotes:
-  - {fileID: 8300000, guid: 76ef1627626e94b45b3ba365461e2171, type: 3}
+  - {fileID: 0}
   - {fileID: 8300000, guid: 183a7469060081d419e4e3c0ad77e0c2, type: 3}
   - {fileID: 8300000, guid: e4852bbd0776f7141af8587644ca838c, type: 3}
   - {fileID: 8300000, guid: 3772474101dd1584fb793fc0e4fedac1, type: 3}
   - {fileID: 8300000, guid: 77b40e32a5e512f46b892585aaf44696, type: 3}
   - {fileID: 8300000, guid: 5eef1d79bd2bd6b47b338224f14c51a4, type: 3}
-  triangle_hit: {fileID: 0}
+  triangle_hit: {fileID: 8300000, guid: 708694a134e1bf84d98dbb17140f9fa8, type: 3}
   player_hit: {fileID: 8300000, guid: 55627b09c5702114bb35b891a3fcb5d8, type: 3}
   rage_sound: {fileID: 8300000, guid: d76bd94a8b6508a42a6cea0329f7ba01, type: 3}
   pauseButton: {fileID: 927317803}
@@ -1820,7 +1820,7 @@ Prefab:
     - target: {fileID: 11400000, guid: a53612101164e104c843ace727deaedf, type: 2}
       propertyPath: pianoNotes.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 76ef1627626e94b45b3ba365461e2171, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: a53612101164e104c843ace727deaedf, type: 2}
       propertyPath: pianoNotes.Array.data[1]
       value: 
@@ -1889,6 +1889,10 @@ Prefab:
       propertyPath: rage_sound
       value: 
       objectReference: {fileID: 8300000, guid: d76bd94a8b6508a42a6cea0329f7ba01, type: 3}
+    - target: {fileID: 11400000, guid: a53612101164e104c843ace727deaedf, type: 2}
+      propertyPath: triangle_hit
+      value: 
+      objectReference: {fileID: 8300000, guid: 708694a134e1bf84d98dbb17140f9fa8, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a53612101164e104c843ace727deaedf, type: 2}
   m_RootGameObject: {fileID: 1417132794}
