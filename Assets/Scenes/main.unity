@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c70d39100d1a8e540bf9c3cf5e31692e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 8300000, guid: ac73a5385f28a2647a9f2e65d2ba3999, type: 3}
+  sound: {fileID: 8300000, guid: 183a7469060081d419e4e3c0ad77e0c2, type: 3}
   fader: {fileID: 964909463}
   playButton: {fileID: 383447208}
   scoreButton: {fileID: 1125108933}
@@ -1396,7 +1396,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: .660000026
+  m_Volume: .879999995
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1847,7 +1847,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 8200000, guid: a53612101164e104c843ace727deaedf, type: 2}
       propertyPath: m_Volume
-      value: .660000026
+      value: .879999995
       objectReference: {fileID: 0}
     - target: {fileID: 5000000, guid: a53612101164e104c843ace727deaedf, type: 2}
       propertyPath: m_SleepingMode
