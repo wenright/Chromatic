@@ -9,6 +9,8 @@ var scoreButton : GameObject;
 var muteButton : GameObject;
 var tutorialButton : GameObject;
 var splash : GameObject;
+var restart: boolean = false;
+var button_audio: button_sound;
 
 var altMuteButton : Sprite;
 var regularSoundButton : Sprite;
@@ -37,8 +39,7 @@ function Update () {
 			//Play button
 			if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), playButton.transform.position) <= buttonRadius) {
 				canPress = false;
-				audio.PlayOneShot (sound);
-				fader.Fade ();
+				loadGame();
 			}
 			//Score button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), scoreButton.transform.position) <= buttonRadius) {
@@ -71,8 +72,8 @@ function Update () {
 		else if (Input.GetButtonDown("Fire1")) {
 			if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), playButton.transform.position) <= buttonRadius) {
 				canPress = false;
-				audio.PlayOneShot (sound);
-				fader.Fade ();
+				loadGame();
+				
 			}
 			//Score button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), scoreButton.transform.position) <= buttonRadius) {
@@ -104,6 +105,10 @@ function Update () {
 			}
 		}
 	}
+}
+function loadGame(){
+		button_audio.Play();
+		Application.LoadLevel ("main");
 }
 
 function buttonDelay () {
