@@ -27,6 +27,7 @@ var friend : GameObject;
 var line : GameObject;
 var explosion : GameObject;
 var ScoreText : GameObject;
+var scoreObject : GameObject;
 var sprite : SpriteRenderer; //The sprite renderer component of this object
 var trail : TrailRenderer;
 var game_over : GameObject;
@@ -80,6 +81,8 @@ function OnGUI () {
 */
 
 function Update () {
+	scoreObject.GetComponent (TextMesh).text = Mathf.MoveTowards (int.Parse (scoreObject.GetComponent (TextMesh).text), score, 5).ToString ();
+	
 	if (!dead) {	
 		//Takes in player touches and stores the X and Y coordinates in terms of world coordinates
 		if (Input.touchCount > 0 && canMove)
