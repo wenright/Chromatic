@@ -1,9 +1,11 @@
 ﻿var over : boolean = false;
 var can_restart: boolean = false;
+var fader: fade_in;
 private var bg_color : Color = Color(2/255, 20/255, 26/255, 0.05);
 
 function Start () {
 	camera.backgroundColor = Color.white / 9;
+	fader.Fade();
 }
 
 function Update () {
@@ -15,8 +17,9 @@ function Update () {
 		if (Input.touchCount == 0)
 			can_restart = true;
 
-	if (over && can_restart && (Input.touchCount > 0 || Input.GetButtonDown("Fire1")))
+	if (over && can_restart && (Input.touchCount > 0 || Input.GetButtonDown("Fire1"))){
 		Application.LoadLevel("main");
+	}
 		
 	camera.backgroundColor = Color.Lerp(camera.backgroundColor, bg_color, .1);
 }

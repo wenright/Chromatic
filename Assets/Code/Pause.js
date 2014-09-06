@@ -34,7 +34,7 @@ function Update () {
 			//Load main level
 			if (paused && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.GetTouch (0).position), backToMenuButton.transform.position) < buttonRadius) {
 				Time.timeScale = 1;
-				Application.LoadLevel ("main");
+				Application.LoadLevel ("menu");
 			}
 			
 			//If player is not touching the screen
@@ -61,7 +61,7 @@ function Update () {
 		#else
 			if (paused && Input.GetButton ("Fire1") && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.mousePosition), backToMenuButton.transform.position) < buttonRadius) {
 				Time.timeScale = 1;
-				Application.LoadLevel ("main");
+				Application.LoadLevel ("menu");
 			}
 			
 			if (!Input.GetButton ("Fire1")) {

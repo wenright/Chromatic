@@ -55,6 +55,7 @@ var rage_sound: AudioClip;
 var pauseButton : Pause;
 var dead : boolean = false;
 var canDie : boolean = true;
+var help: TextMesh;
 
 function Start () {
 	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x; //Set width to viewport width
@@ -214,6 +215,10 @@ function OnTriggerEnter2D (other : Collider2D) {
 						color = purple;
 				}
 				timer = MAX_TIME; //Reset time when you pick up a color
+				if ((color == purple || color == orange || color == green) && score <= 0)
+					help.text = "Hit rectangles to score points.";
+				
+				
 			}
 			else {
 				timer = MAX_TIME; //Reset time 
@@ -249,6 +254,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				f.GetComponent(friendly).SetColor(2);
 		}
 		else if (other.tag == "Enemy") {
+			help.text = "";
 			if (color == other.GetComponent(enemy).color || rage_mode) { //if the ball is the correct color
 				Destroy(other.gameObject);
 				score += BaseScore * multiplier;		//Change this to w/e, doesn't really matter what it is
