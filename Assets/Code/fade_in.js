@@ -14,8 +14,10 @@ function Fade () {
 	if (player_C) 
 		player_C.playAnimation ();
 		
-	for (var i : int = 0; i < 15; i++)
+	while (transform.GetComponent(GUITexture).color.a > 0) {
 		transform.GetComponent(GUITexture).color.a -= 0.03;
+		yield;
+	}
 	
 	if (pauser)
 		pauser.canPause = true;

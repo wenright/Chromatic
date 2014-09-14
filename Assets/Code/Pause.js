@@ -43,19 +43,12 @@ function Update () {
 			}
 			//Player is touching the screen
 			else {
-				//If this is the first frame when the player begins to tap the screen
-				if (Input.GetTouch (0).phase != TouchPhase.Began) {
-					GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 1, lerpSpeed);
-				}
-				//This is every frame after the player has first touched the screen
-				else {
-					if (!paused)
-						GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 0, lerpSpeed);
-					
-					if (GetComponent (SpriteRenderer).color.a > 0.7 && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.GetTouch(0).position), transform.position) < buttonRadius) {
-						Pause ();
-						pauseDelay ();
-					}
+				if (!paused)
+					GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 0, lerpSpeed);
+				
+				if (canPressPause && GetComponent (SpriteRenderer).color.a > 0.7 && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.GetTouch(0).position), transform.position) < buttonRadius) {
+					Pause ();
+					pauseDelay ();
 				}
 			}
 		#else
