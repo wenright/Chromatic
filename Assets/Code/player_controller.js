@@ -81,7 +81,7 @@ function OnGUI () {
 */
 
 function Update () {
-	scoreObject.GetComponent (TextMesh).text = Mathf.MoveTowards (int.Parse (scoreObject.GetComponent (TextMesh).text), score, 5).ToString ();
+	scoreObject.GetComponent (TextMesh).text = Mathf.MoveTowards (int.Parse (scoreObject.GetComponent (TextMesh).text), score, 10).ToString ();
 	
 	if (!dead) {	
 		//Takes in player touches and stores the X and Y coordinates in terms of world coordinates
@@ -92,7 +92,7 @@ function Update () {
 			move_location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			
 		if(Vector2.Distance(move_location, transform.position) < 7) //checks to see if finger/mouse is within range
-		transform.position = Vector2.MoveTowards(transform.position, move_location, Time.deltaTime * MOVE_SPEED); //moves towards that location
+			transform.position = Vector2.MoveTowards(transform.position, move_location, Time.deltaTime * MOVE_SPEED); //moves towards that location
 		
 		//Checks if colored and counts down from 200, when 0 is reached, resets to white
 		if(timer > 0 && color != Color.white){
@@ -218,7 +218,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 						color = purple;
 				}
 				timer = MAX_TIME; //Reset time when you pick up a color
-				if ((color == purple || color == orange || color == green) && score <= 0)
+				if (PlayerPrefs.GetInt ("needsHelp") == 0 && (color == purple || color == orange || color == green) && score <= 0)
 					help.text = "Hit rectangles to score points.";
 				
 				
@@ -280,6 +280,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				exp = Instantiate(explosion, transform.position, transform.rotation); //explode
 				exp.GetComponent(ParticleSystem).startColor = color; //particles for explosion
 				kills++;
+				PlayerPrefs.SetInt ("needsHelp", 1);
 				Camera.main.GetComponent(shake_script).LightShake();//shake camera
 			}
 			else if(color == Color.white && canDie) { //if the ball is white

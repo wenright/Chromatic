@@ -29,7 +29,7 @@ function Start () {
 }
 
 function Update () {
-	if (canPress) {
+	#if (UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE) && !UNITY_EDITOR
 		if (Input.touchCount > 0) {
 			//Play button
 			if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), playButton.transform.position) <= buttonRadius) {
@@ -63,7 +63,8 @@ function Update () {
 				Application.LoadLevel("tutorial");
 			}
 		}
-		else if (Input.GetButtonDown("Fire1")) {
+	#else
+		if (Input.GetButtonDown("Fire1")) {
 			if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), playButton.transform.position) <= buttonRadius) {
 			canPress = false;
 			loadGame();
@@ -97,7 +98,7 @@ function Update () {
 				Application.LoadLevel("Tutorial");
 			}
 		}
-	}
+	#endif
 }
 function loadGame(){
 	button_audio.Play();

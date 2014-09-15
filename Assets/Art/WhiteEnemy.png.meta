@@ -1,8 +1,6 @@
 fileFormatVersion: 2
 guid: 69adef43f10ef42f88baeaa64ddfc28b
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: WhiteEnemy
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -22,7 +20,7 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -2
   maxTextureSize: 32
   textureSettings:
     filterMode: 1
