@@ -81,7 +81,8 @@ function OnGUI () {
 */
 
 function Update () {
-	scoreObject.GetComponent (TextMesh).text = Mathf.MoveTowards (int.Parse (scoreObject.GetComponent (TextMesh).text), score, 10).ToString ();
+	if (scoreObject)
+		scoreObject.GetComponent (TextMesh).text = Mathf.MoveTowards (int.Parse (scoreObject.GetComponent (TextMesh).text), score, 10).ToString ();
 	
 	if (!dead) {	
 		//Takes in player touches and stores the X and Y coordinates in terms of world coordinates
@@ -218,7 +219,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 						color = purple;
 				}
 				timer = MAX_TIME; //Reset time when you pick up a color
-				if (PlayerPrefs.GetInt ("needsHelp") == 0 && (color == purple || color == orange || color == green) && score <= 0)
+				if (help && PlayerPrefs.GetInt ("needsHelp") == 0 && (color == purple || color == orange || color == green) && score <= 0)
 					help.text = "Hit rectangles to score points.";
 				
 				
@@ -257,7 +258,8 @@ function OnTriggerEnter2D (other : Collider2D) {
 				f.GetComponent(friendly).SetColor(2);
 		}
 		else if (other.tag == "Enemy") {
-			help.text = "";
+            if (help)
+			    help.text = "";
 			if (color == other.GetComponent(enemy).color || rage_mode) { //if the ball is the correct color
 				Destroy(other.gameObject);
 				score += BaseScore * multiplier;		//Change this to w/e, doesn't really matter what it is
