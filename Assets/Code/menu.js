@@ -26,6 +26,8 @@ function Start () {
 //		muteButton.GetComponent (SpriteRenderer).sprite = altMuteButton;
 //		camera.main.GetComponent(AudioListener).volume = 0;
 //	}
+
+	fader.Fade();
 }
 
 function Update () {
@@ -38,8 +40,7 @@ function Update () {
 				}
 			//Score button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), scoreButton.transform.position) <= buttonRadius) {
-				print("Clicked on the score button");
-				Application.LoadLevel ("highscores");
+				loadHighScores ();
 			}
 			//Mute button
 			else if (canPressMute && Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), muteButton.transform.position) <= buttonRadius) {
@@ -59,21 +60,19 @@ function Update () {
 			}
 			//Tutorial button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), tutorialButton.transform.position) <= buttonRadius) {
-				print ("Clicked on the tutorial button");
-				Application.LoadLevel("tutorial");
+				loadTutorial();
 			}
 		}
 	#else
 		if (Input.GetButtonDown("Fire1")) {
 			if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), playButton.transform.position) <= buttonRadius) {
-			canPress = false;
-			loadGame();
+				canPress = false;
+				loadGame();
 			}
 			//Score button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), scoreButton.transform.position) <= buttonRadius) {
 				print("Clicked on the score button");
-				audio.PlayOneShot (sound);
-				Application.LoadLevel ("highscores");
+				loadHighScores ();
 			}
 			//Mute button
 			else if (canPressMute && Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), muteButton.transform.position) <= buttonRadius) {
@@ -94,16 +93,32 @@ function Update () {
 			//Tutorial button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), tutorialButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the tutorial button");
-				audio.PlayOneShot (sound);
-				Application.LoadLevel("Tutorial");
+				loadTutorial ();
 			}
 		}
 	#endif
 }
 function loadGame(){
 	button_audio.Play();
+	fader.FadeOut();
+	yield WaitForSeconds (0.75);
 	Application.LoadLevel ("main");
 }
+
+function loadHighScores () {
+	audio.PlayOneShot (sound);
+	fader.FadeOut();
+	yield WaitForSeconds (0.75);
+	Application.LoadLevel ("highscores");
+}
+
+function loadTutorial () {
+	audio.PlayOneShot (sound);
+	fader.FadeOut();
+	yield WaitForSeconds (0.75);
+	Application.LoadLevel ("Tutorial");
+}
+
 function buttonDelay () {
 	canPressMute = false;
 	while (Input.touchCount > 0)

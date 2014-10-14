@@ -118,7 +118,7 @@ TextMesh:
   m_GameObject: {fileID: 100000}
   m_Text: (Tap to Restart)
   m_OffsetZ: 0
-  m_CharacterSize: .150000006
+  m_CharacterSize: .0500000007
   m_LineSpacing: 1
   m_Anchor: 1
   m_Alignment: 1

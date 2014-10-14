@@ -276,6 +276,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 					audio.PlayOneShot(rage_sound);
 					if (timer < MAX_TIME)	timer = MAX_TIME;
 					rage_timer = MAX_TIME; //sets timer to remainging time
+					timer = MAX_TIME;
 				}
 				if(!rage_mode)
 					timer += ADDITIONAL_TIME+ADDITIONAL_TIME/multiplier; //add aditional time per kill not not on ragemode
