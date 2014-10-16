@@ -6,6 +6,7 @@ private var bg_color : Color = Color(2/255, 20/255, 26/255, 0.05);
 function Start () {
 	camera.backgroundColor = Color.white / 9;
 	fader.Fade();
+	Application.targetFrameRate = 60;
 }
 
 function Update () {

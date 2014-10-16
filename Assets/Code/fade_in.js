@@ -28,3 +28,10 @@ function Fade () {
 	if (spawnerScript)
 		spawnerScript.Spawn ();
 }
+
+function FadeOut () {
+	while (transform.GetComponent(GUITexture).color.a < 1) {
+		transform.GetComponent(GUITexture).color.a += 0.03;
+		yield;
+	}
+}
