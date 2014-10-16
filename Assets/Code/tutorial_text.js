@@ -36,14 +36,13 @@ function do_a_thing () {
 	while(player.color != player.red){ 
 		yield WaitForSeconds(0.5);
 	}
-	text.text = "Now pick up a second color to\nchange into a secondary color.";
+	text.text = "Now pick up another triangle to\nchange into a secondary color.";
 	var t2 : GameObject = Instantiate(tut_triangle, Vector3(-2, 1.5, 0), transform.rotation);
 	t2.GetComponent(friendly).SetColor(2);	//blue
 	while(player.color != player.purple){
 		yield WaitForSeconds(0.5);
 	}
-	text.text = "Now run into an enemy\nof that color to destroy it.";
-	
+	text.text = "Now run into an enemy\nof your color to destroy it.";
 	var s1 : GameObject = Instantiate(tut_square, Vector3(0, 5, 0), transform.rotation);
 	s1.GetComponent(enemy).SetColor(2);
 	while(player.getMultiplier() < 2){
@@ -54,6 +53,10 @@ function do_a_thing () {
 		}
 	}
 	text.text = "Nice! Get combos to rack up more points";
+	yield WaitForSeconds(2.5);
+	text.text = "You can only attack \nrectangles of your color";
+	yield WaitForSeconds(2.5);
+	text.text = "Remember, collect triangles and attack rectangles!";
 	yield WaitForSeconds(2.5);
 	text.text = "Get ready!";
 	yield WaitForSeconds(3);

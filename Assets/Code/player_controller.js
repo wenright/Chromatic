@@ -48,11 +48,10 @@ private var rage_mode : boolean = false;
 private var rage_timer : int = 0;
 //Sounds
 var pianoNotes : AudioClip[];
-//Old sounds
 var triangle_hit : AudioClip;
 var player_hit : AudioClip;
 var rage_sound: AudioClip;
-//Misc (add random shit to be sorted here)
+//Misc (add random vars to be sorted here)
 var pauseButton : Pause;
 var dead : boolean = false;
 var canDie : boolean = true;
@@ -219,7 +218,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 						color = purple;
 				}
 				timer = MAX_TIME; //Reset time when you pick up a color
-				if (help && PlayerPrefs.GetInt ("needsHelp") == 0 && (color == purple || color == orange || color == green) && score <= 0)
+				if (help && (color == purple || color == orange || color == green) && score <= 0)
 					help.text = "Hit rectangles to score points.";
 				
 				
@@ -283,7 +282,6 @@ function OnTriggerEnter2D (other : Collider2D) {
 				exp = Instantiate(explosion, transform.position, transform.rotation); //explode
 				exp.GetComponent(ParticleSystem).startColor = color; //particles for explosion
 				kills++;
-				PlayerPrefs.SetInt ("needsHelp", 1);
 				Camera.main.GetComponent(shake_script).LightShake();//shake camera
 			}
 			else if(color == Color.white && canDie) { //if the ball is white
@@ -348,7 +346,9 @@ function OnTriggerEnter2D (other : Collider2D) {
 				canDie = false;
 				exp = Instantiate(explosion, transform.position, transform.rotation);//explode
 				exp.GetComponent(ParticleSystem).startColor = Color.white;//particles		//Should the particles maybe be the color that the player was? or white?
-				
+				if(score <= 200){
+					help.text = "You can only attack rectangles of your color";
+				}
 				var minus_text : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);//minus text
 				minus_text.GetComponent(TextMesh).text = "-" + BaseScore;//print loss
 				minus_text.GetComponent(TextMesh).color = Color.red;//set loss to red
@@ -395,6 +395,7 @@ function playAnimation () {
 }
 
 function UploadScore () {
+	//TODO
 	//Upload score, kills, time, and player name to some server somewhere somehow
 	//Use PlayerPrefs.GetString("Name"); to return the name of the player
 	//Use yield www to wait for the upload to finish
