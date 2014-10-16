@@ -55,7 +55,7 @@ function do_a_thing () {
 	}
 	text.text = "Nice! Get combos to rack up more points";
 	yield WaitForSeconds(2.5);
-	text.text = "Returning to menu!";
+	text.text = "Get ready!";
 	yield WaitForSeconds(3);
 	Application.LoadLevel("main");
 	

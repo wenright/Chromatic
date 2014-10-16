@@ -16,7 +16,6 @@ private var buttonRadius : float = 1.0;
 private var canPressMute : boolean;
 
 function Start () {
-	PlayerPrefs.DeleteAll(); //for testing
 	canPressMute = true;
 	if(!PlayerPrefs.HasKey("hasPlayed"))
 		PlayerPrefs.SetInt ("hasPlayed", 0);
