@@ -13,13 +13,13 @@ var button_audio: button_sound;
 var altMuteButton : Sprite;
 var regularSoundButton : Sprite;
 private var buttonRadius : float = 1.0;
-private var canPress : boolean;
 private var canPressMute : boolean;
 
 function Start () {
-	canPress = true;
+	PlayerPrefs.DeleteAll(); //for testing
 	canPressMute = true;
-	
+	if(!PlayerPrefs.HasKey("hasPlayed"))
+		PlayerPrefs.SetInt ("hasPlayed", 0);
 	camera.main.GetComponent(AudioListener).volume = 1;
 		muteButton.GetComponent (SpriteRenderer).sprite = regularSoundButton;
 //	if (PlayerPrefs.GetInt("Volume") == 0) {
@@ -35,8 +35,11 @@ function Update () {
 		if (Input.touchCount > 0) {
 			//Play button
 			if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), playButton.transform.position) <= buttonRadius) {
-				canPress = false;
-				loadGame();
+				if (PlayerPrefs.GetInt("hasPlayed") == 0){
+					loadTutorial();
+				}
+				else
+					loadGame();
 				}
 			//Score button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), scoreButton.transform.position) <= buttonRadius) {
@@ -66,8 +69,12 @@ function Update () {
 	#else
 		if (Input.GetButtonDown("Fire1")) {
 			if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), playButton.transform.position) <= buttonRadius) {
-				canPress = false;
-				loadGame();
+				if (PlayerPrefs.GetInt("hasPlayed") == 0){
+					loadTutorial();
+				}
+				else
+					loadGame();
+				}
 			}
 			//Score button
 			else if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), scoreButton.transform.position) <= buttonRadius) {
@@ -97,7 +104,7 @@ function Update () {
 			}
 		}
 	#endif
-}
+
 function loadGame(){
 	button_audio.Play();
 	fader.FadeOut();
@@ -116,6 +123,7 @@ function loadTutorial () {
 	audio.PlayOneShot (sound);
 	fader.FadeOut();
 	yield WaitForSeconds (0.75);
+	PlayerPrefs.SetInt("hasPlayed", 1);
 	Application.LoadLevel ("Tutorial");
 }
 
