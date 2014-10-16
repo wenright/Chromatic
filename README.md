@@ -1,6 +1,4 @@
-#Chromatic, an anti-shooter
-============
-
+#Chromatic
 This is the source code for Chromatic, we are in the process of cleaning up and preparing for iOS.
 
 Built in <a href="http://unity3d.com/">Unity</a> using JavaScript. 
@@ -11,3 +9,6 @@ Built in <a href="http://unity3d.com/">Unity</a> using JavaScript.
 
 
 Contact us at dcruwys@gmail.com or wenright@purdue.edu
+
+
+![Logo](https://github.com/wenright/Chromatic/blob/master/Assets/Art/Logos/Chromatic-logo.png)
