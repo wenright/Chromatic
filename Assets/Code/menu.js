@@ -72,7 +72,7 @@ function Update () {
 				if (PlayerPrefs.GetInt("hasPlayed") == 0){
 					loadTutorial();
 				}
-				else
+				else {
 					loadGame();
 				}
 			}
@@ -104,6 +104,7 @@ function Update () {
 			}
 		}
 	#endif
+}
 
 function loadGame(){
 	button_audio.Play();
@@ -124,7 +125,7 @@ function loadTutorial () {
 	fader.FadeOut();
 	yield WaitForSeconds (0.75);
 	PlayerPrefs.SetInt("hasPlayed", 1);
-	Application.LoadLevel ("Tutorial");
+	Application.LoadLevel ("tutorial");
 }
 
 function buttonDelay () {
