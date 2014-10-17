@@ -242,12 +242,10 @@ function OnTriggerEnter2D (other : Collider2D) {
 			var px : float = 0;
 			var py : float = 0;
 			var counter: int = 0;
-			print(width + " " + height);
 			do {					//Worst case scenario, this loop could go on forever.  May want to add a counter and have this loop give up once it reaches a certain number
 				px = Random.Range(-width, width);
 				py = Random.Range(-height, height);
 			} while (!CheckPosition(px, py) && counter++ < 100);
-			print(counter+", "+px+", "+py);
 			
 			var f : GameObject = Instantiate(friend, Vector2(px, py), transform.rotation);
 			if(temp_color == red)
