@@ -4,14 +4,17 @@
 //SetUp
 var width : float;
 var height : float;
+
 //Movement
 var MOVE_SPEED : float;
 private var move_location : Vector2 = Vector2.zero;
 var canMove : boolean = false;//Used to prevent player from moving to button position at beginning of game. Check this box for tutorial, but not main.
 var tolerance : float;//tolerance for spawning a friendly
+
 //Explosion variables
 var EXPLOSION_RADIUS : int = 7;
 var EXPLOSION_FORCE : float = 2000;
+
 //Colors
 var color : Color = Color.white;
 static var purple :  Color = Color(160/255.0F, 0, 240/255.0F, 1);
@@ -19,7 +22,8 @@ static var green : Color = Color(20/255.0F, 220/255.0F, 0, 1);
 static var orange : Color = Color(1, 127/255.0F, 0, 1); 
 static var red : Color = Color.red;
 static var yellow: Color = Color.yellow;
-static var blue: Color = Color.blue;				
+static var blue: Color = Color.blue;	
+			
 //Game Objects
 var GameController : GameObject;
 var SpawnController : GameObject;
@@ -31,10 +35,12 @@ var scoreObject : GameObject;
 var sprite : SpriteRenderer; //The sprite renderer component of this object
 var trail : TrailRenderer;
 var game_over : GameObject;
+
 //Time
 private var timer : int = 0;
 var ADDITIONAL_TIME : int = 100;
 var MAX_TIME : int = 300;
+
 //Score
 private var multiplier : int = 1;
 private var best_multiplier : int = 0;
@@ -43,14 +49,17 @@ private var highscore : int = 0;
 private var kills : int = 0;
 private var BaseScore : int = 100;
 private var combo_score : int = 0;
+
 //Rage
 private var rage_mode : boolean = false;
 private var rage_timer : int = 0;
+
 //Sounds
 var pianoNotes : AudioClip[];
 var triangle_hit : AudioClip;
 var player_hit : AudioClip;
 var rage_sound: AudioClip;
+
 //Misc (add random vars to be sorted here)
 var pauseButton : Pause;
 var dead : boolean = false;
@@ -58,9 +67,9 @@ var canDie : boolean = true;
 var help: TextMesh;
 
 function Start () {
-	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x; //Set width to viewport width
+	width = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).x; 	//Set width to viewport width
 	height = Camera.main.ViewportToWorldPoint(Vector3(1, 1, 10)).y; //Set height to viewport height
-	highscore = PlayerPrefs.GetInt("HighScore"); //Get the high score
+	highscore = PlayerPrefs.GetInt("HighScore"); 					//Get the high score
 	dead = false;
 	kills = 0;
 	combo_score = 0;
@@ -96,40 +105,32 @@ function Update () {
 		
 		//Checks if colored and counts down from 200, when 0 is reached, resets to white
 		if(timer > 0 && color != Color.white){
-		  timer -= Time.deltaTime;
-		  transform.localScale = new Vector3(1.75, 1.75, 1);
-		   //Pulsing Animation Code-->
-		   if(timer <= 100){
-		   	if(timer % 50 == 0)
-		   		Camera.main.GetComponent(shake_script).LightShake();
-		  	if(timer % 20 == 0){
-		  		transform.localScale = new Vector3(2, 2, 1);
-		  	}
-		  	else if(timer % 20 == 19){
-		  		transform.localScale = new Vector3(2.3, 2.3, 1);;
-		  	}
-		  	else if(timer % 20 == 18){
-		  		transform.localScale = new Vector3(2.7, 2.7, 1);
-		  	}
-		  	else if(timer % 20 == 17){
-		  		transform.localScale = new Vector3(3.2, 3.2, 1);
-		  	}
-		  	else if(timer % 20 == 16){
-		  		transform.localScale = new Vector3(3.2, 3.2, 1);
-		  	}
-		  	else if(timer % 20 == 15){
-		  		transform.localScale = new Vector3(2.7, 2.7, 1);
-		  	}
-		  	else if(timer % 20 == 14){
-		  		transform.localScale = new Vector3(2.3, 2.3, 1);
-		  	}
-		  	else if(timer % 20 == 13){
-		  		transform.localScale = new Vector3(2, 2, 1);
-		  	}
-		  	else{
+		timer -= Time.deltaTime;
+		transform.localScale = new Vector3(1.75, 1.75, 1);
+		//Pulsing Animation Code-->
+		if(timer <= 100){
+			if(timer % 50 == 0)
+				Camera.main.GetComponent(shake_script).LightShake();
+			
+			if(timer % 20 == 0)
+				transform.localScale = new Vector3(2, 2, 1);
+			else if(timer % 20 == 19)
+				transform.localScale = new Vector3(2.3, 2.3, 1);
+			else if(timer % 20 == 18)
+				transform.localScale = new Vector3(2.7, 2.7, 1);
+			else if(timer % 20 == 17)
+				transform.localScale = new Vector3(3.2, 3.2, 1);
+			else if(timer % 20 == 16)
+				transform.localScale = new Vector3(3.2, 3.2, 1);
+			else if(timer % 20 == 15)
+				transform.localScale = new Vector3(2.7, 2.7, 1);
+			else if(timer % 20 == 14)
+				transform.localScale = new Vector3(2.3, 2.3, 1);
+		  	else if(timer % 20 == 13)
+				transform.localScale = new Vector3(2, 2, 1);
+			else
 		  		transform.localScale = new Vector3(1.75, 1.75, 1);
-		  	}
-		  }	
+			}	
 		  //<--
 		}
 		else {
@@ -228,7 +229,6 @@ function OnTriggerEnter2D (other : Collider2D) {
 				color = other.GetComponent(friendly).color;
 			}
 			////////////////////////////////////////////////
-			var counter: int = 0;
 			multiplier = 1;
 			var temp_color : Color = other.GetComponent(friendly).color;
 			Destroy(other.gameObject);
@@ -239,14 +239,13 @@ function OnTriggerEnter2D (other : Collider2D) {
 			trail.material.SetColor("_Color", color);
 			
 			yield WaitForSeconds(1);	//Wait a bit
-			
+			var px : float = 0;
+			var py : float = 0;
+			var counter: int = 0;
 			do {					//Worst case scenario, this loop could go on forever.  May want to add a counter and have this loop give up once it reaches a certain number
-				var px : float = Random.Range(-width, width);
-				var py : float = Random.Range(-height, height);
-				counter ++;
-				if(counter > 100)
-					break;
-			} while (!CheckPosition(px, py));
+				px = Random.Range(-width, width);
+				py = Random.Range(-height, height);
+			} while (!CheckPosition(px, py) && counter++ < 100);
 			
 			var f : GameObject = Instantiate(friend, Vector2(px, py), transform.rotation);
 			if(temp_color == red)
@@ -359,6 +358,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 
 //Checks the x, y coordinates to see if any objects are too close.  Returns true if good location, false otherwise.
 function CheckPosition (x : float, y : float) {
+	//Check players position with intended spawned position
 	if ((transform.position.x - x) < tolerance && (transform.position.y - y) < tolerance)
 		return false;
 
@@ -372,8 +372,7 @@ function CheckPosition (x : float, y : float) {
 	for (var j : int = 0; j < e.Length; j++)
 		if ((e[j].transform.position.x - x) < tolerance && (e[j].transform.position.y - y) < tolerance)
 			return false;
-	if(transform.position.x - x < tolerance && transform.position.y - y < tolerance)
-		return false;		
+		
 	return true;
 }
 

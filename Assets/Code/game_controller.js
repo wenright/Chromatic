@@ -14,6 +14,11 @@ function Update () {
 	if (Input.GetButtonDown("Exit"))
 		Application.Quit();
 		
+	#if UNITY_EDITOR
+		if (Input.GetKeyDown("f"))
+			Screen.showCursor = false;
+	#endif
+		
 	if (over && !can_restart)
 		if (Input.touchCount == 0)
 			can_restart = true;

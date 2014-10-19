@@ -52,12 +52,12 @@ function Update () {
 				}
 			}
 		#else
-			if (paused && Input.GetButton ("Fire1") && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.mousePosition), backToMenuButton.transform.position) < buttonRadius) {
+			if (paused && Input.GetButtonDown ("Fire1") && Vector2.Distance (Camera.main.ScreenToWorldPoint (Input.mousePosition), backToMenuButton.transform.position) < buttonRadius) {
 				Time.timeScale = 1;
 				Application.LoadLevel ("menu");
 			}
 			
-			if (!Input.GetButton ("Fire1")) {
+			if (!Input.GetButtonDown ("Fire1")) {
 				GetComponent (SpriteRenderer).color.a = Mathf.MoveTowards (GetComponent (SpriteRenderer).color.a, 1, lerpSpeed);
 				
 			}
