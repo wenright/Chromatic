@@ -1,22 +1,43 @@
 ﻿#pragma strict
 
+import SimpleJSON;
+
 var scoreTexts : GUIText[];
+var nameTexts : GUIText[];
 
 function Start () {
-	if (scoreTexts.Length > 4) {
-		if (PlayerPrefs.GetInt("highscore1") != 0)
-			scoreTexts[0].text = "" + PlayerPrefs.GetInt("highscore1");
-		if (PlayerPrefs.GetInt("highscore2") != 0)
-			scoreTexts[1].text = "" + PlayerPrefs.GetInt("highscore2");
-		if (PlayerPrefs.GetInt("highscore3") != 0)
-			scoreTexts[2].text = "" + PlayerPrefs.GetInt("highscore3");
-		if (PlayerPrefs.GetInt("highscore4") != 0)
-			scoreTexts[3].text = "" + PlayerPrefs.GetInt("highscore4");
-		if (PlayerPrefs.GetInt("highscore5") != 0)
-			scoreTexts[4].text = "" + PlayerPrefs.GetInt("highscore5");
+	var url = "https://api.scoreoid.com/v1/getScores";
+	
+	var form = new WWWForm();
+	
+	form.AddField("api_key", "177e5b33f5cad7e6dd40927932dcbd33dd1b4f4e");
+	form.AddField("game_id", "5b67916394");
+	form.AddField("response", "JSON");
+	form.AddField("order_by", "score");
+	form.AddField("order", "asc");
+	form.AddField("limit", "5");
+	
+	var www = new WWW(url, form);
+	
+	yield www;
+	
+	if (www.error != null)
+		print(www.error);
+	
+	var json = JSON.Parse(www.text);
+	for (var i : int = 0; i < 5; i++) {
+		var s : String = json[i]["Score"]["score"];
+		if (s != null)
+			scoreTexts[i].text = s;
+		else
+			continue;
+		
+		s = json[i]["Player"]["first_name"];
+		if (s != null)
+			nameTexts[i].text = s;
+		else
+			nameTexts[i].text = "Anonymous";
 	}
-	else
-		print ("Make sure that you correctly assigned the score text variables.");
 }
 
 function Update () {

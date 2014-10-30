@@ -12,6 +12,7 @@ var restart: boolean = false;
 var button_audio: button_sound;
 var altMuteButton : Sprite;
 var regularSoundButton : Sprite;
+var canPlay : boolean = false;
 private var buttonRadius : float = 1.0;
 private var canPressMute : boolean;
 
@@ -20,7 +21,7 @@ function Start () {
 	if(!PlayerPrefs.HasKey("hasPlayed"))
 		PlayerPrefs.SetInt ("hasPlayed", 0);
 	camera.main.GetComponent(AudioListener).volume = 1;
-		muteButton.GetComponent (SpriteRenderer).sprite = regularSoundButton;
+	muteButton.GetComponent (SpriteRenderer).sprite = regularSoundButton;
 //	if (PlayerPrefs.GetInt("Volume") == 0) {
 //		muteButton.GetComponent (SpriteRenderer).sprite = altMuteButton;
 //		camera.main.GetComponent(AudioListener).volume = 0;
@@ -31,7 +32,7 @@ function Start () {
 
 function Update () {
 	#if (UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE) && !UNITY_EDITOR
-		if (Input.touchCount > 0) {
+		if (canPlay && Input.touchCount > 0) {
 			//Play button
 			if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.touches[0].position), playButton.transform.position) <= buttonRadius) {
 				if (PlayerPrefs.GetInt("hasPlayed") == 0){
@@ -66,7 +67,7 @@ function Update () {
 			}
 		}
 	#else
-		if (Input.GetButtonDown("Fire1")) {
+		if (canPlay && Input.GetButtonDown("Fire1")) {
 			if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), playButton.transform.position) <= buttonRadius) {
 				if (PlayerPrefs.GetInt("hasPlayed") == 0){
 					loadTutorial();
@@ -103,6 +104,9 @@ function Update () {
 			}
 		}
 	#endif
+	
+	if (Input.GetKeyDown ("escape"))
+		Application.Quit();
 }
 
 function loadGame(){

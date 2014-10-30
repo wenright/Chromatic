@@ -35,3 +35,10 @@ function FadeOut () {
 		yield;
 	}
 }
+
+function FadeIn () {
+	while (transform.GetComponent(GUITexture).color.a > 0) {
+		transform.GetComponent(GUITexture).color.a -= 0.03;
+		yield;
+	}
+}

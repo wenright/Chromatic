@@ -195,8 +195,6 @@ function OnTriggerEnter2D (other : Collider2D) {
 				combo_score = 0;
 			}
 			
-			////////////////////////////////////////////////
-			//TODO: MAKE BETTER!!
 			if (color == Color.white)
 				color = other.GetComponent(friendly).color; //Sets base color	
 			if(color != purple && color != orange && color != green){
@@ -228,7 +226,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				timer = MAX_TIME; //Reset time 
 				color = other.GetComponent(friendly).color;
 			}
-			////////////////////////////////////////////////
+			
 			multiplier = 1;
 			var temp_color : Color = other.GetComponent(friendly).color;
 			Destroy(other.gameObject);
@@ -290,34 +288,9 @@ function OnTriggerEnter2D (other : Collider2D) {
 				
 				var hs : GameObject = Instantiate(game_over, Vector3(0, 0, -1), transform.rotation);
 				
-				if (score > PlayerPrefs.GetInt("highscore5")) {
-					hs.GetComponent(TextMesh).text = "New High Score! " + score;//prints highscore
-					
-					if (score > PlayerPrefs.GetInt ("highscore1")) {
-						PlayerPrefs.SetInt ("highscore5", PlayerPrefs.GetInt ("highscore4"));
-						PlayerPrefs.SetInt ("highscore4", PlayerPrefs.GetInt ("highscore3"));
-						PlayerPrefs.SetInt ("highscore3", PlayerPrefs.GetInt ("highscore2"));
-						PlayerPrefs.SetInt ("highscore2", PlayerPrefs.GetInt ("highscore1"));
-						PlayerPrefs.SetInt ("highscore1", score);
-					}
-					else if (score > PlayerPrefs.GetInt ("highscore2")) {
-						PlayerPrefs.SetInt ("highscore5", PlayerPrefs.GetInt ("highscore4"));
-						PlayerPrefs.SetInt ("highscore4", PlayerPrefs.GetInt ("highscore3"));
-						PlayerPrefs.SetInt ("highscore3", PlayerPrefs.GetInt ("highscore2"));
-						PlayerPrefs.SetInt ("highscore2", score);
-					}
-					else if (score > PlayerPrefs.GetInt ("highscore3")) {
-						PlayerPrefs.SetInt ("highscore5", PlayerPrefs.GetInt ("highscore4"));
-						PlayerPrefs.SetInt ("highscore4", PlayerPrefs.GetInt ("highscore3"));
-						PlayerPrefs.SetInt ("highscore3", score);
-					}
-					else if (score > PlayerPrefs.GetInt ("highscore4")){
-						PlayerPrefs.SetInt ("highscore5", PlayerPrefs.GetInt ("highscore4"));
-						PlayerPrefs.SetInt ("highscore4", score);
-					}
-					else {
-						PlayerPrefs.SetInt ("highscore5", PlayerPrefs.GetInt ("highscore4"));
-					}
+				if (score > PlayerPrefs.GetInt("HighScore")) {
+					hs.GetComponent(TextMesh).text = "New High Score! " + score;	//prints highscore
+					PlayerPrefs.SetInt("HighScore", score);
 				}
 				else {
 					hs.GetComponent(TextMesh).text = "Score: " + score; //prints score
@@ -394,11 +367,24 @@ function playAnimation () {
 }
 
 function UploadScore () {
-	//TODO
-	//Upload score, kills, time, and player name to some server somewhere somehow
-	//Use PlayerPrefs.GetString("Name"); to return the name of the player
-	//Use yield www to wait for the upload to finish
+	//URL to send API request to
+	var url = "https://api.scoreoid.com/v1/createScore";
+	var form = new WWWForm();
 	
-	//Done uploading
+	form.AddField("api_key", "177e5b33f5cad7e6dd40927932dcbd33dd1b4f4e");
+	form.AddField("game_id", "5b67916394");
+	form.AddField("response", "json");
+	form.AddField("username", SystemInfo.deviceUniqueIdentifier);
+	form.AddField("score", score);
+	
+	var www = new WWW(url, form);
+	
+	yield www;
+	
+	if (www.error == null)
+		print(www.text);
+	else
+		print(www.error);
+		
 	Destroy(gameObject);
 }
