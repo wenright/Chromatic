@@ -2,10 +2,9 @@
 var sound : AudioClip;
 
 function Start () {
-	DontDestroyOnLoad(this.gameObject);
+	//DontDestroyOnLoad(this.gameObject);
 }
 
 function Play(){
-	audio.PlayOneShot (sound);
+	//audio.PlayOneShot (sound);
 }
-

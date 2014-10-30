@@ -11,12 +11,14 @@ function OnGUI () {
 		GUI.skin = skin;
 		GUI.Label(Rect ((Screen.width / 2) - 100, (Screen.height / 2) - 125, 200, 100), "Enter a name for the leaderboards");
 		GUI.SetNextControlName ("name");
-		username = GUI.TextField (Rect ((Screen.width / 2) - 100, (Screen.height / 2) - 25, 200, 25), username, 25);
+		username = GUI.TextField (Rect ((Screen.width / 2) - 100, (Screen.height / 2) - 25, 200, 25), username, 12);
 		GUI.FocusControl ("name");
 		if (Event.current.Equals(Event.KeyboardEvent("None")) || GUI.Button(Rect((Screen.width / 2) + 10, (Screen.height / 2) + 50, 100, 50), "OK")) {
 			if (username != "") {
 				//Send message to GlobalHighscores to set username
 				PlayerPrefs.SetInt("hasUsername", 1);
+				if (username.Length > 13)
+					username = username.Substring(0, 12);
 				setPlayerName(username);
 				showInput = false;
 				m.canPlay = true;
