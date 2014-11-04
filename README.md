@@ -3,7 +3,7 @@ This is the source code for Chromatic, we are in the process of cleaning up and 
 
 Built in <a href="http://unity3d.com/">Unity</a> using JavaScript.
 
-<a href="http://imgur.com/a/X4JFR">GIFs on how to play</a>
+<a href="http://imgur.com/gallery/X4JFR">GIFs on how to play</a>
 
 Download for free on:
 * <a href="https://play.google.com/store/apps/details?id=com.WD40.Chromatic">Google Play</a>
