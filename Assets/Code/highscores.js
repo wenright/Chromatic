@@ -1,73 +1,18 @@
 ﻿#pragma strict
 
-import SimpleJSON;
-
-var scoreTexts : GUIText[];
-var nameTexts : GUIText[];
-var rankText : GUIText;
-
 function Start () {
 	getScores();
-	
-	getRank();
 }
 
 function getScores() {
-	var url = "https://api.scoreoid.com/v1/getScores";
-	
-	var form = new WWWForm();
-	
-	form.AddField("api_key", "177e5b33f5cad7e6dd40927932dcbd33dd1b4f4e");
-	form.AddField("game_id", "5b67916394");
-	form.AddField("response", "JSON");
-	form.AddField("order_by", "score");
-	form.AddField("order", "desc");
-	form.AddField("limit", "5");
-	
-	var www = new WWW(url, form);
-	
-	yield www;
-	
-	if (www.error != null)
-		print(www.error);
-	
-	var json = JSON.Parse(www.text);
-	for (var i : int = 0; i < 5; i++) {
-		var s : String = json[i]["Score"]["score"];
-		if (s != null)
-			scoreTexts[i].text = s;
-		else
-			continue;
-		
-		s = json[i]["Player"]["first_name"];
-		if (s != null)
-			nameTexts[i].text = s;
-		else
-			nameTexts[i].text = "Anonymous";
-	}
-}
-
-function getRank () {
-	var url = "https://api.scoreoid.com/v1/getPlayerRank";
-	
-	var form = new WWWForm();
-	
-	form.AddField("api_key", "177e5b33f5cad7e6dd40927932dcbd33dd1b4f4e");
-	form.AddField("game_id", "5b67916394");
-	form.AddField("username", SystemInfo.deviceUniqueIdentifier);
-	form.AddField("response", "JSON");
-	
-	var www = new WWW(url, form);
-	
-	yield www;
-	
-	if (www.error != null)
-		print(www.error);
-		
-	var json = JSON.Parse(www.text);
-	var s : String = json["rank"];
-	if (s != null)
-		rankText.text = "your rank: " + s;	
+    var hs_get = WWW("http://128.211.207.196/display.php");
+    yield hs_get;
+ 
+    if(hs_get.error) {
+    	print("There was an error getting the high score: " + hs_get.error);
+    } else {
+        gameObject.guiText.text = hs_get.text;
+    }
 }
 
 function Update () {

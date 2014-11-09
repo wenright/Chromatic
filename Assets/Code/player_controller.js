@@ -367,24 +367,40 @@ function playAnimation () {
 }
 
 function UploadScore () {
-	//URL to send API request to
-	var url = "https://api.scoreoid.com/v1/createScore";
-	var form = new WWWForm();
+	var secretKey="";
+	var addScoreUrl="http://128.211.207.196/addscore.php?";
 	
-	form.AddField("api_key", "177e5b33f5cad7e6dd40927932dcbd33dd1b4f4e");
-	form.AddField("game_id", "5b67916394");
-	form.AddField("response", "json");
-	form.AddField("username", SystemInfo.deviceUniqueIdentifier);
-	form.AddField("score", score);
+	var name = PlayerPrefs.GetString("username");
 	
-	var www = new WWW(url, form);
-	
-	yield www;
-	
-	if (www.error == null)
-		print(www.text);
-	else
-		print(www.error);
+	var hash = Md5Sum(name + score + secretKey); 
+ 
+    var highscore_url = addScoreUrl + "name=" + WWW.EscapeURL(name) + "&score=" + score + "&hash=" + hash;
+ 
+    // Post the URL to the site and create a download object to get the result.
+    var hs_post = WWW(highscore_url);
+    yield hs_post; // Wait until the download is done
+    if(hs_post.error) {
+        print("There was an error posting the high score: " + hs_post.error);
+    }
 		
 	Destroy(gameObject);
+}
+
+static function Md5Sum(strToEncrypt: String) {
+	var encoding = System.Text.UTF8Encoding();
+	var bytes = encoding.GetBytes(strToEncrypt);
+ 
+	// encrypt bytes
+	var md5 = System.Security.Cryptography.MD5CryptoServiceProvider();
+	var hashBytes:byte[] = md5.ComputeHash(bytes);
+ 
+	// Convert the encrypted bytes back to a string (base 16)
+	var hashString = "";
+ 
+	for (var i = 0; i < hashBytes.Length; i++)
+	{
+		hashString += System.Convert.ToString(hashBytes[i], 16).PadLeft(2, "0"[0]);
+	}
+ 
+	return hashString.PadLeft(32, "0"[0]);
 }
