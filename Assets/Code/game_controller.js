@@ -4,7 +4,8 @@ var fader: fade_in;
 private var bg_color : Color = Color(2/255, 20/255, 26/255, 0.05);
 
 function Start () {
-	camera.backgroundColor = Color.white / 9;
+	GetComponent.<Camera>().backgroundColor = Color.white / 9;
+	fader.GetComponent(GUITexture).color = Color.black;
 	fader.Fade();
 	Application.targetFrameRate = 60;
 }
@@ -16,7 +17,7 @@ function Update () {
 		
 	#if UNITY_EDITOR
 		if (Input.GetKeyDown("f"))
-			Screen.showCursor = false;
+			Cursor.visible = false;
 	#endif
 		
 	if (over && !can_restart)
@@ -27,7 +28,7 @@ function Update () {
 		Application.LoadLevel("main");
 	}
 		
-	camera.backgroundColor = Color.Lerp(camera.backgroundColor, bg_color, .1);
+	GetComponent.<Camera>().backgroundColor = Color.Lerp(GetComponent.<Camera>().backgroundColor, bg_color, .1);
 }
 
 function GameOver () {

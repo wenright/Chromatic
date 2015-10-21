@@ -185,7 +185,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 	if (!dead) {
 		var exp : GameObject; // creates the explosion gameobject
 		if (other.tag == "Friendly" && !rage_mode) {
-			audio.PlayOneShot (triangle_hit);
+			GetComponent.<AudioSource>().PlayOneShot (triangle_hit);
 			transform.localScale = new Vector3(1.75, 1.75, 1); //makes sure size is set to full
 			
 			if (combo_score > 0) {
@@ -263,13 +263,13 @@ function OnTriggerEnter2D (other : Collider2D) {
 				var mul_txt : GameObject = Instantiate(ScoreText, transform.position, transform.rotation);
 				mul_txt.GetComponent(TextMesh).text = "X" + multiplier;
 				//sc_txt.GetComponent(TextMesh).color = other.GetComponent(enemy).color;		//<- if you want the color to be the same as the object destroyed
-				audio.PlayOneShot(pianoNotes[(multiplier - 1) % 6]);
+				GetComponent.<AudioSource>().PlayOneShot(pianoNotes[(multiplier - 1) % 6]);
 				multiplier++;
 				if(multiplier > best_multiplier)
 					best_multiplier = multiplier; //sets high multiplier
 				if (multiplier == 6) {
 					rage_mode = true; //turns on rage mode
-					audio.PlayOneShot(rage_sound);
+					GetComponent.<AudioSource>().PlayOneShot(rage_sound);
 					if (timer < MAX_TIME)	timer = MAX_TIME;
 					rage_timer = MAX_TIME; //sets timer to remainging time
 					timer = MAX_TIME;
@@ -313,7 +313,7 @@ function OnTriggerEnter2D (other : Collider2D) {
 				score -= BaseScore; //subtract penalty points
 				Camera.main.GetComponent(shake_script).Shake();//shake camera
 				//Handheld.Vibrate();	//Kind of annoying...
-				audio.PlayOneShot(player_hit);
+				GetComponent.<AudioSource>().PlayOneShot(player_hit);
 				explode ();
 				canDie = false;
 				exp = Instantiate(explosion, transform.position, transform.rotation);//explode
@@ -363,7 +363,7 @@ function getMultiplier(){
 }
 
 function playAnimation () {
-	animation.Play ();
+	GetComponent.<Animation>().Play ();
 }
 
 function UploadScore () {

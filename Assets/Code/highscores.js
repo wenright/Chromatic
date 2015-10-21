@@ -11,7 +11,7 @@ function getScores() {
     if(hs_get.error) {
     	print("There was an error getting the high score: " + hs_get.error);
     } else {
-        gameObject.guiText.text = hs_get.text;
+        gameObject.GetComponent.<GUIText>().text = hs_get.text;
     }
 }
 

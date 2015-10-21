@@ -1,5 +1,5 @@
 ﻿//The speed at which the enemy moves towards the move location, should be between 0 and 1
-var MOVE_SPEED : float = Random.Range(250,350);		//A higher number means faster movement
+var MOVE_SPEED : float = 300;
 
 //The speed at which the object rotates around its center
 var ROTATE_SPEED : float = 50;
@@ -45,7 +45,7 @@ function Update () {
 		newRotation.y = 0.0;
 		transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, ROTATE_SPEED * Time.deltaTime);
 
-		rigidbody2D.AddForce(transform.up * Time.deltaTime * MOVE_SPEED);
+		GetComponent.<Rigidbody2D>().AddForce(transform.up * Time.deltaTime * MOVE_SPEED);
 	}
 	MOVE_SPEED += Time.deltaTime * 55;
 	ROTATE_SPEED += Time.deltaTime * 0.32;

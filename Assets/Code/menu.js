@@ -1,6 +1,5 @@
 ﻿#pragma strict
 
-#pragma strict
 var sound : AudioClip;
 var fader : fade_in;
 var playButton : GameObject;
@@ -20,13 +19,14 @@ function Start () {
 	canPressMute = true;
 	if(!PlayerPrefs.HasKey("hasPlayed"))
 		PlayerPrefs.SetInt ("hasPlayed", 0);
-	camera.main.GetComponent(AudioListener).volume = 1;
+	GetComponent.<Camera>().main.GetComponent(AudioListener).volume = 1;
 	muteButton.GetComponent (SpriteRenderer).sprite = regularSoundButton;
 //	if (PlayerPrefs.GetInt("Volume") == 0) {
 //		muteButton.GetComponent (SpriteRenderer).sprite = altMuteButton;
 //		camera.main.GetComponent(AudioListener).volume = 0;
 //	}
 
+	fader.GetComponent(GUITexture).color = Color.black;
 	fader.Fade();
 }
 
@@ -67,7 +67,7 @@ function Update () {
 			}
 		}
 	#else
-		if (canPlay && Input.GetButtonDown("Fire1")) {
+		if (canPlay && Input.GetButtonUp("Fire1")) {
 			if (Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), playButton.transform.position) <= buttonRadius) {
 				if (PlayerPrefs.GetInt("hasPlayed") == 0){
 					loadTutorial();
@@ -84,15 +84,15 @@ function Update () {
 			//Mute button
 			else if (canPressMute && Vector2.Distance (Camera.main.ScreenToWorldPoint(Input.mousePosition), muteButton.transform.position) <= buttonRadius) {
 				print ("Clicked on the volume button");
-				audio.PlayOneShot (sound);
+				GetComponent.<AudioSource>().PlayOneShot (sound);
 				buttonDelay ();
-				if (camera.main.GetComponent(AudioListener).volume == 1) {
-					camera.main.GetComponent(AudioListener).volume = 0;
+				if (GetComponent.<Camera>().main.GetComponent(AudioListener).volume == 1) {
+					GetComponent.<Camera>().main.GetComponent(AudioListener).volume = 0;
 				PlayerPrefs.SetInt("Volume", 0);	//We could make a volume slider, but I dont think its necessary. Maybe if we have sound and music going at the same time.
 				muteButton.GetComponent (SpriteRenderer).sprite = altMuteButton;
 				}
 				else {
-				camera.main.GetComponent(AudioListener).volume = 1;
+				GetComponent.<Camera>().main.GetComponent(AudioListener).volume = 1;
 				PlayerPrefs.SetInt("Volume", 1);
 				muteButton.GetComponent (SpriteRenderer).sprite = regularSoundButton;
 				}
@@ -117,14 +117,14 @@ function loadGame(){
 }
 
 function loadHighScores () {
-	audio.PlayOneShot (sound);
+	GetComponent.<AudioSource>().PlayOneShot (sound);
 	fader.FadeOut();
 	yield WaitForSeconds (0.75);
 	Application.LoadLevel ("highscores");
 }
 
 function loadTutorial () {
-	audio.PlayOneShot (sound);
+	GetComponent.<AudioSource>().PlayOneShot (sound);
 	fader.FadeOut();
 	yield WaitForSeconds (0.75);
 	PlayerPrefs.SetInt("hasPlayed", 1);

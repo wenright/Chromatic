@@ -5,8 +5,8 @@ var animate : boolean = false;
 function Start () {
 	yield WaitForSeconds(wait_time);
 	if (animate && shrink) {
-		animation.clip = shrink;
-		animation.Play();
+		GetComponent.<Animation>().clip = shrink;
+		GetComponent.<Animation>().Play();
 		yield WaitForSeconds(0.1);
 	}
 	Destroy (gameObject);
