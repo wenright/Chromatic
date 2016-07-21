@@ -3,20 +3,23 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    private int moveSpeed = 20;
-
-	void Start () {
-	
-	}
+    private int moveSpeed = 25;
 	
 	void Update () {
-#if UNITY_EDITOR
-        if (Input.GetMouseButton(0)) {
-            Vector2 moveLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = Vector2.MoveTowards(transform.position, moveLocation, Time.deltaTime * moveSpeed);
-        }
-#else
-    
-#endif
+        transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
+    }
+
+    private Vector2 GetMovement() {
+        #if UNITY_EDITOR
+            if (Input.GetMouseButton(0)) {
+                return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            }
+        #else
+            if (Input.touchCount > 0) {
+                return Camera.main.ScreenToWorldPoint(Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y));
+            }
+        #endif
+        
+        return transform.position;
     }
 }
