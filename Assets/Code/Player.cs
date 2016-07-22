@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+    public GameObject particleSystem;
+
     private Color color = Colors.white;
 
     private int moveSpeed = 15;
@@ -38,5 +40,10 @@ public class Player : MonoBehaviour {
 
         trail.material.SetColor("_SetColor", color);
         sprite.color = color;
+    }
+
+    public void Kill () {
+        Instantiate(particleSystem, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }

@@ -34,8 +34,7 @@ public class Enemy : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
-            // TODO: Spawn some particle effects, display 'game over'
-            Destroy(other.gameObject);
+            other.GetComponent<Player>().Kill();
         }
     }
 }
