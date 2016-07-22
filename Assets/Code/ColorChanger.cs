@@ -4,8 +4,10 @@ using System.Collections;
 public class ColorChanger : MonoBehaviour {
     bool hidden;
     Color type;
-	// Use this for initialization
-	void Awake () {
+    Controller gc;
+    // Use this for initialization
+    void Awake () {
+        gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
         type = this.GetComponent<SpriteRenderer>().color;
         hidden = false;
         if (this.name == "Red")
@@ -25,6 +27,7 @@ public class ColorChanger : MonoBehaviour {
         // TODO change player color to w/e this is (Or calculate new color based on players color)
         if (other.tag == "Player" && !hidden)
         {
+            gc.hp = gc.MAX_HP;
             other.gameObject.GetComponent<Player>().type = this.type;
         }
     }

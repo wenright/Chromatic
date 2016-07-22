@@ -7,9 +7,12 @@ public class Player : MonoBehaviour {
     public Color type;
     public Color oldtype;
 
+    Controller gc;
+
     void Awake()
     {
-        type = Color.white;
+        type = ColorList.white;
+        gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
     }
 	void Update () {
         oldtype = this.GetComponent<SpriteRenderer>().color;
@@ -24,6 +27,10 @@ public class Player : MonoBehaviour {
              this.GetComponent<SpriteRenderer>().color = type;
         }
         transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
+        if(gc.hp == 0)
+        {
+            type = ColorList.white;
+        }
     }
 
     private Vector2 GetMovement() {
