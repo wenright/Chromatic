@@ -33,8 +33,11 @@ public class Enemy : MonoBehaviour {
 	}
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player") {
-            other.GetComponent<Player>().Kill();
+        if (other.tag == "Player" ) {
+            if (this.type != other.GetComponent<Player>().type)
+                other.GetComponent<Player>().Kill();
+            else
+                Destroy(this.gameObject);
         }
     }
 }

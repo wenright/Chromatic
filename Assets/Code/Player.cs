@@ -3,9 +3,13 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+<<<<<<< HEAD
     public GameObject particleSystem;
 
-    private Color color = Colors.white;
+    private Color color = ColorList.white;
+
+    public Color type;
+    public Color oldtype;
 
     private int moveSpeed = 15;
 
@@ -16,8 +20,19 @@ public class Player : MonoBehaviour {
         trail = GetComponent<TrailRenderer>();
         sprite = GetComponent<SpriteRenderer>();
     }
-	
+
 	void Update () {
+        oldtype = this.GetComponent<SpriteRenderer>().color;
+        if (!type.Equals(oldtype))
+        {
+            if ((type.Equals(ColorList.blue) && oldtype.Equals(ColorList.yellow)) || (oldtype.Equals(ColorList.blue) && type.Equals(ColorList.yellow)))
+                type = ColorList.green;
+            else if ((type.Equals(ColorList.red) && oldtype.Equals(ColorList.yellow)) || (oldtype.Equals(ColorList.red) && type.Equals(ColorList.yellow)))
+                type = ColorList.orange;
+            else if ((type.Equals(ColorList.blue) && oldtype.Equals(ColorList.red)) || (oldtype.Equals(ColorList.blue) && type.Equals(ColorList.red)))
+                type = ColorList.purple;
+            this.GetComponent<SpriteRenderer>().color = type;
+        }
         transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
     }
 

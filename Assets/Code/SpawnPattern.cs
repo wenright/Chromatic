@@ -11,11 +11,11 @@ public class SpawnPattern {
         //set pattern based on p
 		switch (p) {
 			case 1: 
-				pattern.Push (new SpawnCommand(10, 6, 3, Colors.green));
+				pattern.Push (new SpawnCommand(10, 6, 3, ColorList.green));
 				break;
 			case 2:
-				pattern.Push (new SpawnCommand(10, 6, 0, Colors.orange));
-				pattern.Push (new SpawnCommand(-10, 6, 0, Colors.purple));
+				pattern.Push (new SpawnCommand(10, 6, 0, ColorList.orange));
+				pattern.Push (new SpawnCommand(-10, 6, 0, ColorList.purple));
 				break;
 		}
     }
