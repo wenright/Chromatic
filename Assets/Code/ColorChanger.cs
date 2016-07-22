@@ -10,7 +10,7 @@ public class ColorChanger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), 200f * Time.deltaTime);
+        transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), 150f * Time.deltaTime);
     }
 
     void OnTriggerEnter2D () {
