@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour {
 		}
 
 		//out of time
-		if (timer <= 0) {
+		if (timer <= 0 && !current.isComplete()) {
 			//spawn the enemy
 			SpawnCommand enemyInfo = current.getNext();
 
