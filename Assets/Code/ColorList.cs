@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Colors {
+public class ColorList {
     public static Color white = Color.white;
     public static Color purple = new Color(160 / 255.0F, 0, 240 / 255.0F);
     public static Color green = new Color(20/255.0F, 220/255.0F, 0);

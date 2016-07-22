@@ -4,8 +4,25 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     private int moveSpeed = 25;
-	
+    public Color type;
+    public Color oldtype;
+
+    void Awake()
+    {
+        type = Color.white;
+    }
 	void Update () {
+        oldtype = this.GetComponent<SpriteRenderer>().color;
+        if (!type.Equals(oldtype))
+        {
+            if ((type.Equals(ColorList.blue) && oldtype.Equals(ColorList.yellow)) || (oldtype.Equals(ColorList.blue) && type.Equals(ColorList.yellow)))
+                type = ColorList.green;
+            else if ((type.Equals(ColorList.red) && oldtype.Equals(ColorList.yellow)) || (oldtype.Equals(ColorList.red) && type.Equals(ColorList.yellow)))
+                type = ColorList.orange;
+            else if ((type.Equals(ColorList.blue) && oldtype.Equals(ColorList.red)) || (oldtype.Equals(ColorList.blue) && type.Equals(ColorList.red)))
+                type = ColorList.purple;
+             this.GetComponent<SpriteRenderer>().color = type;
+        }
         transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
     }
 
