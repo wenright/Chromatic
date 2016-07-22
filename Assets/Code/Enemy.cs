@@ -45,4 +45,11 @@ public class Enemy : MonoBehaviour {
 		else if (color == 2)
 			type = gc.purple;
 	}
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Player") {
+            // TODO: Spawn some particle effects, display 'game over'
+            Destroy(other.gameObject);
+        }
+    }
 }
