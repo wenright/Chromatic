@@ -11,7 +11,7 @@ public class Controller : MonoBehaviour {
     // UI controls
     public Slider healthSlider; public float hp; public readonly float  MAX_HP = 100;
     public Image Fill;  // assign in the editor the "Fill"
-    public Player player;
+    private Player player;
 
     void Awake () {
 		if (gcsingleton == null)
@@ -25,7 +25,7 @@ public class Controller : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	    healthSlider.value = hp/MAX_HP;
-        Fill.color = player.type;
+        Fill.color = player.GetColor();
         if(hp > 0)
          hp--;
 	}

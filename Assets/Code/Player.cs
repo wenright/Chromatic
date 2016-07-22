@@ -2,20 +2,26 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
+    
+    public new GameObject particleSystem;
 
-    private int moveSpeed = 25;
-    public Color type;
+    public Color type = ColorList.white;
     public Color oldtype;
 
     Controller gc;
+    private int moveSpeed = 15;
 
-    void Awake()
-    {
+    private TrailRenderer trail;
+    private SpriteRenderer sprite;
+
+    void Awake () {
+        trail = GetComponent<TrailRenderer>();
+        sprite = GetComponent<SpriteRenderer>();
         type = ColorList.white;
         gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
     }
+
 	void Update () {
-        oldtype = this.GetComponent<SpriteRenderer>().color;
         if (!type.Equals(oldtype))
         {
             if ((type.Equals(ColorList.blue) && oldtype.Equals(ColorList.yellow)) || (oldtype.Equals(ColorList.blue) && type.Equals(ColorList.yellow)))
@@ -24,16 +30,16 @@ public class Player : MonoBehaviour {
                 type = ColorList.orange;
             else if ((type.Equals(ColorList.blue) && oldtype.Equals(ColorList.red)) || (oldtype.Equals(ColorList.blue) && type.Equals(ColorList.red)))
                 type = ColorList.purple;
-             this.GetComponent<SpriteRenderer>().color = type;
         }
-        transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
         if(gc.hp == 0)
         {
             type = ColorList.white;
         }
+        SetColor(type);
+        transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
     }
 
-    private Vector2 GetMovement() {
+    private Vector2 GetMovement () {
         #if UNITY_EDITOR
             if (Input.GetMouseButton(0)) {
                 return Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -45,5 +51,22 @@ public class Player : MonoBehaviour {
         #endif
         
         return transform.position;
+    }
+
+    public void SetColor (Color color) {
+        this.oldtype = type;
+        this.type = color;
+
+        trail.material.SetColor("_SetColor", color);
+        sprite.color = color;
+    }
+
+    public Color GetColor () {
+        return type;
+    }
+
+    public void Kill () {
+        Instantiate(particleSystem, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }
