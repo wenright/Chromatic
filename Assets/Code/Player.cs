@@ -4,11 +4,15 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     private Color color = Colors.white;
+
     private int moveSpeed = 15;
+
     private TrailRenderer trail;
+    private SpriteRenderer sprite;
 
     void Start () {
         trail = GetComponent<TrailRenderer>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 	
 	void Update () {
@@ -31,6 +35,8 @@ public class Player : MonoBehaviour {
 
     public void SetColor (Color color) {
         this.color = color;
+
         trail.material.SetColor("_SetColor", color);
+        sprite.color = color;
     }
 }
