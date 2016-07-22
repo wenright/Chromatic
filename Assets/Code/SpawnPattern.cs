@@ -2,17 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-//IMPORTANT//
-//Vector4 being hacked for a data structure (don't judge)
-//x = x cord
-//y = y cord
-//z = time delay for spawn
-//w = color (0 green, 1 orange, 2 purple)
 public class SpawnPattern {
+
     Stack<SpawnCommand> pattern = new Stack<SpawnCommand>();
+
     // Use this for initialization
-    public SpawnPattern(int p)
-    {
+    public SpawnPattern(int p) {
         //set pattern based on p
 		switch (p) {
 			case 1: 
