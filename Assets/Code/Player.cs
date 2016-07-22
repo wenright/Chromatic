@@ -22,4 +22,11 @@ public class Player : MonoBehaviour {
         
         return transform.position;
     }
+
+    void OnTriggerEnter2D (Collider2D other) {
+        if (other.tag == "Enemy") {
+            // TODO: Spawn some particle effects, display 'game over'
+            Destroy(gameObject);
+        }
+    }
 }
