@@ -28,22 +28,8 @@ public class Enemy : MonoBehaviour {
 		}
     }
 
-	public void setColor(string color){
-		if (color.Equals ("orange"))
-			type = gc.orange;
-		else if (color.Equals ("green"))
-			type = gc.green;
-		else if (color.Equals ("purple"))
-			type = gc.purple;
-	}
-
-	public void setColor(float color){
-		if (color == 1)
-			type = gc.orange;
-		else if (color == 0)
-			type = gc.green;
-		else if (color == 2)
-			type = gc.purple;
+	public void SetColor(Color color){
+        type = color;
 	}
 
     void OnTriggerEnter2D(Collider2D other) {

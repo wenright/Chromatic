@@ -9,18 +9,18 @@ using System.Collections.Generic;
 //z = time delay for spawn
 //w = color (0 green, 1 orange, 2 purple)
 public class SpawnPattern {
-    Stack<Vector4> pattern = new Stack<Vector4>();
+    Stack<SpawnCommand> pattern = new Stack<SpawnCommand>();
     // Use this for initialization
     public SpawnPattern(int p)
     {
         //set pattern based on p
 		switch (p) {
 			case 1: 
-				pattern.Push (new Vector4 (10, 6, 3, 0));
+				pattern.Push (new SpawnCommand(10, 6, 3, Colors.green));
 				break;
 			case 2:
-				pattern.Push (new Vector4 (10, 6, 0, 1));
-				pattern.Push (new Vector4 (-10, 6, 0, 2));
+				pattern.Push (new SpawnCommand(10, 6, 0, Colors.orange));
+				pattern.Push (new SpawnCommand(-10, 6, 0, Colors.purple));
 				break;
 		}
     }
@@ -38,7 +38,7 @@ public class SpawnPattern {
     }
 
     //commented until enemy code is done
-    public Vector4 getNext(){
+    public SpawnCommand getNext(){
         return pattern.Pop();
     }   
 }

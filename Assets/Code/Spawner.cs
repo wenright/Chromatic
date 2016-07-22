@@ -20,17 +20,17 @@ public class Spawner : MonoBehaviour {
 			//if not get a new one
 			current = new SpawnPattern (i);
 		}
+
 		//out of time
 		if (timer <= 0) {
 			//spawn the enemy
-			Vector4 enemyInfo = current.getNext ();
-			Vector3 enemyLoc = new Vector3 (enemyInfo.x, enemyInfo.y, 0f);
-			float waitTime = enemyInfo.z;
-			print (enemyLoc.x.ToString () + " " + enemyLoc.y.ToString ());
-			GameObject lastEnemy = Instantiate (enemy, enemyLoc, new Quaternion ()) as GameObject;
-			lastEnemy.GetComponent<Enemy>().setColor(enemyInfo.w);
-			timer = waitTime;
+			SpawnCommand enemyInfo = current.getNext();
+
+			GameObject lastEnemy = Instantiate (enemy, enemyInfo.GetLocation(), new Quaternion()) as GameObject;
+			lastEnemy.GetComponent<Enemy>().SetColor(enemyInfo.GetColor());
+            timer = enemyInfo.GetDelay();
 		}
+
 		//tick time down
 		timer -= Time.deltaTime;
 	}
