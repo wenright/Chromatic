@@ -2,12 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SpawnPattern : MonoBehaviour {
-    Stack<Vector3> pattern = new Stack<Vector3>();
+//IMPORTANT//
+//Vector4 being hacked for a data structure (don't judge)
+//x = x cord
+//y = y cord
+//z = time delay for spawn
+//w = color (0 green, 1 orange, 2 purple)
+public class SpawnPattern {
+    Stack<Vector4> pattern = new Stack<Vector4>();
     // Use this for initialization
     public SpawnPattern(int p)
     {
         //set pattern based on p
+		switch (p) {
+			case 1: 
+				pattern.Push (new Vector4 (10, 6, 3, 0));
+				break;
+			case 2:
+				pattern.Push (new Vector4 (10, 6, 0, 1));
+				pattern.Push (new Vector4 (-10, 6, 0, 2));
+				break;
+		}
     }
 
     // Update is called once per frame
@@ -19,11 +34,11 @@ public class SpawnPattern : MonoBehaviour {
     {   
         if (pattern.Count == 0)
             return true;
-        else return false;
+        return false;
     }
 
     //commented until enemy code is done
-    public Vector3 getNext(){
+    public Vector4 getNext(){
         return pattern.Pop();
     }   
 }
