@@ -2,14 +2,11 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
+    
+    public new GameObject particleSystem;
 
-<<<<<<< HEAD
-    public GameObject particleSystem;
-
-    private Color color = ColorList.white;
-
-    public Color type;
-    public Color oldtype;
+    private Color type = ColorList.white;
+    private Color oldtype;
 
     private int moveSpeed = 15;
 
@@ -22,7 +19,8 @@ public class Player : MonoBehaviour {
     }
 
 	void Update () {
-        oldtype = this.GetComponent<SpriteRenderer>().color;
+        oldtype = sprite.color;
+
         if (!type.Equals(oldtype))
         {
             if ((type.Equals(ColorList.blue) && oldtype.Equals(ColorList.yellow)) || (oldtype.Equals(ColorList.blue) && type.Equals(ColorList.yellow)))
@@ -31,7 +29,8 @@ public class Player : MonoBehaviour {
                 type = ColorList.orange;
             else if ((type.Equals(ColorList.blue) && oldtype.Equals(ColorList.red)) || (oldtype.Equals(ColorList.blue) && type.Equals(ColorList.red)))
                 type = ColorList.purple;
-            this.GetComponent<SpriteRenderer>().color = type;
+
+            SetColor(type);
         }
         transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
     }
@@ -51,10 +50,14 @@ public class Player : MonoBehaviour {
     }
 
     public void SetColor (Color color) {
-        this.color = color;
+        this.type = color;
 
         trail.material.SetColor("_SetColor", color);
         sprite.color = color;
+    }
+
+    public Color GetColor () {
+        return type;
     }
 
     public void Kill () {

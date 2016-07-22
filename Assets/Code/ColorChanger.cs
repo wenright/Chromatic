@@ -25,7 +25,7 @@ public class ColorChanger : MonoBehaviour {
         // TODO change player color to w/e this is (Or calculate new color based on players color)
         if (other.tag == "Player" && !hidden)
         {
-            other.gameObject.GetComponent<Player>().type = this.type;
+            other.gameObject.GetComponent<Player>().SetColor(this.type);
         }
     }
 }

@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player" ) {
-            if (this.type != other.GetComponent<Player>().type)
+            if (this.type != other.GetComponent<Player>().GetColor())
                 other.GetComponent<Player>().Kill();
             else
                 Destroy(this.gameObject);
