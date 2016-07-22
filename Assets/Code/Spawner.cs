@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour {
 			current = new SpawnPattern (i);
 		}
 		//out of time
-		if (timer <= 0) {
+		if (timer <= 0 && !current.isComplete()) {
 			//spawn the enemy
 			Vector4 enemyInfo = current.getNext ();
 			Vector3 enemyLoc = new Vector3 (enemyInfo.x, enemyInfo.y, 0f);

@@ -10,8 +10,8 @@ public class ColorChanger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), 200f * Time.deltaTime);
+    }
 
     void OnTriggerEnter2D () {
         // TODO change player color to w/e this is (Or calculate new color based on players color)
