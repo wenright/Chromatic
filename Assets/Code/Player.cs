@@ -4,10 +4,6 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     private int moveSpeed = 25;
-
-    void Start () {
-        Camera.main.GetComponent<CameraShake>().Shake();
-    }
 	
 	void Update () {
         transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
