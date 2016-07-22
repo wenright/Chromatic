@@ -3,12 +3,11 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
     Transform target;
+	public Color type;
+	Controller gc;
 	// Use this for initialization
-    public Enemy(float x, float y)
-    {
-        transform.position = new Vector2(x, y);
-    }
-	void Start () {
+	void Awake () {
+		gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 	
@@ -24,5 +23,26 @@ public class Enemy : MonoBehaviour {
 
             GetComponent< Rigidbody2D >().AddForce(transform.up * Time.deltaTime * 300);
         }
+		if(!type.Equals(this.GetComponent<SpriteRenderer>().color)){
+			this.GetComponent<SpriteRenderer> ().color = type;
+		}
     }
+
+	public void setColor(string color){
+		if (color.Equals ("orange"))
+			type = gc.orange;
+		else if (color.Equals ("green"))
+			type = gc.green;
+		else if (color.Equals ("purple"))
+			type = gc.purple;
+	}
+
+	public void setColor(float color){
+		if (color == 1)
+			type = gc.orange;
+		else if (color == 0)
+			type = gc.green;
+		else if (color == 2)
+			type = gc.purple;
+	}
 }
