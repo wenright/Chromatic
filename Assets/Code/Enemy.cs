@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
+
+    public new GameObject particleSystem;
+
     private Transform target;
 	private Color type;
 	private Controller gc;
@@ -18,8 +21,7 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (target)
-        {
+        if (target) {
             //TODO: FIX THIS HORRIBLE MESS
             Quaternion newRotation = Quaternion.LookRotation(transform.position - target.transform.position, Vector3.forward);
             newRotation.x = 0.0f;
@@ -28,8 +30,9 @@ public class Enemy : MonoBehaviour {
 
             GetComponent< Rigidbody2D >().AddForce(transform.up * Time.deltaTime * 300);
         }
-		if(!type.Equals(this.GetComponent<SpriteRenderer>().color)){
-			this.GetComponent<SpriteRenderer> ().color = type;
+
+		if (!type.Equals(this.GetComponent<SpriteRenderer>().color)){
+			this.GetComponent<SpriteRenderer>().color = type;
 		}
     }
 
@@ -39,10 +42,20 @@ public class Enemy : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player" ) {
-            if (this.type != other.GetComponent<Player>().GetColor())
+            if (this.type != other.GetComponent<Player>().GetColor()) {
                 other.GetComponent<Player>().Kill();
-            else
-                Destroy(this.gameObject);
+            } else {
+                Kill();
+            }
         }
+    }
+
+    public void Kill () {
+        // Set particle system color to player color
+        particleSystem.GetComponent<ParticleSystem>().startColor = type;
+        
+        Instantiate(particleSystem, transform.position, transform.rotation);
+
+        Destroy(gameObject);
     }
 }

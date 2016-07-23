@@ -69,10 +69,8 @@ public class Player : MonoBehaviour {
         // Set particle system color to player color
         particleSystem.GetComponent<ParticleSystem>().startColor = type;
 
-        // Instantiate particle at player position
         Instantiate(particleSystem, transform.position, transform.rotation);
 
-        // Remove player from game
         Destroy(gameObject);
     }
 }
