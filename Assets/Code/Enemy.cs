@@ -2,13 +2,18 @@
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
-    Transform target;
-	public Color type;
-	Controller gc;
+    private Transform target;
+	private Color type;
+	private Controller gc;
+
 	// Use this for initialization
 	void Awake () {
 		gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player) {
+            target = player.transform;
+        }
     }
 	
 	// Update is called once per frame
