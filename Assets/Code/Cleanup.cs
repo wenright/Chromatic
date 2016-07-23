@@ -5,7 +5,7 @@ public class Cleanup : MonoBehaviour {
 
     public float delay;
 
-	void Start () {
+	void Awake () {
         Destroy();
 	}
 
