@@ -57,7 +57,7 @@ public class Player : MonoBehaviour {
         this.oldtype = type;
         this.type = color;
 
-        trail.material.SetColor("_SetColor", color);
+        trail.material.SetColor("_Color", color);
         sprite.color = color;
     }
 

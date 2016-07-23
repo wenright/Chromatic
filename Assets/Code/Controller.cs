@@ -24,9 +24,13 @@ public class Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    healthSlider.value = hp/MAX_HP;
-        Fill.color = player.GetColor();
-        if(hp > 0)
-         hp--;
-	}
+        if (healthSlider) {
+            healthSlider.value = hp / MAX_HP;
+            Fill.color = player.GetColor();
+        }
+	    
+        if (hp > 0) {
+            hp--;
+        }
+    }
 }
