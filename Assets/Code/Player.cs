@@ -5,8 +5,8 @@ public class Player : MonoBehaviour {
     
     public new GameObject particleSystem;
 
-    public Color type = ColorList.white;
-    public Color oldtype;
+    private Color type = ColorList.white;
+    private Color oldtype;
 
     Controller gc;
     private int moveSpeed = 15;
@@ -66,7 +66,13 @@ public class Player : MonoBehaviour {
     }
 
     public void Kill () {
+        // Set particle system color to player color
+        particleSystem.GetComponent<ParticleSystem>().startColor = type;
+
+        // Instantiate particle at player position
         Instantiate(particleSystem, transform.position, transform.rotation);
+
+        // Remove player from game
         Destroy(gameObject);
     }
 }
