@@ -13,12 +13,16 @@ public class Player : MonoBehaviour {
 
     private TrailRenderer trail;
     private SpriteRenderer sprite;
+	private bool grow;
+	private bool runningOut;
+	float pulsetimer;
 
     void Awake () {
         trail = GetComponent<TrailRenderer>();
         sprite = GetComponent<SpriteRenderer>();
         type = ColorList.white;
         gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
+		pulsetimer = 1;
     }
 
 	void Update () {
@@ -36,6 +40,7 @@ public class Player : MonoBehaviour {
             type = ColorList.white;
         }
         SetColor(type);
+		pulse ();
         transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
     }
 
@@ -73,4 +78,12 @@ public class Player : MonoBehaviour {
 
         Destroy(gameObject);
     }
+	public void pulse(){
+		if (gc.hp < 50 || this.gameObject.transform.localScale.x != 1) {
+			this.gameObject.transform.localScale = Vector3.Lerp (new Vector3 (1, 1, 1), new Vector3 (2, 2, 2), (pulsetimer));
+			pulsetimer -= 0.05f;
+		}
+		if (pulsetimer <= 0 && type != ColorList.white && gc.hp < 50)
+			pulsetimer = 1;
+	}
 }

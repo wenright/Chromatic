@@ -12,6 +12,7 @@ public class Controller : MonoBehaviour {
     public Slider healthSlider; public float hp; public readonly float  MAX_HP = 100;
     public Image Fill;  // assign in the editor the "Fill"
     private Player player;
+	private Color bgcolor;
 
     void Awake () {
 		if (gcsingleton == null)
@@ -38,8 +39,8 @@ public class Controller : MonoBehaviour {
     }
 	void ChangeBGColor (Color color) {
 		if (color == Color.white)
-			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ().backgroundColor = color / 8;
+			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ().backgroundColor = color / 6;
 		else
-			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ().backgroundColor = color / 7;
+			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ().backgroundColor = color / 3;
 	}
 }
