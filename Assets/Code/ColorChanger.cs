@@ -8,7 +8,6 @@ public class ColorChanger : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
-        type = this.GetComponent<SpriteRenderer>().color;
         hidden = false;
         if (this.name == "Red")
             type = ColorList.red;
@@ -16,6 +15,8 @@ public class ColorChanger : MonoBehaviour {
             type = ColorList.blue;
         if (this.name == "Yellow")
             type = ColorList.yellow;
+		this.GetComponent<SpriteRenderer> ().color = type;
+		
     }
 	
 	// Update is called once per frame
@@ -28,6 +29,7 @@ public class ColorChanger : MonoBehaviour {
         else
         {
             this.GetComponent<SpriteRenderer>().enabled = true;
+
         }
     }
 

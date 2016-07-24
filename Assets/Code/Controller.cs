@@ -28,9 +28,18 @@ public class Controller : MonoBehaviour {
             healthSlider.value = hp / MAX_HP;
             Fill.color = player.GetColor();
         }
-	    
         if (hp > 0) {
             hp--;
         }
+		if (player.GetColor () == ColorList.purple || player.GetColor () == ColorList.orange || player.GetColor () == ColorList.green) {
+			ChangeBGColor (player.GetColor ());
+		} else
+			ChangeBGColor (ColorList.white);
     }
+	void ChangeBGColor (Color color) {
+		if (color == Color.white)
+			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ().backgroundColor = color / 8;
+		else
+			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ().backgroundColor = color / 7;
+	}
 }
