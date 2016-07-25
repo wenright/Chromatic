@@ -41,6 +41,6 @@ public class Controller : MonoBehaviour {
 		if (color == Color.white)
 			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ().backgroundColor = color / 6;
 		else
-			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ().backgroundColor = color / 3;
+			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ().backgroundColor = color / 4;
 	}
 }

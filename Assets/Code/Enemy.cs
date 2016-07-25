@@ -53,7 +53,8 @@ public class Enemy : MonoBehaviour {
     public void Kill () {
         // Set particle system color to player color
         particleSystem.GetComponent<ParticleSystem>().startColor = type;
-        
+		GameObject.FindGameObjectWithTag ("GameController").GetComponent<Spawner> ().enemycount--;
+		gc.hp += 10;
         Instantiate(particleSystem, transform.position, transform.rotation);
 
         Destroy(gameObject);

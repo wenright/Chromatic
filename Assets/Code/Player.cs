@@ -80,8 +80,8 @@ public class Player : MonoBehaviour {
     }
 	public void pulse(){
 		if (gc.hp < 50 || this.gameObject.transform.localScale.x != 1) {
-			this.gameObject.transform.localScale = Vector3.Lerp (new Vector3 (1, 1, 1), new Vector3 (2, 2, 2), (pulsetimer));
-			pulsetimer -= 0.05f;
+			this.gameObject.transform.localScale = Vector3.Lerp (new Vector3 (1, 1, 1), new Vector3 (1.5f, 1.5f, 1.5f), (pulsetimer));
+			pulsetimer -= 0.07f;
 		}
 		if (pulsetimer <= 0 && type != ColorList.white && gc.hp < 50)
 			pulsetimer = 1;
