@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour {
 
     public new GameObject particleSystem;
 
+    private int speed = 500;
     private Transform target;
 	private Color type;
 	private Controller gc;
@@ -28,7 +29,7 @@ public class Enemy : MonoBehaviour {
             newRotation.y = 0.0f;
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, 500*Time.deltaTime);
 
-            GetComponent< Rigidbody2D >().AddForce(transform.up * Time.deltaTime * 300);
+            GetComponent< Rigidbody2D >().AddForce(transform.up * Time.deltaTime * speed);
         }
 
 		if (!type.Equals(this.GetComponent<SpriteRenderer>().color)){
