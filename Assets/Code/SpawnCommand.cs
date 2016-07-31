@@ -5,10 +5,10 @@ public class SpawnCommand {
 
     private int x;
     private int y;
-    private int delay;
+    private float delay;
     private Color color;
     
-    public SpawnCommand (int x, int y, int delay, Color color) {
+    public SpawnCommand (int x, int y, float delay, Color color) {
         this.x = x;
         this.y = y;
         this.delay = delay;
@@ -19,7 +19,7 @@ public class SpawnCommand {
         return new Vector2(x, y);
     }
 
-    public int GetDelay () {
+    public float GetDelay () {
         return delay;
     }
 

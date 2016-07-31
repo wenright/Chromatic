@@ -6,37 +6,50 @@ public class SpawnPattern {
 
     Stack<SpawnCommand> pattern = new Stack<SpawnCommand>();
 	bool wait = false;
+	Color a;
+	Color b;
+	Color c;
+
 
     // Use this for initialization
-    public SpawnPattern(int p) {
+	public SpawnPattern(int p, int scheme) {
+		if (scheme == 1) {
+			a = ColorList.orange;
+			b = ColorList.purple;
+			c = ColorList.green;
+		} else if (scheme == 2) {
+			b = ColorList.orange;
+			a = ColorList.purple;
+			c = ColorList.green;
+		} else {
+			c = ColorList.orange;
+			b = ColorList.purple;
+			a = ColorList.green;
+		}
         //set pattern based on p
 		switch (p) {
 			case 1: 
-				pattern.Push (new SpawnCommand (10, 6, 3, ColorList.green));
+				pattern.Push (new SpawnCommand (10, 6, 3, a));
 				wait = true;
 				break;
 			case 2:
-				pattern.Push (new SpawnCommand (10, 6, 0, ColorList.orange));
-				pattern.Push (new SpawnCommand (-10, 6, 0, ColorList.purple));
+				pattern.Push (new SpawnCommand (10, 6, 0, b));
+				pattern.Push (new SpawnCommand (-10, 6, 0, c));
 				wait = true;
 				break;
 			case 3:
-				pattern.Push (new SpawnCommand (12, 6, 3, ColorList.orange));
-				pattern.Push (new SpawnCommand (10, 0, 0, ColorList.orange));
-				pattern.Push (new SpawnCommand (12, -6, 0, ColorList.orange));
-				pattern.Push (new SpawnCommand (-12, 6, 3, ColorList.purple));
-				pattern.Push (new SpawnCommand (-10, 0, 0, ColorList.purple));
-				pattern.Push (new SpawnCommand (-12, -6, 0, ColorList.purple));
+				pattern.Push (new SpawnCommand (12, 6, 3, b));
+				pattern.Push (new SpawnCommand (10, 0, 0, b));
+				pattern.Push (new SpawnCommand (12, -6, 0, b));
+				pattern.Push (new SpawnCommand (-12, 6, 3, c));
+				pattern.Push (new SpawnCommand (-10, 0, 0, c));
+				pattern.Push (new SpawnCommand (-12, -6, 0, c));
+				pattern.Push (new SpawnCommand (8, -10, 3, a));
+				pattern.Push (new SpawnCommand (0, 10, 0, a));
+				pattern.Push (new SpawnCommand (-8, -10, 0, a));
 				wait = true;
 				break;
-			case 4:
-				pattern.Push (new SpawnCommand (12, 6, 1, ColorList.green));
-				pattern.Push (new SpawnCommand (12, -6, 0, ColorList.green));
-				pattern.Push (new SpawnCommand (-12, 6, 1, ColorList.green));
-				pattern.Push (new SpawnCommand (-12, -6, 0, ColorList.green));
-				wait = true;
-				break;
-			
+
 		}
 
     }

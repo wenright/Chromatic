@@ -7,9 +7,11 @@ public class Spawner : MonoBehaviour {
 	int i = 1;
 	SpawnPattern current;
 	public int enemycount;
+	int scheme;
 	// Use this for initialization
 	void Awake () {
-		current = new SpawnPattern (i);
+		scheme = Random.Range(1, 4);
+		current = new SpawnPattern (i, scheme);
 		timer = 0;
 	}
 
@@ -21,11 +23,11 @@ public class Spawner : MonoBehaviour {
 			if (!current.isWaiting ()) {
 				i++;
 				//if not get a new one
-				current = new SpawnPattern (i);
+				current = new SpawnPattern (i, scheme);
 			} else if (enemycount == 0){
 				//if yes, than wait for all enemies to be dead.
 				i++;
-				current = new SpawnPattern (i);
+				current = new SpawnPattern (i, scheme);
 			}
 		}
 
