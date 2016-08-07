@@ -27,8 +27,7 @@ public class Player : MonoBehaviour {
     }
 
 	void Update () {
-        if (!type.Equals(oldtype))
-        {
+        if (!type.Equals(oldtype)) {
             if ((type.Equals(ColorList.blue) && oldtype.Equals(ColorList.yellow)) || (oldtype.Equals(ColorList.blue) && type.Equals(ColorList.yellow)))
                 type = ColorList.green;
             else if ((type.Equals(ColorList.red) && oldtype.Equals(ColorList.yellow)) || (oldtype.Equals(ColorList.red) && type.Equals(ColorList.yellow)))
@@ -36,12 +35,13 @@ public class Player : MonoBehaviour {
             else if ((type.Equals(ColorList.blue) && oldtype.Equals(ColorList.red)) || (oldtype.Equals(ColorList.blue) && type.Equals(ColorList.red)))
                 type = ColorList.purple;
         }
-        if(gc.hp == 0)
-        {
+        
+        if(gc.hp == 0) {
             type = ColorList.white;
         }
+        
         SetColor(type);
-		pulse ();
+		Pulse ();
         transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
     }
 
@@ -75,16 +75,23 @@ public class Player : MonoBehaviour {
         // Set particle system color to player color
         particleSystem.GetComponent<ParticleSystem>().startColor = type;
 
+        // Spawn particle system
         Instantiate(particleSystem, transform.position, transform.rotation);
+
+        // Initiate camera shake
+        Camera.main.GetComponent<CameraShake>().Shake();
 
         Destroy(gameObject);
     }
-	public void pulse(){
+
+	public void Pulse(){
 		if (gc.hp < 50 || this.gameObject.transform.localScale.x != 1) {
 			this.gameObject.transform.localScale = Vector3.Lerp (new Vector3 (1, 1, 1), new Vector3 (1.5f, 1.5f, 1.5f), (pulsetimer));
 			pulsetimer -= 0.07f;
 		}
-		if (pulsetimer <= 0 && type != ColorList.white && gc.hp < 50)
+
+		if (pulsetimer <= 0 && type != ColorList.white && gc.hp < 50) {
 			pulsetimer = 1;
+		}
 	}
 }
