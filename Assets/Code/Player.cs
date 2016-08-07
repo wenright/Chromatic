@@ -39,7 +39,7 @@ public class Player : MonoBehaviour {
         if(gc.hp == 0) {
             type = ColorList.white;
         }
-        
+
         SetColor(type);
 		Pulse ();
         transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
@@ -84,10 +84,10 @@ public class Player : MonoBehaviour {
         Destroy(gameObject);
     }
 
-	public void Pulse(){
+	public void Pulse () {
 		if (gc.hp < 50 || this.gameObject.transform.localScale.x != 1) {
 			this.gameObject.transform.localScale = Vector3.Lerp (new Vector3 (1, 1, 1), new Vector3 (1.5f, 1.5f, 1.5f), (pulsetimer));
-			pulsetimer -= 0.07f;
+			pulsetimer -= Time.deltaTime * 3;
 		}
 
 		if (pulsetimer <= 0 && type != ColorList.white && gc.hp < 50) {
