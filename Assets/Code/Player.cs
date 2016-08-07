@@ -8,14 +8,15 @@ public class Player : MonoBehaviour {
     private Color type = ColorList.white;
     private Color oldtype;
 
-    Controller gc;
+    private Controller gc;
+
     private int moveSpeed = 15;
 
     private TrailRenderer trail;
     private SpriteRenderer sprite;
 	private bool grow;
 	private bool runningOut;
-	float pulsetimer;
+	private float pulsetimer;
 
     void Awake () {
         trail = GetComponent<TrailRenderer>();
