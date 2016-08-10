@@ -5,7 +5,7 @@ public class ColorChanger : MonoBehaviour {
     bool hidden;
     Color type;
     Controller gc;
-    // Use this for initialization
+
     void Awake () {
         gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
         hidden = false;
@@ -16,7 +16,6 @@ public class ColorChanger : MonoBehaviour {
         if (this.name == "Yellow")
             type = ColorList.yellow;
 		this.GetComponent<SpriteRenderer> ().color = type;
-		
     }
 	
 	// Update is called once per frame

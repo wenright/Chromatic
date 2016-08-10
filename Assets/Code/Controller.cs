@@ -9,7 +9,7 @@ public class Controller : MonoBehaviour {
 	public static Controller Instance { get { return gcsingleton; } }
 
     // UI controls
-    public Slider healthSlider; public float hp; public readonly float  MAX_HP = 100;
+    public Slider healthSlider; public float hp; public readonly float  MAX_HP = 200;
     public Image Fill;  // assign in the editor the "Fill"
     private Player player;
 	private Color bgcolor;

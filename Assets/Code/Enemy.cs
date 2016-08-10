@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour {
         // Set particle system color to player color
         particleSystem.GetComponent<ParticleSystem>().startColor = type;
 		GameObject.FindGameObjectWithTag ("GameController").GetComponent<Spawner> ().enemycount--;
-		gc.hp += 10;
+		gc.hp += 20;
         Instantiate(particleSystem, transform.position, transform.rotation);
 
         Destroy(gameObject);
