@@ -39,18 +39,41 @@ public class SpawnPattern {
 				break;
 			case 3:
 				pattern.Push (new SpawnCommand (12, 6, 3, b));
-				pattern.Push (new SpawnCommand (10, 0, 0, b));
+				pattern.Push (new SpawnCommand (12, 0, 0, b));
 				pattern.Push (new SpawnCommand (12, -6, 0, b));
+                wait = true;
+                break;
+            case 4:
 				pattern.Push (new SpawnCommand (-12, 6, 3, c));
-				pattern.Push (new SpawnCommand (-10, 0, 0, c));
+				pattern.Push (new SpawnCommand (-12, 0, 0, c));
 				pattern.Push (new SpawnCommand (-12, -6, 0, c));
+                wait = true;
+                break;
+            case 5:
 				pattern.Push (new SpawnCommand (8, -10, 3, a));
 				pattern.Push (new SpawnCommand (0, 10, 0, a));
 				pattern.Push (new SpawnCommand (-8, -10, 0, a));
 				wait = true;
 				break;
+            case 6:
+                //FIXED
+                float leveltimer = 0.2f;
+                pattern.Push(new SpawnCommand(-10, 10, leveltimer, c, true));
+                pattern.Push(new SpawnCommand(-8, 10, leveltimer, c, true));
+                pattern.Push(new SpawnCommand(-6, 10, leveltimer, c, true));
+                pattern.Push(new SpawnCommand(-4, 10, leveltimer, c, true));
+                pattern.Push(new SpawnCommand(-2, 10, leveltimer, c, true));
+                pattern.Push(new SpawnCommand(0, 10, leveltimer, c, true));
+                pattern.Push(new SpawnCommand(2, 10, leveltimer, b, true));
+                pattern.Push(new SpawnCommand(4, 10, leveltimer, c, true));
+                pattern.Push(new SpawnCommand(6, 10, leveltimer, b, true));
+                pattern.Push(new SpawnCommand(8, 10, leveltimer, c, true));
+                pattern.Push(new SpawnCommand(10, 10, leveltimer, b, true));
+                break;
 
-		}
+
+
+        }
 
     }
 

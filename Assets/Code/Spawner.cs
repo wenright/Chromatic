@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour {
 	public GameObject enemy;
+    public GameObject fixedenemy;
 	public float timer;
 	int i = 1;
 	SpawnPattern current;
@@ -17,6 +18,9 @@ public class Spawner : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        //TODO: Add fixedenemy code, fix this logic.
+
+    
 		//Do we have a valid spawn pattern?
 		if (current.isComplete ()) {
 			//are we supposed to wait?
@@ -30,14 +34,18 @@ public class Spawner : MonoBehaviour {
 				current = new SpawnPattern (i, scheme);
 			}
 		}
-
-		//out of time
-		if (timer <= 0 && !current.isComplete()) {
+        GameObject.FindWithTag("GameController").GetComponent<Controller>().level = i;
+        //out of time
+        if (timer <= 0 && !current.isComplete()) {
 			//spawn the enemy
 			SpawnCommand enemyInfo = current.getNext();
 			enemycount++;
-			GameObject lastEnemy = Instantiate (enemy, enemyInfo.GetLocation(), new Quaternion()) as GameObject;
-			lastEnemy.GetComponent<Enemy>().SetColor(enemyInfo.GetColor());
+            GameObject lastEnemy;
+            if (enemyInfo.isFixed())
+			    lastEnemy = Instantiate (fixedenemy, enemyInfo.GetLocation(), new Quaternion()) as GameObject;
+            else
+                lastEnemy = Instantiate(enemy, enemyInfo.GetLocation(), new Quaternion()) as GameObject;
+            lastEnemy.GetComponent<Enemy>().SetColor(enemyInfo.GetColor());
             timer = enemyInfo.GetDelay();
 		}
 

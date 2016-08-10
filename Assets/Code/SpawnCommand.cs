@@ -7,12 +7,22 @@ public class SpawnCommand {
     private int y;
     private float delay;
     private Color color;
+    private bool isfixed;
     
     public SpawnCommand (int x, int y, float delay, Color color) {
         this.x = x;
         this.y = y;
         this.delay = delay;
         this.color = color;
+        this.isfixed = false;
+    }
+    public SpawnCommand(int x, int y, float delay, Color color, bool isfixed)
+    {
+        this.x = x;
+        this.y = y;
+        this.delay = delay;
+        this.color = color;
+        this.isfixed = isfixed;
     }
 
     public Vector2 GetLocation () {
@@ -25,5 +35,9 @@ public class SpawnCommand {
 
     public Color GetColor () {
         return color;
+    }
+    public bool isFixed()
+    {
+        return isfixed;
     }
 }
