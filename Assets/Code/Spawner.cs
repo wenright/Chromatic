@@ -5,7 +5,7 @@ public class Spawner : MonoBehaviour {
 	public GameObject enemy;
     public GameObject fixedenemy;
 	public float timer;
-	int i = 1;
+	int i = 10;
 	SpawnPattern current;
 	public int enemycount;
 	int scheme;

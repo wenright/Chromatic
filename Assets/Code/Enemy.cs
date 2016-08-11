@@ -20,6 +20,10 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (this.transform.position.y > 12 || this.transform.position.y < -12 || this.transform.position.x > 12 || this.transform.position.x < -12) 
+        {
+            this.Kill();
+        }
         updateTarget();
         move();
 		if (!type.Equals(this.GetComponent<SpriteRenderer>().color)){
@@ -51,6 +55,10 @@ public class Enemy : MonoBehaviour {
             if (this.type != other.GetComponent<Player>().GetColor()) {
                 other.GetComponent<Player>().Kill();
             } else {
+                particleSystem.GetComponent<ParticleSystem>().startColor = type;
+
+                Instantiate(particleSystem, transform.position, transform.rotation);
+                gc.hp += 20;
                 Kill();
             }
         }
@@ -58,11 +66,7 @@ public class Enemy : MonoBehaviour {
 
     public void Kill () {
         // Set particle system color to player color
-        particleSystem.GetComponent<ParticleSystem>().startColor = type;
 		GameObject.FindGameObjectWithTag ("GameController").GetComponent<Spawner> ().enemycount--;
-		gc.hp += 20;
-        Instantiate(particleSystem, transform.position, transform.rotation);
-
         Destroy(gameObject);
     }
 }
