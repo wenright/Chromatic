@@ -40,11 +40,15 @@ public class Spawner : MonoBehaviour {
 			//spawn the enemy
 			SpawnCommand enemyInfo = current.getNext();
 			enemycount++;
+
             GameObject lastEnemy;
-            if (enemyInfo.isFixed())
+            if (enemyInfo.isFixed()) {
 			    lastEnemy = Instantiate (fixedenemy, enemyInfo.GetLocation(), new Quaternion()) as GameObject;
-            else
+            }
+            else {
                 lastEnemy = Instantiate(enemy, enemyInfo.GetLocation(), new Quaternion()) as GameObject;
+            }
+            
             lastEnemy.GetComponent<Enemy>().SetColor(enemyInfo.GetColor());
             timer = enemyInfo.GetDelay();
 		}
