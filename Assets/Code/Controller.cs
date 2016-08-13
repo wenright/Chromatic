@@ -14,6 +14,8 @@ public class Controller : MonoBehaviour {
     private Player player;
 	private Color bgcolor;
 
+    public int level;
+
     void Awake () {
 		if (gcsingleton == null)
 			gcsingleton = this;
