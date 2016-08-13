@@ -10,7 +10,6 @@ public class SpawnPattern {
 	Color b;
 	Color c;
 
-
     // Use this for initialization
 	public SpawnPattern(int p, int scheme) {
 		if (scheme == 1) {
@@ -26,6 +25,7 @@ public class SpawnPattern {
 			b = ColorList.purple;
 			a = ColorList.green;
 		}
+
         //set pattern based on p
 		switch (p) {
 			case 1: 
@@ -49,28 +49,27 @@ public class SpawnPattern {
 				pattern.Push (new SpawnCommand (-8, -10, 0, a));
 				wait = true;
 				break;
-
 		}
-
     }
 
     // Update is called once per frame
     void Update() {
 
     }
+
     //tells you if the pattern is complete
-    public bool isComplete()
-    {   
+    public bool isComplete() {   
         if (pattern.Count == 0)
             return true;
         return false;
     }
-	public bool isWaiting(){
+
+	public bool isWaiting() {
 		return wait;
 	}
 
     //commented until enemy code is done
-    public SpawnCommand getNext(){
+    public SpawnCommand getNext() {
         return pattern.Pop();
     }   
 }
