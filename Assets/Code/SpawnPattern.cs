@@ -58,17 +58,17 @@ public class SpawnPattern {
             case 6:
                 //FIXED
                 float leveltimer = 0.2f;
-                pattern.Push(new SpawnCommand(-10, 10, leveltimer+2f, c, true));
+                pattern.Push(new SpawnCommand(-10, 10, leveltimer+2f, a, true));
                 pattern.Push(new SpawnCommand(-8, 10, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(-6, 10, leveltimer, c, true));
+                pattern.Push(new SpawnCommand(-6, 10, leveltimer,a, true));
                 pattern.Push(new SpawnCommand(-4, 10, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(-2, 10, leveltimer, c, true));
+                pattern.Push(new SpawnCommand(-2, 10, leveltimer, a, true));
                 pattern.Push(new SpawnCommand(0, 10, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(2, 10, leveltimer, b, true));
+                pattern.Push(new SpawnCommand(2, 10, leveltimer, a, true));
                 pattern.Push(new SpawnCommand(4, 10, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(6, 10, leveltimer, b, true));
+                pattern.Push(new SpawnCommand(6, 10, leveltimer, a, true));
                 pattern.Push(new SpawnCommand(8, 10, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(10, 10, leveltimer, b, true));
+                pattern.Push(new SpawnCommand(10, 10, leveltimer, a, true));
                 wait = false;
                 break;
             case 7:
@@ -98,11 +98,26 @@ public class SpawnPattern {
                 pattern.Push(new SpawnCommand(12, -3, 0, c, true));
                 break;
             case 10:
-                pattern.Push(new SpawnCommand(-12, -12, 3f, a, true));
-                pattern.Push(new SpawnCommand(-12, 12, 0.2f, b, true));
-                pattern.Push(new SpawnCommand(-12, -12, 0.3f, c, true));
-                pattern.Push(new SpawnCommand(-12, 12, 0.2f, a, true));
+                pattern.Push(new SpawnCommand(12, -10, 3f, a, true));
+                pattern.Push(new SpawnCommand(-12, -10, 0.3f, b, true));
+                pattern.Push(new SpawnCommand(12, -10, 0.3f, a, true));
+                pattern.Push(new SpawnCommand(-12, -10, 0.3f, b, true));
+                pattern.Push(new SpawnCommand(12, -10, 0.3f, a, true));
+                pattern.Push(new SpawnCommand(-12, -10, 0.3f, b, true));
+                pattern.Push(new SpawnCommand(12, -10, 0.3f, c, true));
+                pattern.Push(new SpawnCommand(-12, -10, 0.3f, a, true));
+                pattern.Push(new SpawnCommand(12, -10, 0.3f, c, true));
+                pattern.Push(new SpawnCommand(-12, -10, 0.3f, a, true));
+                pattern.Push(new SpawnCommand(12, -10, 0.3f, c, true));
+                pattern.Push(new SpawnCommand(-12, -10, 0.3f, a, true));
                 break;
+            case 11:
+                pattern.Push(new SpawnCommand(0, -8, 0.3f, c, false));
+                pattern.Push(new SpawnCommand(0, 8, 0f, c, false));
+                pattern.Push(new SpawnCommand(12, 0, 0f, b, false));
+                pattern.Push(new SpawnCommand(-12, 0, 0f, b, false));
+                break;
+
         }
     }
 
