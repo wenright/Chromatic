@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour {
             float x = Mathf.Clamp(pos.x, 0, Screen.width - 50);
             float y = Mathf.Clamp(Screen.height - pos.y, 0, Screen.height - 50);
 
+            GUI.color = type;
             GUI.DrawTexture(new Rect(x, y, 48, 48), warningSprite);
         }
     }
