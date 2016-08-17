@@ -4,6 +4,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 
     public new GameObject particleSystem;
+    public Texture2D warningSprite;
 
     protected int speed = 500;
     protected Vector3 target;
@@ -11,29 +12,36 @@ public class Enemy : MonoBehaviour {
 	protected Controller gc;
     protected GameObject player;
 
-	// Use this for initialization
 	void Awake () {
         type = ColorList.white;
 		gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
+
+    void OnGUI () {
+        // Show a '!' when outside of the screen
+        if (!this.gameObject.GetComponent<SpriteRenderer>().isVisible) {
+            Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
+            float x = Mathf.Clamp(pos.x, 0, Screen.width - 50);
+            float y = Mathf.Clamp(Screen.height - pos.y, 0, Screen.height - 50);
+
+            GUI.color = type;
+            GUI.DrawTexture(new Rect(x, y, 48, 48), warningSprite);
+        }
+    }
 	
-	// Update is called once per frame
 	void Update () {
-        if (this.transform.position.y > 12 || this.transform.position.y < -12 || this.transform.position.x > 12 || this.transform.position.x < -12) 
-        {
+        if (this.transform.position.y > 12 || this.transform.position.y < -12 || this.transform.position.x > 12 || this.transform.position.x < -12) {
             this.Kill();
         }
         updateTarget();
         move();
-		if (!type.Equals(this.GetComponent<SpriteRenderer>().color)){
+		if (!type.Equals(this.GetComponent<SpriteRenderer>().color)) {
 			this.GetComponent<SpriteRenderer>().color = type;
 		}
     }
-    public virtual void updateTarget()
-    {
-        if (player)
-        {
+    public virtual void updateTarget() {
+        if (player) {
             target = player.transform.position;
         }
     }
@@ -46,12 +54,12 @@ public class Enemy : MonoBehaviour {
         GetComponent<Rigidbody2D>().AddForce(transform.up * Time.deltaTime * speed);
     }
 
-	public void SetColor(Color color){
+	public void SetColor(Color color) {
         type = color;
 	}
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player" ) {
+        if (other.tag == "Player") {
             if (this.type != other.GetComponent<Player>().GetColor()) {
                 other.GetComponent<Player>().Kill();
             } else {
