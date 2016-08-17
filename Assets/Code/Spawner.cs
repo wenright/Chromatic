@@ -6,9 +6,9 @@ public class Spawner : MonoBehaviour {
     public GameObject fixedenemy;
     public GameObject curveenemy;
     public float timer;
-	int i = 12;
+	int i = 1;
 	SpawnPattern current;
-	public int enemycount;
+	public int enemycount = 0;
 	int scheme;
 	// Use this for initialization
 	void Awake () {
@@ -37,12 +37,11 @@ public class Spawner : MonoBehaviour {
 		}
         GameObject.FindWithTag("GameController").GetComponent<Controller>().level = i;
         //out of time
-        GameObject lastEnemy;
+       
         if (timer <= 0 && !current.isComplete()) {
+			GameObject lastEnemy;
 			//spawn the enemy
 			SpawnCommand enemyInfo = current.getNext();
-			enemycount++;
-            
             if (enemyInfo.GetType() == "fixed") {
 			    lastEnemy = Instantiate (fixedenemy, enemyInfo.GetLocation(), new Quaternion()) as GameObject;
             }
@@ -60,6 +59,7 @@ public class Spawner : MonoBehaviour {
             
             lastEnemy.GetComponent<Enemy>().SetColor(enemyInfo.GetColor());
             timer = enemyInfo.GetDelay();
+			enemycount ++;
 		}
 
 
