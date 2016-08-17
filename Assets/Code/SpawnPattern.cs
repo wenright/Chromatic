@@ -58,64 +58,77 @@ public class SpawnPattern {
             case 6:
                 //FIXED
                 float leveltimer = 0.2f;
-                pattern.Push(new SpawnCommand(-10, 10, leveltimer+2f, a, true));
-                pattern.Push(new SpawnCommand(-8, 10, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(-6, 10, leveltimer,a, true));
-                pattern.Push(new SpawnCommand(-4, 10, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(-2, 10, leveltimer, a, true));
-                pattern.Push(new SpawnCommand(0, 10, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(2, 10, leveltimer, a, true));
-                pattern.Push(new SpawnCommand(4, 10, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(6, 10, leveltimer, a, true));
-                pattern.Push(new SpawnCommand(8, 10, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(10, 10, leveltimer, a, true));
+                pattern.Push(new SpawnCommand(-10, 10, leveltimer+2f, a, "fixed"));
+                pattern.Push(new SpawnCommand(-8, 10, leveltimer, c, "fixed"));
+                pattern.Push(new SpawnCommand(-6, 10, leveltimer,a, "fixed"));
+                pattern.Push(new SpawnCommand(-4, 10, leveltimer, c, "fixed"));
+                pattern.Push(new SpawnCommand(-2, 10, leveltimer, a, "fixed"));
+                pattern.Push(new SpawnCommand(0, 10, leveltimer, c, "fixed"));
+                pattern.Push(new SpawnCommand(2, 10, leveltimer, a, "fixed"));
+                pattern.Push(new SpawnCommand(4, 10, leveltimer, c, "fixed"));
+                pattern.Push(new SpawnCommand(6, 10, leveltimer, a, "fixed"));
+                pattern.Push(new SpawnCommand(8, 10, leveltimer, c, "fixed"));
+                pattern.Push(new SpawnCommand(10, 10, leveltimer, a, "fixed"));
                 wait = false;
                 break;
             case 7:
-                pattern.Push(new SpawnCommand(-12, 3, 3, a, true));
-                pattern.Push(new SpawnCommand(-12, 0, 0, b, true));
-                pattern.Push(new SpawnCommand(-12, -3, 0, c, true));
+                pattern.Push(new SpawnCommand(-12, 3, 3, a, "fixed"));
+                pattern.Push(new SpawnCommand(-12, 0, 0, b, "fixed"));
+                pattern.Push(new SpawnCommand(-12, -3, 0, c, "fixed"));
                 break;
             case 8:
                 leveltimer = 0.2f;
                 //FIXED
-                pattern.Push(new SpawnCommand(-10, 12, leveltimer+2f, b, true));
-                pattern.Push(new SpawnCommand(-8, -12, leveltimer, b, true));
-                pattern.Push(new SpawnCommand(-6, 12, leveltimer, b, true));
-                pattern.Push(new SpawnCommand(-4, -12, leveltimer, a, true));
-                pattern.Push(new SpawnCommand(-2, 12, leveltimer, a, true));
-                pattern.Push(new SpawnCommand(0, -12, leveltimer, a, true));
-                pattern.Push(new SpawnCommand(2, 12, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(4, -12, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(6, 12, leveltimer, c, true));
-                pattern.Push(new SpawnCommand(8, -12, leveltimer, b, true));
-                pattern.Push(new SpawnCommand(10, 12, leveltimer, b, true));
+                pattern.Push(new SpawnCommand(-10, 12, leveltimer+2f, b, "fixed"));
+                pattern.Push(new SpawnCommand(-8, -12, leveltimer, b, "fixed"));
+                pattern.Push(new SpawnCommand(-6, 12, leveltimer, b, "fixed"));
+                pattern.Push(new SpawnCommand(-4, -12, leveltimer, a, "fixed"));
+                pattern.Push(new SpawnCommand(-2, 12, leveltimer, a, "fixed"));
+                pattern.Push(new SpawnCommand(0, -12, leveltimer, a, "fixed"));
+                pattern.Push(new SpawnCommand(2, 12, leveltimer, c, "fixed"));
+                pattern.Push(new SpawnCommand(4, -12, leveltimer, c, "fixed"));
+                pattern.Push(new SpawnCommand(6, 12, leveltimer, c, "fixed"));
+                pattern.Push(new SpawnCommand(8, -12, leveltimer, b, "fixed"));
+                pattern.Push(new SpawnCommand(10, 12, leveltimer, b, "fixed"));
                 wait = false;
                 break;
             case 9:
-                pattern.Push(new SpawnCommand(12, 3, 3, a, true));
-                pattern.Push(new SpawnCommand(12, 0, 0, b, true));
-                pattern.Push(new SpawnCommand(12, -3, 0, c, true));
+                pattern.Push(new SpawnCommand(12, 3, 3, a, "fixed"));
+                pattern.Push(new SpawnCommand(12, 0, 0, b, "fixed"));
+                pattern.Push(new SpawnCommand(12, -3, 0, c, "fixed"));
                 break;
             case 10:
-                pattern.Push(new SpawnCommand(12, -10, 3f, a, true));
-                pattern.Push(new SpawnCommand(-12, -10, 0.3f, b, true));
-                pattern.Push(new SpawnCommand(12, -10, 0.3f, a, true));
-                pattern.Push(new SpawnCommand(-12, -10, 0.3f, b, true));
-                pattern.Push(new SpawnCommand(12, -10, 0.3f, a, true));
-                pattern.Push(new SpawnCommand(-12, -10, 0.3f, b, true));
-                pattern.Push(new SpawnCommand(12, -10, 0.3f, c, true));
-                pattern.Push(new SpawnCommand(-12, -10, 0.3f, a, true));
-                pattern.Push(new SpawnCommand(12, -10, 0.3f, c, true));
-                pattern.Push(new SpawnCommand(-12, -10, 0.3f, a, true));
-                pattern.Push(new SpawnCommand(12, -10, 0.3f, c, true));
-                pattern.Push(new SpawnCommand(-12, -10, 0.3f, a, true));
+                pattern.Push(new SpawnCommand(12, -10, 3f, a, "fixed"));
+                pattern.Push(new SpawnCommand(-12, -10, 0.3f, b, "fixed"));
+                pattern.Push(new SpawnCommand(12, -10, 0.3f, a, "fixed"));
+                pattern.Push(new SpawnCommand(-12, -10, 0.3f, b, "fixed"));
+                pattern.Push(new SpawnCommand(12, -10, 0.3f, a, "fixed"));
+                pattern.Push(new SpawnCommand(-12, -10, 0.3f, b, "fixed"));
+                pattern.Push(new SpawnCommand(12, -10, 0.3f, c, "fixed"));
+                pattern.Push(new SpawnCommand(-12, -10, 0.3f, a, "fixed"));
+                pattern.Push(new SpawnCommand(12, -10, 0.3f, c, "fixed"));
+                pattern.Push(new SpawnCommand(-12, -10, 0.3f, a, "fixed"));
+                pattern.Push(new SpawnCommand(12, -10, 0.3f, c, "fixed"));
+                pattern.Push(new SpawnCommand(-12, -10, 0.3f, a, "fixed"));
                 break;
             case 11:
-                pattern.Push(new SpawnCommand(0, -8, 0.3f, c, false));
-                pattern.Push(new SpawnCommand(0, 8, 0f, c, false));
-                pattern.Push(new SpawnCommand(12, 0, 0f, b, false));
-                pattern.Push(new SpawnCommand(-12, 0, 0f, b, false));
+                pattern.Push(new SpawnCommand(0, -8, 3f, c, "normal"));
+                pattern.Push(new SpawnCommand(0, 8, 0f, c, "normal"));
+                pattern.Push(new SpawnCommand(12, 0, 0f, b, "normal"));
+                pattern.Push(new SpawnCommand(-12, 0, 0f, b, "normal"));
+                break;
+            case 12:
+                pattern.Push(new SpawnCommand(-12, 3, 5f, a, "curve", false));
+                pattern.Push(new SpawnCommand(-12, 0, 0, b, "curve", false));
+                pattern.Push(new SpawnCommand(-12, -3, 0, c, "curve", false));
+                break;
+            case 13:
+                pattern.Push(new SpawnCommand(12, 3, 0, a, "curve", true));
+                pattern.Push(new SpawnCommand(12, 0, 0, b, "curve", true));
+                pattern.Push(new SpawnCommand(12, -3, 0, c, "curve", true));
+                pattern.Push(new SpawnCommand(-12, 2, 0, a, "curve", false));
+                pattern.Push(new SpawnCommand(-12, -1, 0, b, "curve", false));
+                pattern.Push(new SpawnCommand(-12, -4, 0, c, "curve", false));
                 break;
 
         }

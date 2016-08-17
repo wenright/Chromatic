@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour {
 
     public new GameObject particleSystem;
 
-    private int speed = 500;
+    protected int speed = 500;
     protected Vector3 target;
 	protected Color type;
 	protected Controller gc;
@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour {
             target = player.transform.position;
         }
     }
-   void move()  {
+   public virtual void move()  {
         //TODO: FIX THIS HORRIBLE MESS
         Quaternion newRotation = Quaternion.LookRotation(transform.position - target, Vector3.forward);
         newRotation.x = 0.0f;
