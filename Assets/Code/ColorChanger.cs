@@ -11,7 +11,7 @@ public class ColorChanger : MonoBehaviour {
         hidden = false;
         if (this.name == "Red")
             type = ColorList.red;
-       else if(this.name == "Blue")
+        if(this.name == "Blue")
             type = ColorList.blue;
         if (this.name == "Yellow")
             type = ColorList.yellow;

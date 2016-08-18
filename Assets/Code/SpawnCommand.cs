@@ -3,21 +3,15 @@ using System.Collections;
 
 public class SpawnCommand {
 
-    private int x;
-    private int y;
+    private float x;
+    private float y;
     private float delay;
     private Color color;
     private bool isfixed;
     
-    public SpawnCommand (int x, int y, float delay, Color color) {
-        this.x = x;
-        this.y = y;
-        this.delay = delay;
-        this.color = color;
-        this.isfixed = false;
-    }
-    public SpawnCommand(int x, int y, float delay, Color color, bool isfixed)
-    {
+    public SpawnCommand (float x, float y, float delay, Color color) : this (x, y, delay, color, false) {}
+
+    public SpawnCommand(float x, float y, float delay, Color color, bool isfixed) {
         this.x = x;
         this.y = y;
         this.delay = delay;
@@ -36,8 +30,8 @@ public class SpawnCommand {
     public Color GetColor () {
         return color;
     }
-    public bool isFixed()
-    {
+    
+    public bool isFixed() {
         return isfixed;
     }
 }

@@ -31,9 +31,10 @@ public class Enemy : MonoBehaviour {
     }
 	
 	void Update () {
-        if (this.transform.position.y > 12 || this.transform.position.y < -12 || this.transform.position.x > 12 || this.transform.position.x < -12) {
-            this.Kill();
-        }
+        // TODO better offscreen kill detection
+        // if (this.transform.position.y > 12 || this.transform.position.y < -12 || this.transform.position.x > 12 || this.transform.position.x < -12) {
+        //     this.Kill();
+        // }
         updateTarget();
         move();
 		if (!type.Equals(this.GetComponent<SpriteRenderer>().color)) {
