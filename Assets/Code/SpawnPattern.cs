@@ -11,10 +11,10 @@ public class SpawnPattern {
 	Color c;
 
     // Calculate screen width and height in terms of world units
-    private static float height = Camera.main.orthographicSize;
-    private static float width = height * Screen.width / Screen.height;
-    private static float fixedHeight = height;
-    private static float fixedWidth = width;
+    private static float fixedHeight = Camera.main.orthographicSize;
+    private static float fixedWidth = fixedHeight * Screen.width / Screen.height;
+    private static float height = fixedHeight * 1.2f;
+    private static float width = fixedWidth * 1.2f;
 
     // Use this for initialization
 	public SpawnPattern(int p, int scheme) {
