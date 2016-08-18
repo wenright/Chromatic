@@ -24,9 +24,8 @@ public class ColorChanger : MonoBehaviour {
     }
 
     void OnTriggerEnter2D (Collider2D other) {
-        // TODO change player color to w/e this is (Or calculate new color based on players color)
-        if (other.tag == "Player" && !hidden)
-        {
+        // Change player color to w/e this is (Or calculate new color based on players color)
+        if (other.tag == "Player" && !hidden) {
             this.GetComponent<SpriteRenderer>().enabled = false;
             hidden = true;
             gc.hp = gc.MAX_HP;
@@ -35,8 +34,7 @@ public class ColorChanger : MonoBehaviour {
         }
     }
 
-    IEnumerator Wait()
-    {
+    IEnumerator Wait() {
         yield return new WaitForSeconds(1.5f);
         this.GetComponent<SpriteRenderer>().enabled = true;
         hidden = false;

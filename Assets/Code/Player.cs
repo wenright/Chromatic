@@ -6,7 +6,6 @@ public class Player : MonoBehaviour {
     public new GameObject particleSystem;
 
     public Color color = ColorList.white;
-    private Color oldcolor;
 
     private Controller gc;
 
@@ -27,20 +26,10 @@ public class Player : MonoBehaviour {
     }
 
 	void Update () {
-        if (!color.Equals(oldcolor)) {
-            if ((color.Equals(ColorList.blue) && oldcolor.Equals(ColorList.yellow)) || (oldcolor.Equals(ColorList.blue) && color.Equals(ColorList.yellow)))
-                color = ColorList.green;
-            else if ((color.Equals(ColorList.red) && oldcolor.Equals(ColorList.yellow)) || (oldcolor.Equals(ColorList.red) && color.Equals(ColorList.yellow)))
-                color = ColorList.orange;
-            else if ((color.Equals(ColorList.blue) && oldcolor.Equals(ColorList.red)) || (oldcolor.Equals(ColorList.blue) && color.Equals(ColorList.red)))
-                color = ColorList.purple;
-        }
-        
-        if(gc.hp == 0) {
-            color = ColorList.white;
+        if (gc.hp == 0) {
+            SetColor(ColorList.white);
         }
 
-        SetColor(color);
 		Pulse ();
         transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
     }
@@ -60,8 +49,15 @@ public class Player : MonoBehaviour {
     }
 
     public void SetColor (Color color) {
-        this.oldcolor = this.color;
-        this.color = color;
+        if ((color.Equals(ColorList.blue) && this.color.Equals(ColorList.yellow)) || (this.color.Equals(ColorList.blue) && color.Equals(ColorList.yellow))){
+            this.color = ColorList.green;
+        } else if ((color.Equals(ColorList.red) && this.color.Equals(ColorList.yellow)) || (this.color.Equals(ColorList.red) && color.Equals(ColorList.yellow))) {
+            this.color = ColorList.orange;
+        } else if ((color.Equals(ColorList.blue) && this.color.Equals(ColorList.red)) || (this.color.Equals(ColorList.blue) && color.Equals(ColorList.red))) {
+            this.color = ColorList.purple;
+        } else {
+            this.color = color;
+        }
 
         trail.material.SetColor("_Color", this.color);
         sprite.color = this.color;
