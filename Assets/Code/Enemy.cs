@@ -6,13 +6,16 @@ public class Enemy : MonoBehaviour {
     public new GameObject particleSystem;
     public Texture2D warningSprite;
 
-    private int speed = 500;
+    protected int speed = 500;
     protected Vector3 target;
 	protected Color type;
 	protected Controller gc;
     protected GameObject player;
 
+	public bool onScreenOnce;
+
 	void Awake () {
+		onScreenOnce = false;
         type = ColorList.white;
 		gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -20,21 +23,23 @@ public class Enemy : MonoBehaviour {
 
     void OnGUI () {
         // Show a '!' when outside of the screen
-        if (!this.gameObject.GetComponent<SpriteRenderer>().isVisible) {
-            Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
-            float x = Mathf.Clamp(pos.x, 0, Screen.width - 50);
-            float y = Mathf.Clamp(Screen.height - pos.y, 0, Screen.height - 50);
+		if (!this.gameObject.GetComponent<SpriteRenderer> ().isVisible && !onScreenOnce) {
+			Vector3 pos = Camera.main.WorldToScreenPoint (transform.position);
+			float x = Mathf.Clamp (pos.x, 0, Screen.width - 50);
+			float y = Mathf.Clamp (Screen.height - pos.y, 0, Screen.height - 50);
+			GUI.color = type;
+			GUI.DrawTexture (new Rect (x, y, 48, 48), warningSprite);
+		} else {
+			onScreenOnce = true;
+		}
 
-            GUI.color = type;
-            GUI.DrawTexture(new Rect(x, y, 48, 48), warningSprite);
-        }
     }
 	
 	void Update () {
-        // TODO better offscreen kill detection
-        // if (this.transform.position.y > 12 || this.transform.position.y < -12 || this.transform.position.x > 12 || this.transform.position.x < -12) {
-        //     this.Kill();
-        // }
+        // TODO better offscreen kill detection (Preferably based on screen height in game units)
+        if (this.transform.position.y > 15 || this.transform.position.y < -15 || this.transform.position.x > 15 || this.transform.position.x < -15) {
+            this.Kill();
+        }
         updateTarget();
         move();
 		if (!type.Equals(this.GetComponent<SpriteRenderer>().color)) {
@@ -46,7 +51,7 @@ public class Enemy : MonoBehaviour {
             target = player.transform.position;
         }
     }
-   void move()  {
+   public virtual void move()  {
         //TODO: FIX THIS HORRIBLE MESS
         Quaternion newRotation = Quaternion.LookRotation(transform.position - target, Vector3.forward);
         newRotation.x = 0.0f;

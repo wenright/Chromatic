@@ -4,10 +4,11 @@ using System.Collections;
 public class Spawner : MonoBehaviour {
 	public GameObject enemy;
     public GameObject fixedenemy;
-	public float timer;
+    public GameObject curveenemy;
+    public float timer;
 	int i = 1;
 	SpawnPattern current;
-	public int enemycount;
+	public int enemycount = 0;
 	int scheme;
 	// Use this for initialization
 	void Awake () {
@@ -36,14 +37,21 @@ public class Spawner : MonoBehaviour {
 		}
         GameObject.FindWithTag("GameController").GetComponent<Controller>().level = i;
         //out of time
+       
         if (timer <= 0 && !current.isComplete()) {
+			GameObject lastEnemy;
 			//spawn the enemy
 			SpawnCommand enemyInfo = current.getNext();
-			enemycount++;
-
-            GameObject lastEnemy;
-            if (enemyInfo.isFixed()) {
+            if (enemyInfo.GetType() == "fixed") {
 			    lastEnemy = Instantiate (fixedenemy, enemyInfo.GetLocation(), new Quaternion()) as GameObject;
+            }
+            else if(enemyInfo.GetType() == "curve")
+            {
+                lastEnemy = Instantiate(curveenemy, enemyInfo.GetLocation(), new Quaternion()) as GameObject;
+                if (enemyInfo.IsGoingLeft())
+                    lastEnemy.GetComponent<CurveEnemy>().SetLeft();
+                else
+                    lastEnemy.GetComponent<CurveEnemy>().SetRight();
             }
             else {
                 lastEnemy = Instantiate(enemy, enemyInfo.GetLocation(), new Quaternion()) as GameObject;
@@ -51,6 +59,7 @@ public class Spawner : MonoBehaviour {
             
             lastEnemy.GetComponent<Enemy>().SetColor(enemyInfo.GetColor());
             timer = enemyInfo.GetDelay();
+			enemycount ++;
 		}
 
 

@@ -7,16 +7,20 @@ public class SpawnCommand {
     private float y;
     private float delay;
     private Color color;
-    private bool isfixed;
+    private string type;
+    private bool left;
     
-    public SpawnCommand (float x, float y, float delay, Color color) : this (x, y, delay, color, false) {}
+    public SpawnCommand(float x, float y, float delay, Color color) : this(x, y, delay, color, "normal", false) {}
 
-    public SpawnCommand(float x, float y, float delay, Color color, bool isfixed) {
+    public SpawnCommand(float x, float y, float delay, Color color, string type) : this(x, y, delay, color, type, false) {}
+
+    public SpawnCommand(float x, float y, float delay, Color color, string type, bool left) {
         this.x = x;
         this.y = y;
         this.delay = delay;
         this.color = color;
-        this.isfixed = isfixed;
+        this.type = type;
+        this.left = left;
     }
 
     public Vector2 GetLocation () {
@@ -30,8 +34,12 @@ public class SpawnCommand {
     public Color GetColor () {
         return color;
     }
-    
-    public bool isFixed() {
-        return isfixed;
+
+    new public string GetType () {
+        return type;
+    }
+
+    public bool IsGoingLeft () {
+        return left;
     }
 }
