@@ -5,7 +5,7 @@ public class CameraShake : MonoBehaviour {
 
     private int numRepetitions = 10;
     private float frequency = 0.025f;
-    private float intensity = 0.075f;
+    private float intensity = 0.25f;
 
     public void Shake () {
         StartCoroutine(ShakeIEnumerator());

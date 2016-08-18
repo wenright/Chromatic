@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour {
     public GameObject fixedenemy;
     public GameObject curveenemy;
     public float timer;
-	int i = 1;
+	int i = 13;
 	SpawnPattern current;
 	public int enemycount = 0;
 	int scheme;
