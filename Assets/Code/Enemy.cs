@@ -11,14 +11,18 @@ public class Enemy : MonoBehaviour {
 	protected Color type;
 	protected Controller gc;
     protected GameObject player;
+    protected int warningSize;
+
 
 	public bool onScreenOnce;
 
 	void Awake () {
-		onScreenOnce = false;
+        warningSize = 0;
+        onScreenOnce = false;
         type = ColorList.white;
 		gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
         player = GameObject.FindGameObjectWithTag("Player");
+        warningSize = 24;
     }
 
     void OnGUI () {
@@ -27,8 +31,8 @@ public class Enemy : MonoBehaviour {
 			Vector3 pos = Camera.main.WorldToScreenPoint (transform.position);
 			float x = Mathf.Clamp (pos.x, 0, Screen.width - 50);
 			float y = Mathf.Clamp (Screen.height - pos.y, 0, Screen.height - 50);
-			GUI.color = type;
-			GUI.DrawTexture (new Rect (x, y, 48, 48), warningSprite);
+            GUI.color = type;
+			GUI.DrawTexture (new Rect (x, y, warningSize, warningSize), warningSprite);
 		} else {
 			onScreenOnce = true;
 		}
@@ -36,9 +40,11 @@ public class Enemy : MonoBehaviour {
     }
 	
 	void Update () {
+        if(warningSize < 48)
+         warningSize += 2;
         // TODO better offscreen kill detection (Preferably based on screen height in game units)
-        if (this.transform.position.y > 15 || this.transform.position.y < -15 || this.transform.position.x > 15 || this.transform.position.x < -15) {
-            this.Kill();
+        if (!this.GetComponent<SpriteRenderer>().isVisible && onScreenOnce) {
+            Kill();  
         }
         updateTarget();
         move();
