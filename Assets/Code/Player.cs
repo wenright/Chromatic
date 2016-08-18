@@ -5,8 +5,8 @@ public class Player : MonoBehaviour {
     
     public new GameObject particleSystem;
 
-    private Color type = ColorList.white;
-    private Color oldtype;
+    public Color color = ColorList.white;
+    private Color oldcolor;
 
     private Controller gc;
 
@@ -21,26 +21,26 @@ public class Player : MonoBehaviour {
     void Awake () {
         trail = GetComponent<TrailRenderer>();
         sprite = GetComponent<SpriteRenderer>();
-        type = ColorList.white;
+        color = ColorList.white;
         gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
 		pulsetimer = 1;
     }
 
 	void Update () {
-        if (!type.Equals(oldtype)) {
-            if ((type.Equals(ColorList.blue) && oldtype.Equals(ColorList.yellow)) || (oldtype.Equals(ColorList.blue) && type.Equals(ColorList.yellow)))
-                type = ColorList.green;
-            else if ((type.Equals(ColorList.red) && oldtype.Equals(ColorList.yellow)) || (oldtype.Equals(ColorList.red) && type.Equals(ColorList.yellow)))
-                type = ColorList.orange;
-            else if ((type.Equals(ColorList.blue) && oldtype.Equals(ColorList.red)) || (oldtype.Equals(ColorList.blue) && type.Equals(ColorList.red)))
-                type = ColorList.purple;
+        if (!color.Equals(oldcolor)) {
+            if ((color.Equals(ColorList.blue) && oldcolor.Equals(ColorList.yellow)) || (oldcolor.Equals(ColorList.blue) && color.Equals(ColorList.yellow)))
+                color = ColorList.green;
+            else if ((color.Equals(ColorList.red) && oldcolor.Equals(ColorList.yellow)) || (oldcolor.Equals(ColorList.red) && color.Equals(ColorList.yellow)))
+                color = ColorList.orange;
+            else if ((color.Equals(ColorList.blue) && oldcolor.Equals(ColorList.red)) || (oldcolor.Equals(ColorList.blue) && color.Equals(ColorList.red)))
+                color = ColorList.purple;
         }
         
         if(gc.hp == 0) {
-            type = ColorList.white;
+            color = ColorList.white;
         }
 
-        SetColor(type);
+        SetColor(color);
 		Pulse ();
         transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
     }
@@ -60,20 +60,20 @@ public class Player : MonoBehaviour {
     }
 
     public void SetColor (Color color) {
-        this.oldtype = type;
-        this.type = color;
+        this.oldcolor = this.color;
+        this.color = color;
 
-        trail.material.SetColor("_Color", color);
-        sprite.color = color;
+        trail.material.SetColor("_Color", this.color);
+        sprite.color = this.color;
     }
 
     public Color GetColor () {
-        return type;
+        return color;
     }
 
     public void Kill () {
         // Set particle system color to player color
-        particleSystem.GetComponent<ParticleSystem>().startColor = type;
+        particleSystem.GetComponent<ParticleSystem>().startColor = color;
 
         // Spawn particle system
         Instantiate(particleSystem, transform.position, transform.rotation);
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour {
 			pulsetimer -= Time.deltaTime * 3;
 		}
 
-		if (pulsetimer <= 0 && type != ColorList.white && gc.hp < 50) {
+		if (pulsetimer <= 0 && color != ColorList.white && gc.hp < 50) {
 			pulsetimer = 1;
 		}
 	}

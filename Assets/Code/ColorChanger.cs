@@ -3,19 +3,19 @@ using System.Collections;
 
 public class ColorChanger : MonoBehaviour {
     bool hidden;
-    Color type;
+    Color color;
     Controller gc;
 
     void Awake () {
         gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
         hidden = false;
         if (this.name == "Red")
-            type = ColorList.red;
+            color = ColorList.red;
         if(this.name == "Blue")
-            type = ColorList.blue;
+            color = ColorList.blue;
         if (this.name == "Yellow")
-            type = ColorList.yellow;
-		this.GetComponent<SpriteRenderer> ().color = type;
+            color = ColorList.yellow;
+		this.GetComponent<SpriteRenderer> ().color = color;
     }
 	
 	// Update is called once per frame
@@ -30,7 +30,7 @@ public class ColorChanger : MonoBehaviour {
             this.GetComponent<SpriteRenderer>().enabled = false;
             hidden = true;
             gc.hp = gc.MAX_HP;
-            other.gameObject.GetComponent<Player>().SetColor(this.type);
+            other.gameObject.GetComponent<Player>().SetColor(this.color);
             StartCoroutine(Wait());
         }
     }

@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour {
 
     protected int speed = 500;
     protected Vector3 target;
-	protected Color type;
+	protected Color color;
 	protected Controller gc;
     protected GameObject player;
     protected int warningSize;
@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour {
 	void Awake () {
         warningSize = 0;
         onScreenOnce = false;
-        type = ColorList.white;
+        color = ColorList.white;
 		gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
         player = GameObject.FindGameObjectWithTag("Player");
         warningSize = 24;
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour {
 			Vector3 pos = Camera.main.WorldToScreenPoint (transform.position);
 			float x = Mathf.Clamp (pos.x, 0, Screen.width - 50);
 			float y = Mathf.Clamp (Screen.height - pos.y, 0, Screen.height - 50);
-            GUI.color = type;
+            GUI.color = color;
 			GUI.DrawTexture (new Rect (x, y, warningSize, warningSize), warningSprite);
 		} else {
 			onScreenOnce = true;
@@ -48,8 +48,8 @@ public class Enemy : MonoBehaviour {
         }
         updateTarget();
         move();
-		if (!type.Equals(this.GetComponent<SpriteRenderer>().color)) {
-			this.GetComponent<SpriteRenderer>().color = type;
+		if (!color.Equals(this.GetComponent<SpriteRenderer>().color)) {
+			this.GetComponent<SpriteRenderer>().color = color;
 		}
     }
     public virtual void updateTarget() {
@@ -67,15 +67,15 @@ public class Enemy : MonoBehaviour {
     }
 
 	public void SetColor(Color color) {
-        type = color;
+        this.color = color;
 	}
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
-            if (this.type != other.GetComponent<Player>().GetColor()) {
+            if (this.color != other.GetComponent<Player>().GetColor()) {
                 other.GetComponent<Player>().Kill();
             } else {
-                particleSystem.GetComponent<ParticleSystem>().startColor = type;
+                particleSystem.GetComponent<ParticleSystem>().startColor = color;
 
                 Instantiate(particleSystem, transform.position, transform.rotation);
                 gc.hp += 20;

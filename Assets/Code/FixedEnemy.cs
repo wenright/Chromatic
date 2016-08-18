@@ -2,11 +2,9 @@
 using System.Collections;
 
 public class FixedEnemy : Enemy {
-    public void Start()
-    {
+    public void Start() {
         //add cases for differant starting moves?
-        switch (gc.level)
-        {
+        switch (gc.level) {
             case 6:
             case 8:
                 target = new Vector3(this.transform.position.x, -this.transform.position.y, this.transform.position.z);
@@ -21,8 +19,7 @@ public class FixedEnemy : Enemy {
         }
         
     }
-    public override void updateTarget()
-    {
+    public override void updateTarget() {
        //do nothing by default unless we want more patterns.
        //Or do waypoints
     } 
