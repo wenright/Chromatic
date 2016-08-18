@@ -5,7 +5,11 @@ public class Player : MonoBehaviour {
     
     public new GameObject particleSystem;
 
-    public Color color = ColorList.white;
+    public ColorChanger RedColorChanger;
+    public ColorChanger BlueColorChanger;
+    public ColorChanger YellowColorChanger;
+
+    private Color color = ColorList.white;
 
     private Controller gc;
 
@@ -27,7 +31,7 @@ public class Player : MonoBehaviour {
 
 	void Update () {
         if (gc.hp == 0) {
-            SetColor(ColorList.white);
+            AddColor(ColorList.white);
         }
 
 		Pulse ();
@@ -48,16 +52,40 @@ public class Player : MonoBehaviour {
         return transform.position;
     }
 
-    public void SetColor (Color color) {
+    public void AddColor (Color color) {
         if ((color.Equals(ColorList.blue) && this.color.Equals(ColorList.yellow)) || (this.color.Equals(ColorList.blue) && color.Equals(ColorList.yellow))){
-            this.color = ColorList.green;
+            SetColor(ColorList.green);
         } else if ((color.Equals(ColorList.red) && this.color.Equals(ColorList.yellow)) || (this.color.Equals(ColorList.red) && color.Equals(ColorList.yellow))) {
-            this.color = ColorList.orange;
+            SetColor(ColorList.orange);
         } else if ((color.Equals(ColorList.blue) && this.color.Equals(ColorList.red)) || (this.color.Equals(ColorList.blue) && color.Equals(ColorList.red))) {
-            this.color = ColorList.purple;
+            SetColor(ColorList.purple);
         } else {
-            this.color = color;
+            // Release the two other colors if not already white
+            if (!this.color.Equals(ColorList.white)) {
+                if (this.color.Equals(ColorList.green)) {
+                    BlueColorChanger.Show();
+                    YellowColorChanger.Show();
+                } else if (this.color.Equals(ColorList.orange)) {
+                    RedColorChanger.Show();
+                    YellowColorChanger.Show();
+                } else if (this.color.Equals(ColorList.purple)) {
+                    RedColorChanger.Show();
+                    BlueColorChanger.Show();
+                } else if (this.color.Equals(ColorList.red)) {
+                    RedColorChanger.Show();
+                } else if (this.color.Equals(ColorList.blue)) {
+                    BlueColorChanger.Show();
+                } else if (this.color.Equals(ColorList.yellow)) {
+                    YellowColorChanger.Show();
+                }
+            }
+
+            SetColor(color);
         }
+    }
+
+    public void SetColor (Color color) {
+        this.color = color;
 
         trail.material.SetColor("_Color", this.color);
         sprite.color = this.color;

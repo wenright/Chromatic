@@ -9,12 +9,17 @@ public class ColorChanger : MonoBehaviour {
     void Awake () {
         gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
         hidden = false;
-        if (this.name == "Red")
+
+        if (this.name == "Red") {
             color = ColorList.red;
-        if(this.name == "Blue")
+        }
+        if(this.name == "Blue") {
             color = ColorList.blue;
-        if (this.name == "Yellow")
+        }
+        if (this.name == "Yellow") {
             color = ColorList.yellow;
+        }
+
 		this.GetComponent<SpriteRenderer> ().color = color;
     }
 	
@@ -26,16 +31,18 @@ public class ColorChanger : MonoBehaviour {
     void OnTriggerEnter2D (Collider2D other) {
         // Change player color to w/e this is (Or calculate new color based on players color)
         if (other.tag == "Player" && !hidden) {
-            this.GetComponent<SpriteRenderer>().enabled = false;
-            hidden = true;
+            Hide();
             gc.hp = gc.MAX_HP;
-            other.gameObject.GetComponent<Player>().SetColor(this.color);
-            StartCoroutine(Wait());
+            other.gameObject.GetComponent<Player>().AddColor(this.color);
         }
     }
 
-    IEnumerator Wait() {
-        yield return new WaitForSeconds(1.5f);
+    public void Hide () {
+        this.GetComponent<SpriteRenderer>().enabled = false;
+        hidden = true;
+    }
+
+    public void Show () {
         this.GetComponent<SpriteRenderer>().enabled = true;
         hidden = false;
     }
