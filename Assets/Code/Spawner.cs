@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Spawner : MonoBehaviour {
+	
 	public GameObject enemy;
     public GameObject fixedenemy;
     public GameObject curveenemy;
@@ -10,6 +11,7 @@ public class Spawner : MonoBehaviour {
 	SpawnPattern current;
 	public int enemycount = 0;
 	int scheme;
+
 	// Use this for initialization
 	void Awake () {
 		scheme = Random.Range(1, 4);
