@@ -152,9 +152,9 @@ public class SpawnPattern {
                 pattern.Push(new SpawnCommand(fixedWidth, fixedHeight * (3/4f), 0, a, "curve", true));
                 pattern.Push(new SpawnCommand(fixedWidth, 0, 0, b, "curve", true));
                 pattern.Push(new SpawnCommand(fixedWidth, -fixedHeight * (3/4f), 0, c, "curve", true));
-				pattern.Push(new SpawnCommand(-fixedWidth, fixedHeight * (3/4f), 0, a, "curve", true));
-				pattern.Push(new SpawnCommand(-fixedWidth, 0, 0, b, "curve", true));
-				pattern.Push(new SpawnCommand(-fixedWidth, -fixedHeight * (3/4f), 0, c, "curve", true));
+				pattern.Push(new SpawnCommand(-fixedWidth, fixedHeight * (3/4f), 0, a, "curve", false));
+				pattern.Push(new SpawnCommand(-fixedWidth, 0, 0, b, "curve", false));
+				pattern.Push(new SpawnCommand(-fixedWidth, -fixedHeight * (3/4f), 0, c, "curve", false));
 				fixedWidth--;
                 break;
         }
