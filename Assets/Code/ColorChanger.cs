@@ -38,7 +38,7 @@ public class ColorChanger : MonoBehaviour {
     }
 
     public void Hide () {
-        this.GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
         hidden = true;
     }
 
@@ -47,8 +47,11 @@ public class ColorChanger : MonoBehaviour {
     }
 
     private IEnumerator WaitThenShow () {
-        yield return new WaitForSeconds(0.5f);
-        this.GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<Animation>().Play();
+
+        yield return new WaitForSeconds(0.25f);
+
         hidden = false;
     }
 }
