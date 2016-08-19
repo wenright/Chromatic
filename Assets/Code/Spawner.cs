@@ -36,6 +36,10 @@ public class Spawner : MonoBehaviour {
 				i++;
 				current = new SpawnPattern (i, scheme);
 			}
+
+			if (i > 13) {
+				i = 1;
+			}
 		}
         GameObject.FindWithTag("GameController").GetComponent<Controller>().level = i;
         //out of time

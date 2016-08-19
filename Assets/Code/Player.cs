@@ -4,6 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
     
     public new GameObject particleSystem;
+    public GameObject particleSystemAttractor;
 
     public ColorChanger RedColorChanger;
     public ColorChanger BlueColorChanger;
@@ -60,28 +61,35 @@ public class Player : MonoBehaviour {
         } else if ((color.Equals(ColorList.blue) && this.color.Equals(ColorList.red)) || (this.color.Equals(ColorList.blue) && color.Equals(ColorList.red))) {
             SetColor(ColorList.purple);
         } else {
-            // Release the two other colors if not already white
+            // Release the other one or two colors if not already white
             if (!this.color.Equals(ColorList.white)) {
                 if (this.color.Equals(ColorList.green)) {
-                    BlueColorChanger.Show();
-                    YellowColorChanger.Show();
+                    SpawnAttractorSystem(ColorList.blue, BlueColorChanger);
+                    SpawnAttractorSystem(ColorList.yellow, YellowColorChanger);
                 } else if (this.color.Equals(ColorList.orange)) {
-                    RedColorChanger.Show();
-                    YellowColorChanger.Show();
+                    SpawnAttractorSystem(ColorList.yellow, YellowColorChanger);
+                    SpawnAttractorSystem(ColorList.red, RedColorChanger);
                 } else if (this.color.Equals(ColorList.purple)) {
-                    RedColorChanger.Show();
-                    BlueColorChanger.Show();
+                    SpawnAttractorSystem(ColorList.red, RedColorChanger);
+                    SpawnAttractorSystem(ColorList.blue, BlueColorChanger);
                 } else if (this.color.Equals(ColorList.red)) {
-                    RedColorChanger.Show();
+                    SpawnAttractorSystem(ColorList.red, RedColorChanger);
                 } else if (this.color.Equals(ColorList.blue)) {
-                    BlueColorChanger.Show();
+                    SpawnAttractorSystem(ColorList.blue, BlueColorChanger);
                 } else if (this.color.Equals(ColorList.yellow)) {
-                    YellowColorChanger.Show();
+                    SpawnAttractorSystem(ColorList.yellow, YellowColorChanger);
                 }
             }
 
             SetColor(color);
         }
+    }
+
+    private void SpawnAttractorSystem (Color color, ColorChanger cc) {
+        GameObject system = Instantiate(particleSystemAttractor, transform.position, transform.rotation) as GameObject;
+        system.GetComponent<ParticleSystem>().startColor = color;
+        system.GetComponent<ParticleAttractor>().SetTarget(cc.transform);
+        cc.Show();
     }
 
     public void SetColor (Color color) {
