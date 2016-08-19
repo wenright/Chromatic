@@ -17,10 +17,12 @@ public class Controller : MonoBehaviour {
     public int level;
 
     void Awake () {
-		if (gcsingleton == null)
+		if (gcsingleton == null) {
 			gcsingleton = this;
-		else
+		}
+		else {
 			Destroy (gameObject);
+		}
 		DontDestroyOnLoad (this.gameObject);
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
@@ -31,13 +33,16 @@ public class Controller : MonoBehaviour {
             healthSlider.value = hp / MAX_HP;
             Fill.color = player.GetColor();
         }
+
         if (hp > 0) {
             hp--;
         }
+
 		if (player.GetColor () == ColorList.purple || player.GetColor () == ColorList.orange || player.GetColor () == ColorList.green) {
 			ChangeBGColor (player.GetColor ());
-		} else
+		} else {
 			ChangeBGColor (ColorList.white);
+		}
     }
 	void ChangeBGColor (Color color) {
 		if (color == Color.white)
