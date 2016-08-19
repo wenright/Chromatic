@@ -43,6 +43,11 @@ public class ColorChanger : MonoBehaviour {
     }
 
     public void Show () {
+        StartCoroutine(WaitThenShow());
+    }
+
+    private IEnumerator WaitThenShow () {
+        yield return new WaitForSeconds(0.5f);
         this.GetComponent<SpriteRenderer>().enabled = true;
         hidden = false;
     }
