@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour {
     protected GameObject player;
     protected int warningSize;
 
+	public bool canHit;
+
 
 	public bool onScreenOnce;
 
@@ -40,6 +42,12 @@ public class Enemy : MonoBehaviour {
     }
 	
 	void Update () {
+		
+		if (this.color == player.GetComponent<Player> ().GetColor ())
+			this.GetComponent<Animator> ().SetBool ("canHit", true);
+		else
+			this.GetComponent<Animator> ().SetBool ("canHit", false);
+
         if(warningSize < 48)
          warningSize += 2;
         // TODO better offscreen kill detection (Preferably based on screen height in game units)
