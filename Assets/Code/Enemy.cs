@@ -43,29 +43,37 @@ public class Enemy : MonoBehaviour {
 	
 	void Update () {
 		
-		if (this.color == player.GetComponent<Player> ().GetColor ())
+		if (player && this.color == player.GetComponent<Player> ().GetColor ()) {
 			this.GetComponent<Animator> ().SetBool ("canHit", true);
-		else
+        }
+		else {
 			this.GetComponent<Animator> ().SetBool ("canHit", false);
+        }
 
-        if(warningSize < 48)
+        if(warningSize < 48) {
          warningSize += 2;
+        }
+
         // TODO better offscreen kill detection (Preferably based on screen height in game units)
         if (!this.GetComponent<SpriteRenderer>().isVisible && onScreenOnce) {
             Kill();  
         }
+
         updateTarget();
         move();
+
 		if (!color.Equals(this.GetComponent<SpriteRenderer>().color)) {
 			this.GetComponent<SpriteRenderer>().color = color;
 		}
     }
+
     public virtual void updateTarget() {
         if (player) {
             target = player.transform.position;
         }
     }
-   public virtual void move()  {
+
+    public virtual void move()  {
         //TODO: FIX THIS HORRIBLE MESS
         Quaternion newRotation = Quaternion.LookRotation(transform.position - target, Vector3.forward);
         newRotation.x = 0.0f;
