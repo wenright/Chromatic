@@ -1,5 +1,5 @@
 #Chromatic
-This is the source code for Chromatic, we are in the process of cleaning up and preparing for iOS.
+This is the source code for Chromatic 1.3, the version that is currently available on the Google Play store.  Current development for version 2 is done on the <a href="https://github.com/wenright/Chromatic/tree/Chromatic2">Chromatic2</a> branch.
 
 Built in <a href="http://unity3d.com/">Unity</a> using JavaScript.
 
