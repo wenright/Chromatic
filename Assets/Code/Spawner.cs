@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour {
 
     
 		//Do we have a valid spawn pattern?
-		if (current.isComplete ()) {
+		if (current != null && current.isComplete ()) {
 			//are we supposed to wait?
 			if (!current.isWaiting ()) {
 				i++;
