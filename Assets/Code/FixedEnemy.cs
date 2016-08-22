@@ -5,15 +5,13 @@ public class FixedEnemy : Enemy {
     public void Start() {
         //add cases for differant starting moves?
         switch (gc.level) {
-            case 6:
-            case 8:
+			default:
+			if(Camera.main.WorldToScreenPoint (transform.position).y > Screen.height || Camera.main.WorldToScreenPoint (transform.position).y < 0)
                 target = new Vector3(this.transform.position.x, -this.transform.position.y, this.transform.position.z);
-                break;
-            case 7:
-            case 9:
+			else
                 target = new Vector3(-this.transform.position.x, this.transform.position.y, this.transform.position.z);
                 break;
-            case 10:
+            case 9:
                 target = new Vector3(-this.transform.position.x, -this.transform.position.y, this.transform.position.z);
                 break;
         }

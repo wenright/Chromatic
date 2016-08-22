@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour {
     public GameObject fixedenemy;
     public GameObject curveenemy;
     public float timer;
-	int i = 1;
+	int i = 14;
 	SpawnPattern current;
 	public int enemycount = 0;
 	int scheme;
@@ -35,10 +35,6 @@ public class Spawner : MonoBehaviour {
 				//if yes, than wait for all enemies to be dead.
 				i++;
 				current = new SpawnPattern (i, scheme);
-			}
-
-			if (i > 13) {
-				i = 1;
 			}
 		}
         GameObject.FindWithTag("GameController").GetComponent<Controller>().level = i;
