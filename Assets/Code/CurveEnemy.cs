@@ -15,9 +15,9 @@ public class CurveEnemy : Enemy {
     {
 
         if(left)
-            pos -= (transform.right) * Time.deltaTime * 5;
+            pos -= (transform.right) * Time.deltaTime * 7;
         else
-            pos += (transform.right) * Time.deltaTime * 5;
+            pos += (transform.right) * Time.deltaTime * 7;
         transform.position = (pos) + axis * Mathf.Sin(Time.time * 8);
     }
 

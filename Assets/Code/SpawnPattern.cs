@@ -138,21 +138,21 @@ public class SpawnPattern {
                 break;
 		case 12:
 				fixedWidth++;
-				pattern.Push (new SpawnCommand (-fixedWidth, fixedHeight / 2f, 5f, a, "curve", false));
-				pattern.Push (new SpawnCommand (-fixedWidth, 0, 0, b, "curve", false));
-				pattern.Push (new SpawnCommand (-fixedWidth, -fixedHeight / 2f, 0, c, "curve", false));
+				pattern.Push (new SpawnCommand (-fixedWidth, fixedHeight*(1.2f) / 2f, 5f, a, "curve", false));
+				pattern.Push (new SpawnCommand (-fixedWidth, 0, 0.2f, b, "curve", false));
+				pattern.Push (new SpawnCommand (-fixedWidth, -fixedHeight*(1.2f) / 2f, 0.2f, c, "curve", false));
 				fixedWidth--;
                 break;
-		case 13:
-				fixedWidth++;
-                pattern.Push(new SpawnCommand(fixedWidth, fixedHeight * (3/4f), 0, a, "curve", true));
-                pattern.Push(new SpawnCommand(fixedWidth, 0, 0, b, "curve", true));
-                pattern.Push(new SpawnCommand(fixedWidth, -fixedHeight * (3/4f), 0, c, "curve", true));
-				pattern.Push(new SpawnCommand(-fixedWidth, fixedHeight * (3/4f), 0, a, "curve", false));
-				pattern.Push(new SpawnCommand(-fixedWidth, 0, 0, b, "curve", false));
-				pattern.Push(new SpawnCommand(-fixedWidth, -fixedHeight * (3/4f), 0, c, "curve", false));
-				fixedWidth--;
-                break;
+        case 13:
+            fixedWidth++;
+            pattern.Push(new SpawnCommand(-fixedWidth, (fixedHeight+0.5f)*(0.6f), 5f, a, "curve", false));
+            pattern.Push(new SpawnCommand(-fixedWidth, 0.5f, 0.2f, b, "curve", false));
+            pattern.Push(new SpawnCommand(-fixedWidth, -(fixedHeight-0.5f) * (0.6f), 0.2f, c, "curve", false));
+            pattern.Push(new SpawnCommand(fixedWidth+2, (fixedHeight + 0.5f) * (0.6f), 0f, a, "curve", true));
+            pattern.Push(new SpawnCommand(fixedWidth+2, 0.5f, 0.2f, b, "curve", true));
+            pattern.Push(new SpawnCommand(fixedWidth+2, -(fixedHeight - 0.5f) * (0.6f), 0.2f, c, "curve", true));
+            fixedWidth--;
+            break;
         }
     }
 
