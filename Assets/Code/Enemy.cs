@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour {
 			Vector3 pos = Camera.main.WorldToScreenPoint (transform.position);
 			float x = Mathf.Clamp (pos.x, 0, Screen.width - 50);
 			float y = Mathf.Clamp (Screen.height - pos.y, 0, Screen.height - 50);
+            if (pos.y > Screen.height && pos.x/Screen.width < gc.healthSlider.value)
+                y += 30;
             GUI.color = color;
 			GUI.DrawTexture (new Rect (x, y, warningSize, warningSize), warningSprite);
 		} else {
