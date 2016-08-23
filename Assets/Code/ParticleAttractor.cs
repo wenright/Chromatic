@@ -20,6 +20,7 @@ public class ParticleAttractor : MonoBehaviour {
 			// Destroy a particle once it gets close enough to its final position
 			if (Vector3.Distance(particles[i].position, target.position) < 0.25f) {
 				particles[i].lifetime = 0;
+				target.gameObject.GetComponent<ColorChanger>().CollideParticle();
 			}
 
 			Vector3 v = target.position - particles[i].position;

@@ -2,13 +2,13 @@
 using System.Collections;
 
 public class ColorChanger : MonoBehaviour {
-    bool hidden;
+    bool collidable;
     Color color;
     Controller gc;
 
     void Awake () {
         gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
-        hidden = false;
+        collidable = false;
 
         if (this.name == "Red") {
             color = ColorList.red;
@@ -30,28 +30,21 @@ public class ColorChanger : MonoBehaviour {
 
     void OnTriggerEnter2D (Collider2D other) {
         // Change player color to w/e this is (Or calculate new color based on players color)
-        if (other.tag == "Player" && !hidden) {
-            Hide();
+        if (other.tag == "Player" && !collidable) {
+            GetComponent<SpriteRenderer>().enabled = false;
+            collidable = true;
+
             gc.hp = gc.MAX_HP;
             other.gameObject.GetComponent<Player>().AddColor(this.color);
         }
     }
 
-    public void Hide () {
-        GetComponent<SpriteRenderer>().enabled = false;
-        hidden = true;
-    }
-
-    public void Show () {
-        StartCoroutine(WaitThenShow());
-    }
-
-    private IEnumerator WaitThenShow () {
-        GetComponent<SpriteRenderer>().enabled = true;
-        GetComponent<Animation>().Play();
-
-        yield return new WaitForSeconds(0.25f);
-
-        hidden = false;
+    public void CollideParticle () {
+        if (!GetComponent<Animation>().isPlaying) {
+            transform.localScale = Vector3.zero;
+            GetComponent<Animation>().Play();
+            GetComponent<SpriteRenderer>().enabled = true;
+            collidable = false;
+        }
     }
 }

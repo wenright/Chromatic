@@ -17,7 +17,6 @@ public class LightParticle : MonoBehaviour {
 		for (int i = 0; i < numParticles; i++) {
 			// TODO change particle size based on speed
 			Vector3 vel = particles[i].velocity;
-			// float speed = vel.magnitude;
 
 			particles[i].rotation = Mathf.Rad2Deg * Mathf.Atan2(vel.y, vel.x);
 		}

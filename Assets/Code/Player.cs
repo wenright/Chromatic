@@ -89,7 +89,6 @@ public class Player : MonoBehaviour {
         GameObject system = Instantiate(particleSystemAttractor, transform.position, transform.rotation) as GameObject;
         system.GetComponent<ParticleSystem>().startColor = color;
         system.GetComponent<ParticleAttractor>().SetTarget(cc.transform);
-        cc.Show();
     }
 
     public void SetColor (Color color) {
