@@ -6,8 +6,9 @@ public class Spawner : MonoBehaviour {
 	public GameObject enemy;
     public GameObject fixedenemy;
     public GameObject curveenemy;
+	private Controller gc;
     public float timer;
-	int i = 1;
+	int i = 14;
 	SpawnPattern current;
 	public int enemycount = 0;
 	int scheme;
@@ -17,29 +18,21 @@ public class Spawner : MonoBehaviour {
 		scheme = Random.Range(1, 4);
 		current = new SpawnPattern (i, scheme);
 		timer = 0;
+		gc = GameObject.FindWithTag ("GameController").GetComponent<Controller> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-        //TODO: Add fixedenemy code, fix this logic.
-
-    
-		//Do we have a valid spawn pattern?
+        //TODO: Add fixedenemy code, fix this logic
 		if (current != null && current.isComplete ()) {
-			//are we supposed to wait?
-			if (!current.isWaiting ()) {
-				i++;
-				//if not get a new one
-				current = new SpawnPattern (i, scheme);
-			} else if (enemycount == 0){
-				//if yes, than wait for all enemies to be dead.
+			if (!current.isWaiting () || enemycount == 0) {
 				i++;
 				current = new SpawnPattern (i, scheme);
-			}
+			} 
 		}
-        GameObject.FindWithTag("GameController").GetComponent<Controller>().level = i;
+      
         //out of time
-       
+		gc.SetLevel (i);
         if (timer <= 0 && !current.isComplete()) {
 			GameObject lastEnemy;
 			//spawn the enemy

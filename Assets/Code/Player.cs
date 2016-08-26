@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour {
     
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour {
             }
         #else
             if (Input.touchCount > 0) {
-                return Camera.main.ScreenToWorldPoint(Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y));
+                return Camera.main.ScreenToWorldPoint(new Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y));
             }
         #endif
         
@@ -92,8 +94,8 @@ public class Player : MonoBehaviour {
     }
 
     public void SetColor (Color color) {
+		gc.RestMultiplier ();
         this.color = color;
-
         trail.material.SetColor("_Color", this.color);
         sprite.color = this.color;
     }
@@ -111,7 +113,7 @@ public class Player : MonoBehaviour {
 
         // Initiate camera shake
         Camera.main.GetComponent<CameraShake>().Shake();
-
+		SceneManager.LoadScene("Score");
         Destroy(gameObject);
     }
 

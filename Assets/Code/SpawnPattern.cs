@@ -65,9 +65,9 @@ public class SpawnPattern {
                 //FIXED
 				float leveltimer = 0.2f;
 				fixedHeight++;
-				pattern.Push (new SpawnCommand (-fixedWidth, fixedHeight, leveltimer + 2f, c, "fixed"));
+				pattern.Push (new SpawnCommand (-fixedWidth, fixedHeight, leveltimer + 2f, a, "fixed"));
 				pattern.Push (new SpawnCommand (-fixedWidth * (4 / 5f), fixedHeight, leveltimer, c, "fixed"));
-				pattern.Push (new SpawnCommand (-fixedWidth * (3 / 5f), fixedHeight, leveltimer, c, "fixed"));
+				pattern.Push (new SpawnCommand (-fixedWidth * (3 / 5f), fixedHeight, leveltimer, a, "fixed"));
 				pattern.Push (new SpawnCommand (-fixedWidth * (2 / 5f), fixedHeight, leveltimer, c, "fixed"));
 				pattern.Push (new SpawnCommand (-fixedWidth * (1 / 5f), fixedHeight, leveltimer, c, "fixed"));
 				pattern.Push (new SpawnCommand (0, fixedHeight, leveltimer, c, "fixed"));
@@ -131,7 +131,7 @@ public class SpawnPattern {
 				pattern.Push (new SpawnCommand (-fixedWidth, -fixedHeight*(1.2f) / 2f, 0.2f, c, "curve", false));
 				fixedWidth--;
                 break;
-	        case 13:
+	        case 11:
 	            fixedWidth++;
 	            pattern.Push(new SpawnCommand(-fixedWidth, (fixedHeight+0.5f)*(0.6f), 2f, a, "curve", false));
 	            pattern.Push(new SpawnCommand(-fixedWidth, 0.5f, 0.2f, b, "curve", false));
@@ -141,7 +141,7 @@ public class SpawnPattern {
 	            pattern.Push(new SpawnCommand(fixedWidth+2, -(fixedHeight - 0.5f) * (0.6f), 0.2f, c, "curve", true));
 	            fixedWidth--;
 	            break;
-			case 14:
+			case 12:
 				leveltimer = 0.3f;
 				fixedHeight++;
 				fixedWidth++;
@@ -168,14 +168,14 @@ public class SpawnPattern {
 				fixedHeight--;
 				fixedWidth--;
 				break;
-			case 15:
+			case 13:
 				leveltimer = 0.2f;
 				fixedHeight++;
-				pattern.Push (new SpawnCommand (-fixedWidth, fixedHeight, leveltimer + 2f, c, "fixed"));
+				pattern.Push (new SpawnCommand (-fixedWidth, fixedHeight, leveltimer + 2f, b, "fixed"));
 				pattern.Push (new SpawnCommand (-fixedWidth * (4 / 5f), fixedHeight, leveltimer, c, "fixed"));
-				pattern.Push (new SpawnCommand (-fixedWidth * (3 / 5f), fixedHeight, leveltimer, c, "fixed"));
+				pattern.Push (new SpawnCommand (-fixedWidth * (3 / 5f), fixedHeight, leveltimer, a, "fixed"));
 				pattern.Push (new SpawnCommand (-fixedWidth * (2 / 5f), fixedHeight, leveltimer, c, "fixed"));
-				pattern.Push (new SpawnCommand (-fixedWidth * (1 / 5f), fixedHeight, leveltimer, c, "fixed"));
+				pattern.Push (new SpawnCommand (-fixedWidth * (1 / 5f), fixedHeight, leveltimer, a, "fixed"));
 				pattern.Push (new SpawnCommand (0, fixedHeight, leveltimer, c, "fixed"));
 				pattern.Push (new SpawnCommand (fixedWidth * (1 / 5f), fixedHeight, leveltimer, b, "fixed"));
 				pattern.Push (new SpawnCommand (fixedWidth * (2 / 5f), fixedHeight, leveltimer, c, "fixed"));
@@ -185,6 +185,26 @@ public class SpawnPattern {
 				wait = false;
 				fixedHeight--;
 				break;
+			case 14:
+				fixedHeight++;
+				fixedWidth++;
+				leveltimer = 0.2f;
+				//pattern.Push (new SpawnCommand (fixedWidth, 0, 0.3f, a, "curve", true));
+				//pattern.Push (new SpawnCommand (-fixedWidth * (4 / 5f), fixedHeight, leveltimer, c, "fixed"));
+				//pattern.Push (new SpawnCommand (-fixedWidth, -fixedHeight / 3, leveltimer, b, "fixed"));
+				//pattern.Push (new SpawnCommand (fixedWidth * (3 / 5f), fixedHeight, leveltimer, a, "fixed"));
+				
+				pattern.Push (new SpawnCommand (-fixedWidth * (2 / 5f), fixedHeight, leveltimer, c, "fixed"));
+				pattern.Push (new SpawnCommand (-fixedWidth * (1 / 5f), fixedHeight, leveltimer, a, "fixed"));
+				pattern.Push (new SpawnCommand (-fixedWidth, -fixedHeight / 3, leveltimer, a, "fixed"));
+				pattern.Push (new SpawnCommand (fixedWidth, fixedHeight / 4, leveltimer, a, "fixed"));
+				pattern.Push (new SpawnCommand (fixedWidth, 0, 0.2f, b, "curve", true));
+				pattern.Push (new SpawnCommand (-fixedWidth, fixedHeight * (1.2f) / 2f, 0.3f, a, "curve", false));
+				pattern.Push (new SpawnCommand (-fixedWidth, -fixedHeight * (1.2f) / 2f, 0.2f, c, "curve", false));
+				fixedHeight--;
+				fixedWidth--;
+				break;
+
         }
     }
 
