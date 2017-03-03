@@ -6,12 +6,13 @@ public class Spawner : MonoBehaviour {
 	public GameObject enemy;
     public GameObject fixedenemy;
     public GameObject curveenemy;
-	private Controller gc;
     public float timer;
-	int i = 14;
-	SpawnPattern current;
 	public int enemycount = 0;
-	int scheme;
+
+	private Controller gc;
+	private int i = 0;
+	private SpawnPattern current;
+	private int scheme;
 
 	// Use this for initialization
 	void Awake () {
