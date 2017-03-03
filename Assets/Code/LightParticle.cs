@@ -8,7 +8,7 @@ public class LightParticle : MonoBehaviour {
 
 	public void Awake () {
 		 system = GetComponent<ParticleSystem>();
-		 particles = new ParticleSystem.Particle[system.maxParticles];
+		 particles = new ParticleSystem.Particle[system.main.maxParticles];
 	}
 
 	private void LateUpdate () {

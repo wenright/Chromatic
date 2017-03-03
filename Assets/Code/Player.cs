@@ -89,7 +89,10 @@ public class Player : MonoBehaviour {
 
     private void SpawnAttractorSystem (Color color, ColorChanger cc) {
         GameObject system = Instantiate(particleSystemAttractor, transform.position, transform.rotation) as GameObject;
-        system.GetComponent<ParticleSystem>().startColor = color;
+
+        var particleSystemMain = system.GetComponent<ParticleSystem>().main;
+        particleSystemMain.startColor = color;
+
         system.GetComponent<ParticleAttractor>().SetTarget(cc.transform);
     }
 
@@ -106,7 +109,8 @@ public class Player : MonoBehaviour {
 
     public void Kill () {
         // Set particle system color to player color
-        particleSystem.GetComponent<ParticleSystem>().startColor = color;
+        var particleSystemMain = particleSystem.GetComponent<ParticleSystem>().main;
+        particleSystemMain.startColor = color;
 
         // Spawn particle system
         Instantiate(particleSystem, transform.position, transform.rotation);
