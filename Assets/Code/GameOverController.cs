@@ -3,9 +3,10 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class GameOverController : MonoBehaviour {
+	
 	public Text wave;
+
 	// Use this for initialization
 	void Start () {
 		wave.text = "0";

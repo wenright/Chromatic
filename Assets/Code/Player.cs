@@ -20,24 +20,24 @@ public class Player : MonoBehaviour {
 
     private TrailRenderer trail;
     private SpriteRenderer sprite;
-	private bool grow;
-	private bool runningOut;
-	private float pulsetimer;
+    private bool grow;
+    private bool runningOut;
+    private float pulsetimer;
 
     void Awake () {
         trail = GetComponent<TrailRenderer>();
         sprite = GetComponent<SpriteRenderer>();
         color = ColorList.white;
         gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
-		pulsetimer = 1;
+        pulsetimer = 1;
     }
 
-	void Update () {
+    void Update () {
         if (gc.hp == 0) {
             AddColor(ColorList.white);
         }
 
-		Pulse ();
+        Pulse ();
         transform.position = Vector2.MoveTowards(transform.position, GetMovement(), Time.deltaTime * moveSpeed);
     }
 
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour {
     }
 
     public void SetColor (Color color) {
-		gc.RestMultiplier ();
+        gc.ResetMultiplier ();
         this.color = color;
         trail.material.SetColor("_Color", this.color);
         sprite.color = this.color;
@@ -115,20 +115,23 @@ public class Player : MonoBehaviour {
         // Spawn particle system
         Instantiate(particleSystem, transform.position, transform.rotation);
 
+        // TODO We probably don't want to upload all scores. Maybe add a check to see if this score is higher than our previouis uploaded score.
+        gc.UploadScore();
+
         // Initiate camera shake
         Camera.main.GetComponent<CameraShake>().Shake();
-		SceneManager.LoadScene("Score");
+        SceneManager.LoadScene("Score");
         Destroy(gameObject);
     }
 
-	public void Pulse () {
-		if (gc.hp < 50 || this.gameObject.transform.localScale.x != 1) {
-			this.gameObject.transform.localScale = Vector3.Lerp (new Vector3 (1, 1, 1), new Vector3 (1.5f, 1.5f, 1.5f), (pulsetimer));
-			pulsetimer -= Time.deltaTime * 3;
-		}
+    public void Pulse () {
+        if (gc.hp < 50 || this.gameObject.transform.localScale.x != 1) {
+            this.gameObject.transform.localScale = Vector3.Lerp (new Vector3 (1, 1, 1), new Vector3 (1.5f, 1.5f, 1.5f), (pulsetimer));
+            pulsetimer -= Time.deltaTime * 3;
+        }
 
-		if (pulsetimer <= 0 && color != ColorList.white && gc.hp < 50) {
-			pulsetimer = 1;
-		}
-	}
+        if (pulsetimer <= 0 && color != ColorList.white && gc.hp < 50) {
+            pulsetimer = 1;
+        }
+    }
 }

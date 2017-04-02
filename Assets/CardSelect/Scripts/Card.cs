@@ -29,7 +29,7 @@ public class Card : MonoBehaviour,IComparable {
         
     }
 
-    void OnMouseDown()
+    void OnMouseUp()
     {
         if (this.transform.position.z == -1.6f)
         {
@@ -41,6 +41,14 @@ public class Card : MonoBehaviour,IComparable {
             else if (tooltipMessage == "Achievements")
             {
                 Debug.Log("Achievements pressed");
+
+                GameObject leaderboardObject = GameObject.FindWithTag("LeaderboardController");
+                if (leaderboardObject != null) {
+                    LeaderboardController leaderboardController = leaderboardObject.GetComponent<LeaderboardController>();
+                    leaderboardController.ShowLeaderboardUI();
+                } else {
+                    Debug.LogError("Unable to find Leaderboard object!");
+                }
             }
             else if (tooltipMessage == "Leaderboards")
             {
