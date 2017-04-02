@@ -42,7 +42,12 @@ public class Controller : MonoBehaviour {
             Debug.LogError("Unable to find Player object!");
         }
 
-        leaderboardController = new LeaderboardController();
+        GameObject leaderboardObject = GameObject.FindWithTag("LeaderboardController");
+        if (leaderboardObject != null) {
+            leaderboardController = leaderboardObject.GetComponent<LeaderboardController>();
+        } else {
+            Debug.LogError("Unable to find Leaderboard object!");
+        }
     }
     
     void Update () {

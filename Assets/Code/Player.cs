@@ -120,8 +120,7 @@ public class Player : MonoBehaviour {
 
         // Initiate camera shake
         Camera.main.GetComponent<CameraShake>().Shake();
-        // TODO add this back in
-        // SceneManager.LoadScene("Score");
+        SceneManager.LoadScene("Score");
         Destroy(gameObject);
     }
 
