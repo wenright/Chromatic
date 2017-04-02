@@ -41,6 +41,10 @@ public class Card : MonoBehaviour,IComparable {
             else if (tooltipMessage == "Achievements")
             {
                 Debug.Log("Achievements pressed");
+            }
+            else if (tooltipMessage == "Leaderboards")
+            {
+                Debug.Log("Leaderboards pressed");
 
                 GameObject leaderboardObject = GameObject.FindWithTag("LeaderboardController");
                 if (leaderboardObject != null) {
@@ -49,10 +53,6 @@ public class Card : MonoBehaviour,IComparable {
                 } else {
                     Debug.LogError("Unable to find Leaderboard object!");
                 }
-            }
-            else if (tooltipMessage == "Leaderboards")
-            {
-                Debug.Log("Leaderboards pressed");
             }
             else if (tooltipMessage == "Skins")
             {
