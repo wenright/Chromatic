@@ -22,9 +22,9 @@ public class Controller : MonoBehaviour {
     public int wavecounter;
 
     public int score;
-    public int multipler;
+    public int multiplier;
 
-    private LeaderboardController leaderboardController;
+    private GooglePlayController googlePlayController;
 
     void Awake () {
         wavecounter = 0;
@@ -42,11 +42,11 @@ public class Controller : MonoBehaviour {
             Debug.LogError("Unable to find Player object!");
         }
 
-        GameObject leaderboardObject = GameObject.FindWithTag("LeaderboardController");
-        if (leaderboardObject != null) {
-            leaderboardController = leaderboardObject.GetComponent<LeaderboardController>();
+        GameObject googlePlayObject = GameObject.FindWithTag("GooglePlayController");
+        if (googlePlayObject != null) {
+            googlePlayController = googlePlayObject.GetComponent<GooglePlayController>();
         } else {
-            Debug.LogError("Unable to find Leaderboard object!");
+            Debug.LogError("Unable to find GooglePlay object!");
         }
     }
     
@@ -90,17 +90,48 @@ public class Controller : MonoBehaviour {
     }
 
     public void IncreaseScore(){
-        multipler++;
-        score = score + (multipler * 50);
+        multiplier++;
+        score = score + (multiplier * 50);
+
+        // Check for achievements
+        // TODO what are all the achievements we have?
+        if (score >= 50000) {
+            googlePlayController.UnlockAchievement(Achievements.score50000);
+        } else if (score >= 10000) {
+            googlePlayController.UnlockAchievement(Achievements.score10000);
+        } else if (score >= 5000) {
+            googlePlayController.UnlockAchievement(Achievements.score5000);
+        } else if (score >= 1000) {
+            googlePlayController.UnlockAchievement(Achievements.score1000);
+        }
+
+        if (multiplier >= 5) {
+            googlePlayController.UnlockAchievement(Achievements.multiplier5);
+        }
+    }
+
+    public void IncreaseKillCount () {
+        // TODO maybe only increment achievement every so often, like after you die or after a wave
+        googlePlayController.IncrementAchievement(Achievements.kill10);
     }
 
     public void ResetMultiplier(){
-        multipler = 0;
+        multiplier = 0;
     }
 
     public void UploadScore () {
-        if (leaderboardController != null) {
-            leaderboardController.UploadScore(score);            
+        if (googlePlayController != null) {
+            googlePlayController.UploadScore(score);            
+
+            if (score == 0) {
+                googlePlayController.UnlockAchievement(Achievements.youDontGetThis);
+            }
+
+            googlePlayController.UnlockAchievement(Achievements.dead);
         }
+    }
+
+    public void ShowScoreScreen () {
+        SceneManager.LoadScene("Score");
     }
 }

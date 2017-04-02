@@ -3,11 +3,11 @@ using GooglePlayGames.BasicApi;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
-public class Leaderboard {
+public class GooglePlay {
 
 	private readonly string leaderboardID = "CgkIz8WKy80eEAIQAQ";
 
-	public Leaderboard () {
+	public GooglePlay () {
 		if (!Social.localUser.authenticated) {
 			PlayGamesPlatform.DebugLogEnabled = true;
 			PlayGamesPlatform.Activate();
@@ -32,7 +32,32 @@ public class Leaderboard {
 		});
 	}
 
+	public void UnlockAchievement (string achievementID) {
+		// TODO cache achievments locally so they aren't constantly asking the server if they have been completed
+		Social.ReportProgress(achievementID, 100.0f, (bool success) => {
+			if (success) {
+				Debug.Log("Successfully unlocked achievement " + achievementID);
+			} else {
+				Debug.LogError("Failed unlocking achievement!");
+			}
+		});
+	}
+
+	public void IncrementAchievement (string achievementID) {
+		PlayGamesPlatform.Instance.IncrementAchievement(achievementID, 1, (bool success) => {
+			if (success) {
+				Debug.Log("Successfully unlocked achievement " + achievementID);
+			} else {
+				Debug.LogError("Failed unlocking achievement!");
+			}
+		});
+	}
+
 	public void ShowLeaderboardUI () {
 		PlayGamesPlatform.Instance.ShowLeaderboardUI(leaderboardID);
+	}
+
+	public void ShowAchievementsUI () {
+		Social.ShowAchievementsUI();
 	}
 }

@@ -95,7 +95,8 @@ public class Enemy : MonoBehaviour {
             } else {
             	var particleSystemMain = particleSystem.GetComponent<ParticleSystem>().main;
                 particleSystemMain.startColor = color;
-				gc.IncreaseScore ();
+				gc.IncreaseScore();
+                gc.IncreaseKillCount();
                 Instantiate(particleSystem, transform.position, transform.rotation);
                 gc.hp += 20;
                 Kill();

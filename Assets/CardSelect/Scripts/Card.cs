@@ -13,7 +13,20 @@ public class Card : MonoBehaviour,IComparable {
 
     [HideInInspector]
     public int id = 0;
+
+    private GooglePlayController googlePlayController;
  
+    void Awake () {
+        print(GameObject.FindWithTag("GooglePlayController"));
+
+        GameObject googlePlayObject = GameObject.FindWithTag("GooglePlayController");
+        if (googlePlayObject != null) {
+            googlePlayController = googlePlayObject.GetComponent<GooglePlayController>();
+        } else {
+            Debug.LogError("Card: Unable to find GooglePlay object!");
+        }
+    }
+
     // Compare based on card id
     int IComparable.CompareTo(object obj)
     {
@@ -41,18 +54,14 @@ public class Card : MonoBehaviour,IComparable {
             else if (tooltipMessage == "Achievements")
             {
                 Debug.Log("Achievements pressed");
+
+                googlePlayController.ShowAchievementsUI();
             }
             else if (tooltipMessage == "Leaderboards")
             {
                 Debug.Log("Leaderboards pressed");
 
-                GameObject leaderboardObject = GameObject.FindWithTag("LeaderboardController");
-                if (leaderboardObject != null) {
-                    LeaderboardController leaderboardController = leaderboardObject.GetComponent<LeaderboardController>();
-                    leaderboardController.ShowLeaderboardUI();
-                } else {
-                    Debug.LogError("Unable to find Leaderboard object!");
-                }
+                googlePlayController.ShowLeaderboardUI();
             }
             else if (tooltipMessage == "Skins")
             {

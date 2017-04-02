@@ -120,7 +120,7 @@ public class Player : MonoBehaviour {
 
         // Initiate camera shake
         Camera.main.GetComponent<CameraShake>().Shake();
-        SceneManager.LoadScene("Score");
+        gc.Invoke("ShowScoreScreen", 1.0f);
         Destroy(gameObject);
     }
 
