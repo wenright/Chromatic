@@ -52,7 +52,10 @@ public class Controller : MonoBehaviour {
     
     void Update () {
         waveText.text = "Wave " + wavecounter;
-        scoreText.text = score.ToString ();
+
+        if (scoreText != null) {
+            scoreText.text = score.ToString ();
+        }
 
         if (healthSlider) {
             healthSlider.value = hp / MAX_HP;
@@ -63,10 +66,12 @@ public class Controller : MonoBehaviour {
             hp--;
         }
 
-        if (player.GetColor () == ColorList.purple || player.GetColor () == ColorList.orange || player.GetColor () == ColorList.green) {
-            ChangeBGColor (player.GetColor ());
-        } else {
-            ChangeBGColor (ColorList.white);
+        if (player != null) {
+            if (player.GetColor () == ColorList.purple || player.GetColor () == ColorList.orange || player.GetColor () == ColorList.green) {
+                ChangeBGColor (player.GetColor ());
+            } else {
+                ChangeBGColor (ColorList.white);
+            }
         }
     }
 
@@ -94,6 +99,8 @@ public class Controller : MonoBehaviour {
     }
 
     public void UploadScore () {
-        leaderboardController.UploadScore(score);
+        if (leaderboardController != null) {
+            leaderboardController.UploadScore(score);            
+        }
     }
 }
