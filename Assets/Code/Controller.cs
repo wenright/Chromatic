@@ -69,6 +69,7 @@ public class Controller : MonoBehaviour {
 	public void IncreaseScore(){
 		multipler++;
 		score = score + (multipler * 50);
+        
 	}
 
 	public void RestMultiplier(){
