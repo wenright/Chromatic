@@ -44,7 +44,7 @@ namespace GooglePlayGames {
 
         public static bool RequireGooglePlus()
         {
-            return "false" == "true";
+            return "true" == "true";
         }
 
         public static bool ApplicationIdInitialized() {

@@ -32,6 +32,11 @@ public class SpawnPattern {
 			a = ColorList.green;
 		}
 
+        if(p > 14)
+        {
+            p = Random.Range(5, 14);
+        }
+
         //set pattern based on p
 		switch (p) {
 			case 1: 
@@ -145,7 +150,7 @@ public class SpawnPattern {
 				leveltimer = 0.3f;
 				fixedHeight++;
 				fixedWidth++;
-				pattern.Push(new SpawnCommand(fixedWidth, -fixedHeight/2, 1f, a, "fixed"));
+				pattern.Push(new SpawnCommand(fixedWidth, -fixedHeight/2, 2f, a, "fixed"));
 				pattern.Push(new SpawnCommand(-fixedWidth * (4/5f), -fixedHeight, leveltimer, b, "fixed"));
 				pattern.Push(new SpawnCommand(-fixedWidth * (3/5f), fixedHeight, leveltimer, b, "fixed"));
 				pattern.Push(new SpawnCommand(fixedWidth, fixedHeight/2, leveltimer, a, "fixed"));
@@ -194,7 +199,7 @@ public class SpawnPattern {
 				//pattern.Push (new SpawnCommand (-fixedWidth, -fixedHeight / 3, leveltimer, b, "fixed"));
 				//pattern.Push (new SpawnCommand (fixedWidth * (3 / 5f), fixedHeight, leveltimer, a, "fixed"));
 				
-				pattern.Push (new SpawnCommand (-fixedWidth * (2 / 5f), fixedHeight, leveltimer, c, "fixed"));
+				pattern.Push (new SpawnCommand (-fixedWidth * (2 / 5f), fixedHeight, leveltimer + 2f, c, "fixed"));
 				pattern.Push (new SpawnCommand (-fixedWidth * (1 / 5f), fixedHeight, leveltimer, a, "fixed"));
 				pattern.Push (new SpawnCommand (-fixedWidth, -fixedHeight / 3, leveltimer, a, "fixed"));
 				pattern.Push (new SpawnCommand (fixedWidth, fixedHeight / 4, leveltimer, a, "fixed"));

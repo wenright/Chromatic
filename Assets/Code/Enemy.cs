@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour {
 
     public new GameObject particleSystem;
     public Texture2D warningSprite;
+    public TextMesh MultiToolTip;
 
     protected int speed = 500;
     protected Vector3 target;
@@ -106,7 +107,9 @@ public class Enemy : MonoBehaviour {
 
     public void Kill () {
         // Set particle system color to player color
-		GameObject.FindGameObjectWithTag ("GameController").GetComponent<Spawner> ().enemycount--;
+        Instantiate(MultiToolTip, transform.position,new Quaternion(0, 0, 0, 0));
+
+        GameObject.FindGameObjectWithTag ("GameController").GetComponent<Spawner> ().enemycount--;
         Destroy(gameObject);
     }
 }

@@ -10,9 +10,11 @@ public class Spawner : MonoBehaviour {
 	public int enemycount = 0;
 
 	private Controller gc;
-	private int i = 0;
+	private int i = 1;
 	private SpawnPattern current;
 	private int scheme;
+
+    private bool finished_set_levels = false;
 
 	// Use this for initialization
 	void Awake () {
@@ -24,9 +26,8 @@ public class Spawner : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        //TODO: Add fixedenemy code, fix this logic
 		if (current != null && current.isComplete ()) {
-			if (!current.isWaiting () || enemycount == 0) {
+           if (!current.isWaiting () || enemycount == 0) {
 				i++;
 				current = new SpawnPattern (i, scheme);
 			} 
