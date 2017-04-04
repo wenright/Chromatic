@@ -26,7 +26,7 @@ public class GameOverController : MonoBehaviour {
 		}
 
 		if (hasPressedScreen && Input.GetMouseButtonUp(0)) {
-			SceneManager.LoadScene("Will Test");
+			SceneManager.LoadScene("Menu");
 		}
 	}
 }
