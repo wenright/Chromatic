@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+
 /*
  * Card class, can be compared for sorting
  * and have a tooltip message...
@@ -15,16 +17,17 @@ public class Card : MonoBehaviour,IComparable {
     public int id = 0;
 
     private GooglePlayController googlePlayController;
+    private SpriteRenderer spriteRenderer;
  
     void Awake () {
-        print(GameObject.FindWithTag("GooglePlayController"));
-
         GameObject googlePlayObject = GameObject.FindWithTag("GooglePlayController");
         if (googlePlayObject != null) {
             googlePlayController = googlePlayObject.GetComponent<GooglePlayController>();
         } else {
             Debug.LogError("Card: Unable to find GooglePlay object!");
         }
+
+        spriteRenderer = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Compare based on card id
@@ -40,6 +43,11 @@ public class Card : MonoBehaviour,IComparable {
             return 0;
         }
         
+    }
+
+    void OnMouseDown()
+    {
+        spriteRenderer.DOColor(Color.grey, 0.1f).SetEase(Ease.OutQuad);
     }
 
     void OnMouseUp()
@@ -75,5 +83,7 @@ public class Card : MonoBehaviour,IComparable {
 
 
         }
+
+        spriteRenderer.DOColor(Color.white, 0.1f).SetEase(Ease.InQuad);
     }
 }
