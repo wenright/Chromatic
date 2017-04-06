@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class AdvertisementManager : MonoBehaviour
-{
-  public void Start()
-  {
-    // TODO only play an ad after every 3 deaths or so
-    if (Advertisement.IsReady())
-    {
-      Advertisement.Show();
-    }
-  }
+public class AdvertisementManager : MonoBehaviour {
+
+	private int playAdEveryNTimes = 3;
+	private int numRoundsPlayed = 1;
+
+	void Awake () {
+		DontDestroyOnLoad(gameObject);
+	}
+
+	public void FinishedRound () {
+		if ((numRoundsPlayed % playAdEveryNTimes) == 0 && Advertisement.IsReady()) {
+			Advertisement.Show();
+		}
+
+		numRoundsPlayed++;
+	}
 }

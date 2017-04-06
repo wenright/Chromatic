@@ -17,8 +17,6 @@ public class Card : MonoBehaviour,IComparable {
     private GooglePlayController googlePlayController;
  
     void Awake () {
-        print(GameObject.FindWithTag("GooglePlayController"));
-
         GameObject googlePlayObject = GameObject.FindWithTag("GooglePlayController");
         if (googlePlayObject != null) {
             googlePlayController = googlePlayObject.GetComponent<GooglePlayController>();

@@ -25,6 +25,7 @@ public class Controller : MonoBehaviour {
     public int multiplier;
 
     private GooglePlayController googlePlayController;
+    private AdvertisementManager advertisementManager;
 
     void Awake () {
         wavecounter = 0;
@@ -47,6 +48,13 @@ public class Controller : MonoBehaviour {
             googlePlayController = googlePlayObject.GetComponent<GooglePlayController>();
         } else {
             Debug.LogError("Unable to find GooglePlay object!");
+        }
+
+        GameObject advertisementManagerObject = GameObject.FindWithTag("AdvertisementManager");
+        if (advertisementManagerObject != null) {
+            advertisementManager = advertisementManagerObject.GetComponent<AdvertisementManager>();
+        } else {
+            Debug.LogError("Unable to find AdvertisementManager object!");
         }
     }
     
@@ -133,5 +141,6 @@ public class Controller : MonoBehaviour {
 
     public void ShowScoreScreen () {
         SceneManager.LoadScene("Score");
+        advertisementManager.FinishedRound();
     }
 }
