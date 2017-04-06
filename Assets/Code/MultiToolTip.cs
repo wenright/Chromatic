@@ -1,33 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class MultiToolTip : MonoBehaviour {
     float maxSize = 0.1f;
-    float growthRate = 0.3f;
-    float scale = 0f;
-    bool alive = true;
+    float growthSpeed = 0.3f;
+    float shrinkDelay = 0.3f;
     protected Controller gc;
-    // Use this for initialization
+
     void Start () {
         gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
         this.GetComponent<TextMesh>().text = "X"+gc.multiplier.ToString();
+
+        transform.localScale = Vector3.zero;
+        Grow();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if (alive)
-        {
-            transform.localScale = Vector3.one * scale;
-            scale += growthRate * Time.deltaTime;
-            if (scale > maxSize) alive = false;
-        }
-        else
-        {
-            transform.localScale = Vector3.one * scale;
-            scale -= growthRate * Time.deltaTime;
-            if (scale < 0)
-                Destroy(gameObject);
-        }
+
+    private void Grow () {
+        transform.DOScale(maxSize, growthSpeed)
+            .SetEase(Ease.OutQuad)
+            .OnComplete(() => Invoke("Shrink", shrinkDelay));
+    }
+
+    private void Shrink () {
+        transform.DOScale(0, growthSpeed)
+            .SetEase(Ease.InQuad)
+            .OnComplete(() => Destroy(gameObject));
     }
 }
