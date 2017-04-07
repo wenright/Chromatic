@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class Controller : MonoBehaviour {
 
@@ -76,10 +77,13 @@ public class Controller : MonoBehaviour {
     }
 
     void ChangeBGColor (Color color) {
-        if (color == Color.white)
-            GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ().backgroundColor = color / 6;
-        else
-            GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ().backgroundColor = color / 4;
+        if (color == Color.white) {
+            color /= 6;
+        } else {
+            color /= 4;
+        }
+
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().DOColor(color, 0.25f).SetEase(Ease.OutQuad);
     }
 
     public void SetLevel(int i){

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-
+using DG.Tweening;
 
 public class Player : MonoBehaviour {
     
@@ -98,9 +98,11 @@ public class Player : MonoBehaviour {
 
     public void SetColor (Color color) {
         gc.ResetMultiplier ();
+
         this.color = color;
-        trail.material.SetColor("_Color", this.color);
-        sprite.color = this.color;
+
+        trail.material.DOColor(this.color, 0.25f).SetEase(Ease.OutQuad);
+        sprite.DOColor(this.color, 0.25f).SetEase(Ease.OutQuad);
     }
 
     public Color GetColor () {
