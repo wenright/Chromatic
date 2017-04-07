@@ -57,7 +57,7 @@ public class Card : MonoBehaviour,IComparable {
             if (tooltipMessage == "Play")
             {
                 Debug.Log("Play pressed");
-                SceneManager.LoadScene("Will Test");
+                SceneManager.LoadScene("Game");
             }
             else if (tooltipMessage == "Achievements")
             {

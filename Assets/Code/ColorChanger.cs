@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class ColorChanger : MonoBehaviour {
-    bool collidable;
-    Color color;
-    Controller gc;
+
+    private Controller gc;
+    private Color color;
+    private bool collidable = true;
 
     void Awake () {
         gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
-        collidable = false;
 
         if (this.name == "Red") {
             color = ColorList.red;
@@ -30,21 +31,22 @@ public class ColorChanger : MonoBehaviour {
 
     void OnTriggerEnter2D (Collider2D other) {
         // Change player color to w/e this is (Or calculate new color based on players color)
-        if (other.tag == "Player" && !collidable) {
+        if (other.tag == "Player" && collidable) {
             GetComponent<SpriteRenderer>().enabled = false;
-            collidable = true;
+            collidable = false;
 
             gc.hp = gc.MAX_HP;
             other.gameObject.GetComponent<Player>().AddColor(this.color);
         }
     }
 
-    public void CollideParticle () {
-        if (!GetComponent<Animation>().isPlaying) {
-            transform.localScale = Vector3.zero;
-            GetComponent<Animation>().Play();
-            GetComponent<SpriteRenderer>().enabled = true;
-            collidable = false;
-        }
+    public void Respawn () {
+        collidable = true;
+
+        GetComponent<SpriteRenderer>().enabled = true;
+
+        transform.localScale = Vector3.zero;
+        transform.DOScale(Vector3.one, 0.25f)
+            .SetEase(Ease.InQuad);
     }
 }

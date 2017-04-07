@@ -112,7 +112,9 @@ public class Controller : MonoBehaviour {
 
     public void IncreaseKillCount () {
         // TODO maybe only increment achievement every so often, like after you die or after a wave
-        googlePlayController.IncrementAchievement(Achievements.kill10);
+        if (googlePlayController) {
+            googlePlayController.IncrementAchievement(Achievements.kill10);
+        }
     }
 
     public void ResetMultiplier(){

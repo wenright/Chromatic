@@ -9,8 +9,8 @@ public class ParticleAttractor : MonoBehaviour {
 	private ParticleSystem.Particle[] particles;
 
 	public void Awake () {
-		 system = GetComponent<ParticleSystem>();
-		 particles = new ParticleSystem.Particle[system.main.maxParticles];
+		system = GetComponent<ParticleSystem>();
+		particles = new ParticleSystem.Particle[system.main.maxParticles];
 	}
 
 	public void LateUpdate () {
@@ -20,7 +20,6 @@ public class ParticleAttractor : MonoBehaviour {
 			// Destroy a particle once it gets close enough to its final position
 			if (Vector3.Distance(particles[i].position, target.position) < 0.25f) {
 				particles[i].remainingLifetime = 0;
-				target.gameObject.GetComponent<ColorChanger>().CollideParticle();
 			}
 
 			Vector3 v = target.position - particles[i].position;
@@ -33,5 +32,6 @@ public class ParticleAttractor : MonoBehaviour {
 
 	public void SetTarget (Transform target) {
 		this.target = target;
+		target.gameObject.GetComponent<ColorChanger>().Invoke("Respawn", 0.2f);		 
 	}
 }
