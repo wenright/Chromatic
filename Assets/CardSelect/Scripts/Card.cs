@@ -28,6 +28,9 @@ public class Card : MonoBehaviour,IComparable {
         }
 
         spriteRenderer = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+
+        spriteRenderer.color = new Color(1, 1, 1, 0);
+        spriteRenderer.DOFade(1.0f, 0.25f).SetEase(Ease.InQuad);
     }
 
     // Compare based on card id
