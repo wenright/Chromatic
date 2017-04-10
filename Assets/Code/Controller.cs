@@ -69,20 +69,14 @@ public class Controller : MonoBehaviour {
 
         if (player != null) {
             if (player.GetColor () == ColorList.purple || player.GetColor () == ColorList.orange || player.GetColor () == ColorList.green) {
-                ChangeBGColor (player.GetColor ());
+                ChangeBGColor (player.GetColor() / 4);
             } else {
-                ChangeBGColor (ColorList.white);
+                ChangeBGColor (ColorList.defaultBackground);
             }
         }
     }
 
     void ChangeBGColor (Color color) {
-        if (color == Color.white) {
-            color /= 6;
-        } else {
-            color /= 4;
-        }
-
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().DOColor(color, 0.25f).SetEase(Ease.OutQuad);
     }
 
@@ -99,19 +93,22 @@ public class Controller : MonoBehaviour {
 
         // Check for achievements
         // TODO what are all the achievements we have?
-        if (score >= 50000) {
-            googlePlayController.UnlockAchievement(Achievements.score50000);
-        } else if (score >= 10000) {
-            googlePlayController.UnlockAchievement(Achievements.score10000);
-        } else if (score >= 5000) {
-            googlePlayController.UnlockAchievement(Achievements.score5000);
-        } else if (score >= 1000) {
-            googlePlayController.UnlockAchievement(Achievements.score1000);
-        }
+        if (googlePlayController != null) {
+            if (score >= 50000) {
+                googlePlayController.UnlockAchievement(Achievements.score50000);
+            } else if (score >= 10000) {
+                googlePlayController.UnlockAchievement(Achievements.score10000);
+            } else if (score >= 5000) {
+                googlePlayController.UnlockAchievement(Achievements.score5000);
+            } else if (score >= 1000) {
+                googlePlayController.UnlockAchievement(Achievements.score1000);
+            }
 
-        if (multiplier >= 5) {
-            googlePlayController.UnlockAchievement(Achievements.multiplier5);
+            if (multiplier >= 5) {
+                googlePlayController.UnlockAchievement(Achievements.multiplier5);
+            } 
         }
+ 
     }
 
     public void IncreaseKillCount () {
