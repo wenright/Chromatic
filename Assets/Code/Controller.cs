@@ -56,10 +56,6 @@ public class Controller : MonoBehaviour {
     }
     
     void Update () {
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
         if (scoreText != null) {
             scoreText.text = score.ToString ();
         }
