@@ -17,12 +17,14 @@ public class Card : MonoBehaviour,IComparable {
     public int id = 0;
 
     private GooglePlayController googlePlayController;
+    private SkinController skinController;
     private SpriteRenderer spriteRenderer;
  
     void Awake () {
         GameObject googlePlayObject = GameObject.FindWithTag("GooglePlayController");
         if (googlePlayObject != null) {
             googlePlayController = googlePlayObject.GetComponent<GooglePlayController>();
+            skinController = googlePlayObject.GetComponent<SkinController>();
         } else {
             Debug.LogError("Card: Unable to find GooglePlay object!");
         }
@@ -77,10 +79,31 @@ public class Card : MonoBehaviour,IComparable {
             else if (tooltipMessage == "Skins")
             {
                 Debug.Log("Skins pressed");
+                SceneManager.LoadScene("Skins");
             }
             else if (tooltipMessage == "Settings")
             {
                 Debug.Log("Settings pressed");
+            }
+            else if (tooltipMessage == "Skull")
+            {
+                skinController.currentsprite = skinController.skull;
+                SceneManager.LoadScene("Menu");
+            }
+            else if (tooltipMessage == "Circle")
+            {
+                skinController.currentsprite = skinController.circle;
+                SceneManager.LoadScene("Menu");
+            }
+            else if (tooltipMessage == "Star")
+            {
+                skinController.currentsprite = skinController.star;
+                SceneManager.LoadScene("Menu");
+            }
+            else if (tooltipMessage == "Square")
+            {
+                skinController.currentsprite = skinController.square;
+                SceneManager.LoadScene("Menu");
             }
 
 

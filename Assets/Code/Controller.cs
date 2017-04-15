@@ -45,17 +45,17 @@ public class Controller : MonoBehaviour {
         } else {
             Debug.LogError("Unable to find Player object!");
         }
-
+        
         GameObject googlePlayObject = GameObject.FindWithTag("GooglePlayController");
         if (googlePlayObject != null) {
             googlePlayController = googlePlayObject.GetComponent<GooglePlayController>();
+            playerObject.GetComponent<SpriteRenderer>().sprite = googlePlayObject.GetComponent<SkinController>().currentsprite;
         } else {
             Debug.LogError("Unable to find GooglePlay object!");
         }
     }
     
     void Update () {
-        waveText.text = "Wave " + wavecounter;
 
         if (scoreText != null) {
             scoreText.text = score.ToString ();
