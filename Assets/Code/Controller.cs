@@ -26,9 +26,12 @@ public class Controller : MonoBehaviour {
     public int multiplier;
 
     private GooglePlayController googlePlayController;
+    private ScoreCounter scoreCounter;
 
     void Awake () {
         wavecounter = 0;
+        scoreCounter = GameObject.FindWithTag("ScoreCounter").GetComponent<ScoreCounter>();
+        scoreCounter.Reset();
 
         if (gcsingleton == null) {
             gcsingleton = this;
@@ -135,6 +138,9 @@ public class Controller : MonoBehaviour {
     }
 
     public void ShowScoreScreen () {
+        scoreCounter.score = score;
+        scoreCounter.wave = wavecounter;
+
         SceneManager.LoadScene("Score");
     }
 }

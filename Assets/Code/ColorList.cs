@@ -10,5 +10,5 @@ public class ColorList {
     public static Color yellow = new Color(241 / 255.0f, 196 / 255.0f, 15 / 255.0f);
     public static Color blue = new Color(52 / 255.0f, 152 / 255.0f, 219 / 255.0f);
 
-    public static Color defaultBackground = new Color(44 / 255.0f, 62 / 255.0f, 80 / 255.0f);
+    public static Color defaultBackground = new Color(0 / 255.0f, 0/ 255.0f, 0 / 255.0f);
 }
