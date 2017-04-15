@@ -19,7 +19,9 @@ public class Card : MonoBehaviour,IComparable {
     private GooglePlayController googlePlayController;
     private SkinController skinController;
     private SpriteRenderer spriteRenderer;
- 
+
+    public Color color;
+
     void Awake () {
         GameObject googlePlayObject = GameObject.FindWithTag("GooglePlayController");
         if (googlePlayObject != null) {
@@ -31,7 +33,7 @@ public class Card : MonoBehaviour,IComparable {
 
         spriteRenderer = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
 
-        spriteRenderer.color = new Color(1, 1, 1, 0);
+        spriteRenderer.color = new Color(color.r, color.g, color.b, 0);
         spriteRenderer.DOFade(1.0f, 0.25f).SetEase(Ease.InQuad);
     }
 
@@ -52,7 +54,7 @@ public class Card : MonoBehaviour,IComparable {
 
     void OnMouseDown()
     {
-        spriteRenderer.DOColor(Color.grey, 0.1f).SetEase(Ease.OutQuad);
+        spriteRenderer.DOColor(new Color(color.r / 2, color.g / 2, color.b / 2, 1.0f), 0.1f).SetEase(Ease.OutQuad);
     }
 
     void OnMouseUp()
@@ -110,6 +112,6 @@ public class Card : MonoBehaviour,IComparable {
 
         }
 
-        spriteRenderer.DOColor(Color.white, 0.1f).SetEase(Ease.InQuad);
+        spriteRenderer.DOColor(color, 0.1f).SetEase(Ease.InQuad);
     }
 }

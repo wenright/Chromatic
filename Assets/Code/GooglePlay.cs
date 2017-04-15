@@ -23,6 +23,7 @@ public class GooglePlay {
 	}
 	
 	public void UploadScore (int score) {
+		// TODO does reporting a score that is lower than a players highest score actually do anything?
 		Social.ReportScore(score, leaderboardID, (bool success) => {
 			if (success) {
 				Debug.Log("Successfully uploaded a high score");
@@ -33,10 +34,15 @@ public class GooglePlay {
 	}
 
 	public void UnlockAchievement (string achievementID) {
-		// TODO cache achievments locally so they aren't constantly asking the server if they have been completed
+		// Do nothing if this achievement has already been completed
+		if (PlayerPrefs.HasKey(achievementID)) {
+			return;
+		}
+
 		Social.ReportProgress(achievementID, 100.0f, (bool success) => {
 			if (success) {
 				Debug.Log("Successfully unlocked achievement " + achievementID);
+				PlayerPrefs.SetInt(achievementID, 1);
 			} else {
 				Debug.LogError("Failed unlocking achievement!");
 			}
@@ -44,6 +50,7 @@ public class GooglePlay {
 	}
 
 	public void IncrementAchievement (string achievementID) {
+		// TODO cached incremental achievements
 		PlayGamesPlatform.Instance.IncrementAchievement(achievementID, 1, (bool success) => {
 			if (success) {
 				Debug.Log("Successfully unlocked achievement " + achievementID);
