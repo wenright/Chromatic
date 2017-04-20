@@ -28,6 +28,10 @@ public class GooglePlayController : MonoBehaviour {
 		googlePlay.IncrementAchievement(achievementID);
 	}
 
+	public bool IsAchievementUnlocked (string achievementID) {
+		return googlePlay.IsAchievementUnlocked(achievementID);
+	}
+
 	public void ShowAchievementsUI () {
 		googlePlay.ShowAchievementsUI();
 	}
