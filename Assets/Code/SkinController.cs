@@ -10,6 +10,12 @@ public class SkinController : MonoBehaviour {
     public Sprite circle;
     public Sprite star;
 
+    public enum Skins:int {
+    	skull = 1,
+    	square = 2,
+    	circle = 3,
+    	star = 4
+    };
 
     // Use this for initialization
     void Start () {
@@ -20,6 +26,7 @@ public class SkinController : MonoBehaviour {
 	void Update () {
 		
 	}
+
     Sprite GetCurrentSprite()
     {
         return currentsprite;

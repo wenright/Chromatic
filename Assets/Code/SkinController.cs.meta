@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: 1928e41fe603ff948a49f76c8b9249ba
-timeCreated: 1492226501
+timeCreated: 1498184617
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - currentsprite: {fileID: 21300000, guid: 387e6f5f9f3b4254f8340c36686f6ad9, type: 3}
+  - skull: {fileID: 21300000, guid: c94c5d159bc5a2945a454a9066c61ee2, type: 3}
+  - square: {fileID: 21300000, guid: 12388117b7d45814ab04b6a8937c53b0, type: 3}
+  - circle: {fileID: 21300000, guid: 387e6f5f9f3b4254f8340c36686f6ad9, type: 3}
+  - star: {fileID: 21300000, guid: aecfa446544192245899df7bee6b369a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

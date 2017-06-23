@@ -30,6 +30,29 @@ public class Player : MonoBehaviour {
         color = ColorList.white;
         gc = GameObject.FindWithTag("GameController").GetComponent<Controller>();
         pulsetimer = 1;
+
+        SpriteRenderer playerRenderer = GetComponent<SpriteRenderer>();
+        SkinController skinController = GetComponent<SkinController>();
+
+        int defaultSkin = 3;
+
+        switch (PlayerPrefs.GetInt("skin", defaultSkin)) {
+            case (int) SkinController.Skins.skull:
+                playerRenderer.sprite = skinController.skull;
+                break;
+            case (int) SkinController.Skins.square:
+                playerRenderer.sprite = skinController.square;
+                break;
+            case (int) SkinController.Skins.circle:
+                playerRenderer.sprite = skinController.circle;
+                break;
+            case (int) SkinController.Skins.star:
+                playerRenderer.sprite = skinController.star;
+                break;
+            default:
+                Debug.LogError("Unknown skin selected!");
+                break;
+        }
     }
 
     void Update () {
