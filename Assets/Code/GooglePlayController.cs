@@ -21,6 +21,14 @@ public class GooglePlayController : MonoBehaviour {
 	}
 
 	public void UnlockAchievement (string achievementID) {
+		// Do nothing if this achievement has already been completed
+		if (PlayerPrefs.HasKey(achievementID)) {
+			return;
+		}
+
+		PlayerPrefs.SetInt(achievementID, 1);
+		
+
 		googlePlay.UnlockAchievement(achievementID);
 	}
 
