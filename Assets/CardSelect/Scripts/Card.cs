@@ -133,7 +133,6 @@ public class Card : MonoBehaviour,IComparable {
             {
                 SelectSkin(skinController.square);
             }
-        }
 
         spriteRenderer.DOColor(color, 0.1f).SetEase(Ease.InQuad);
     }
