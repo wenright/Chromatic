@@ -16,11 +16,14 @@ public class Card : MonoBehaviour,IComparable {
     [HideInInspector]
     public int id = 0;
 
+    public Color color;
+
     private GooglePlayController googlePlayController;
     private SkinController skinController;
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer lockSpriteRenderer;
 
-    public Color color;
+    private bool locked = false;
 
     void Awake () {
         GameObject googlePlayObject = GameObject.FindWithTag("GooglePlayController");
@@ -35,6 +38,32 @@ public class Card : MonoBehaviour,IComparable {
 
         spriteRenderer.color = new Color(color.r, color.g, color.b, 0);
         spriteRenderer.DOFade(1.0f, 0.25f).SetEase(Ease.InQuad);
+
+        lockSpriteRenderer = GetComponent<SpriteRenderer>();
+
+        // TODO make sure these are the correct achievements
+        if (tooltipMessage == "Skull")
+        {
+            if (!googlePlayController.IsAchievementUnlocked(Achievements.youDontGetThis)) {
+                LockCard();
+            }
+        }
+        else if (tooltipMessage == "Circle")
+        {
+            // This one is unlocked by default
+        }
+        else if (tooltipMessage == "Star")
+        {
+            if (!googlePlayController.IsAchievementUnlocked(Achievements.score5000)) {
+                LockCard();
+            }
+        }
+        else if (tooltipMessage == "Square")
+        {
+            if (!googlePlayController.IsAchievementUnlocked(Achievements.kill10)) {
+                LockCard();
+            }
+        }
     }
 
     // Compare based on card id
@@ -87,31 +116,40 @@ public class Card : MonoBehaviour,IComparable {
             {
                 Debug.Log("Settings pressed");
             }
+            // TODO maybe split the skins into a different skincards script
             else if (tooltipMessage == "Skull")
             {
-                skinController.currentsprite = skinController.skull;
-                SceneManager.LoadScene("Menu");
+                SelectSkin(skinController.skull);
             }
             else if (tooltipMessage == "Circle")
             {
-                skinController.currentsprite = skinController.circle;
-                SceneManager.LoadScene("Menu");
+                SelectSkin(skinController.circle);
             }
             else if (tooltipMessage == "Star")
             {
-                skinController.currentsprite = skinController.star;
-                SceneManager.LoadScene("Menu");
+                SelectSkin(skinController.star);
             }
             else if (tooltipMessage == "Square")
             {
-                skinController.currentsprite = skinController.square;
-                SceneManager.LoadScene("Menu");
+                SelectSkin(skinController.square);
             }
-
-
-
-        //}
+        }
 
         spriteRenderer.DOColor(color, 0.1f).SetEase(Ease.InQuad);
+    }
+
+    private void LockCard () {
+        locked = true;
+
+        if (lockSpriteRenderer) {
+            lockSpriteRenderer.color = ColorList.blue;
+        }
+    }
+
+    private void SelectSkin (Sprite skin) {
+        if (!locked) {
+            skinController.currentsprite = skin;
+            SceneManager.LoadScene("Menu");
+        }
     }
 }

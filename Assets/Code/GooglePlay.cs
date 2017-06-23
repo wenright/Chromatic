@@ -9,6 +9,8 @@ public class GooglePlay {
 
 	public GooglePlay () {
 		#if UNITY_ANDROID
+
+		// Sign user in
 		if (!Social.localUser.authenticated) {
 			PlayGamesPlatform.DebugLogEnabled = true;
 			PlayGamesPlatform.Activate();
@@ -21,6 +23,9 @@ public class GooglePlay {
 				}
 			});
 		}
+
+		// TODO maybe reset the current achievement based playerprefs each time the player is signed in, and update the playerprefs so that they are synced up
+
 		#endif
 	}
 	
@@ -68,6 +73,10 @@ public class GooglePlay {
 			}
 		});
 		#endif
+	}
+
+	public bool IsAchievementUnlocked (string achievementID) {
+		return PlayerPrefs.GetInt(achievementID, 0) == 1;
 	}
 
 	public void ShowLeaderboardUI () {
