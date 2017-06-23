@@ -59,8 +59,8 @@ public class Card : MonoBehaviour,IComparable {
 
     void OnMouseUp()
     {
-        if (this.transform.position.z == -1.6f)
-        {
+        //if (this.transform.position.z == -1.6f)
+        //{
             if (tooltipMessage == "Play")
             {
                 Debug.Log("Play pressed");
@@ -110,7 +110,7 @@ public class Card : MonoBehaviour,IComparable {
 
 
 
-        }
+        //}
 
         spriteRenderer.DOColor(color, 0.1f).SetEase(Ease.InQuad);
     }
