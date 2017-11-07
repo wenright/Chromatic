@@ -86,9 +86,8 @@ public class Card : MonoBehaviour,IComparable {
 
     void OnMouseUp()
     {
-        if (this.transform.position.z == -1.6f)
-        {
-            // TODO would this be more readable as a switch statement?
+        //if (this.transform.position.z == -1.6f)
+        //{
             if (tooltipMessage == "Play")
             {
                 Debug.Log("Play pressed");
@@ -132,7 +131,6 @@ public class Card : MonoBehaviour,IComparable {
             {
                 SelectSkin(SkinController.Skins.square);
             }
-        }
 
         spriteRenderer.DOColor(color, 0.1f).SetEase(Ease.InQuad);
     }
