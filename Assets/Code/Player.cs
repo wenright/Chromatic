@@ -42,8 +42,8 @@ public class Player : MonoBehaviour {
     }
 
     private Vector2 GetMovement () {
-        #if UNITY_EDITOR
-            if (Input.GetMouseButton(0)) {
+        #if UNITY_EDITOR || UNITY_WEBGL
+        if (Input.GetMouseButton(0)) {
                 return Camera.main.ScreenToWorldPoint(Input.mousePosition);
             }
         #else
