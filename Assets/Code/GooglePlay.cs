@@ -45,15 +45,9 @@ public class GooglePlay {
 	public void UnlockAchievement (string achievementID) {
 		#if UNITY_ANDROID
 
-		// Do nothing if this achievement has already been completed
-		if (PlayerPrefs.HasKey(achievementID)) {
-			return;
-		}
-
 		Social.ReportProgress(achievementID, 100.0f, (bool success) => {
 			if (success) {
 				Debug.Log("Successfully unlocked achievement " + achievementID);
-				PlayerPrefs.SetInt(achievementID, 1);
 			} else {
 				Debug.LogError("Failed unlocking achievement!");
 			}

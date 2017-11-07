@@ -19,7 +19,6 @@ public class Card : MonoBehaviour,IComparable {
     public Color color;
 
     private GooglePlayController googlePlayController;
-    private SkinController skinController;
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer lockSpriteRenderer;
 
@@ -29,7 +28,6 @@ public class Card : MonoBehaviour,IComparable {
         GameObject googlePlayObject = GameObject.FindWithTag("GooglePlayController");
         if (googlePlayObject != null) {
             googlePlayController = googlePlayObject.GetComponent<GooglePlayController>();
-            skinController = googlePlayObject.GetComponent<SkinController>();
         } else {
             Debug.LogError("Card: Unable to find GooglePlay object!");
         }
@@ -119,19 +117,19 @@ public class Card : MonoBehaviour,IComparable {
             // TODO maybe split the skins into a different skincards script
             else if (tooltipMessage == "Skull")
             {
-                SelectSkin(skinController.skull);
+                SelectSkin(SkinController.Skins.skull);
             }
             else if (tooltipMessage == "Circle")
             {
-                SelectSkin(skinController.circle);
+                SelectSkin(SkinController.Skins.circle);
             }
             else if (tooltipMessage == "Star")
             {
-                SelectSkin(skinController.star);
+                SelectSkin(SkinController.Skins.star);
             }
             else if (tooltipMessage == "Square")
             {
-                SelectSkin(skinController.square);
+                SelectSkin(SkinController.Skins.square);
             }
 
         spriteRenderer.DOColor(color, 0.1f).SetEase(Ease.InQuad);
@@ -145,9 +143,9 @@ public class Card : MonoBehaviour,IComparable {
         }
     }
 
-    private void SelectSkin (Sprite skin) {
+    private void SelectSkin (SkinController.Skins skin) {
         if (!locked) {
-            skinController.currentsprite = skin;
+            PlayerPrefs.SetInt("skin", (int) skin);
             SceneManager.LoadScene("Menu");
         }
     }

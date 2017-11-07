@@ -49,7 +49,6 @@ public class Controller : MonoBehaviour {
         GameObject googlePlayObject = GameObject.FindWithTag("GooglePlayController");
         if (googlePlayObject != null) {
             googlePlayController = googlePlayObject.GetComponent<GooglePlayController>();
-            playerObject.GetComponent<SpriteRenderer>().sprite = googlePlayObject.GetComponent<SkinController>().currentsprite;
         } else {
             Debug.LogError("Unable to find GooglePlay object!");
         }
