@@ -24,7 +24,7 @@ public class Card : MonoBehaviour,IComparable {
 
     private bool locked = false;
 
-    private Vector2 swipeVector = Vector2.zero;
+    private float swipeDistance = 0.0f;
 
     void Awake () {
         GameObject googlePlayObject = GameObject.FindWithTag("GooglePlayController");
@@ -88,12 +88,14 @@ public class Card : MonoBehaviour,IComparable {
 
     void OnMouseDrag()
     {
-    	swipeVector += new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+    	swipeDistance += new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")).magnitude;
     }
 
     void OnMouseUp()
     {
-        if (swipeVector.magnitude < 0.5f)
+    	print(swipeDistance);
+
+        if (swipeDistance < 0.5f)
         {
             if (tooltipMessage == "Play")
             {
@@ -142,7 +144,7 @@ public class Card : MonoBehaviour,IComparable {
 
         spriteRenderer.DOColor(color, 0.1f).SetEase(Ease.InQuad);
 
-        swipeVector = Vector2.zero;
+        swipeDistance = 0.0f;
     }
 
     private void LockCard () {
