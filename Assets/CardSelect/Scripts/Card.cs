@@ -95,7 +95,7 @@ public class Card : MonoBehaviour,IComparable {
     {
     	print(swipeDistance);
 
-        if (swipeDistance < 0.5f)
+        if (swipeDistance < 2f)
         {
             if (tooltipMessage == "Play")
             {
