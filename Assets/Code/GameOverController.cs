@@ -25,9 +25,7 @@ public class GameOverController : MonoBehaviour {
          "You peaked on wave:"
 
     };
-
-	private bool hasPressedScreen = true;
-
+   
 	// Use this for initialization
 	void Start () {
 
@@ -43,11 +41,6 @@ public class GameOverController : MonoBehaviour {
         }
         int rand = Random.Range(0, 10);
         youmadeit.text = msgs[rand];
-
-        // Make sure user releases press before tapping again, so it doesn't go immediately back to game
-        if (Input.touches.Length > 0) {
-			hasPressedScreen = false;
-		}
         
         GradientColorKey blackkey = new GradientColorKey(Color.black, 0);
         GradientColorKey greenkey = new GradientColorKey(ColorList.green, 0.25f);
@@ -72,16 +65,6 @@ public class GameOverController : MonoBehaviour {
         if (t >= 1f)
             t = 0;
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().backgroundColor = g.Evaluate(t);
-
-        if (Input.touches.Length <= 0) {
-			hasPressedScreen = true;
-		}
-
-		if (hasPressedScreen && Input.GetMouseButtonUp(0)) {
-            Time.timeScale = 1f;
-            SceneManager.LoadScene("Menu");
-		}
-        
 
     }
 }
