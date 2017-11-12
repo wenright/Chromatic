@@ -24,6 +24,8 @@ public class Card : MonoBehaviour,IComparable {
 
     private bool locked = false;
 
+    private float swipeDistance = 0.0f;
+
     void Awake () {
         GameObject googlePlayObject = GameObject.FindWithTag("GooglePlayController");
         if (googlePlayObject != null) {
@@ -84,10 +86,17 @@ public class Card : MonoBehaviour,IComparable {
         spriteRenderer.DOColor(new Color(color.r / 2, color.g / 2, color.b / 2, 1.0f), 0.1f).SetEase(Ease.OutQuad);
     }
 
+    void OnMouseDrag()
+    {
+    	swipeDistance += new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")).magnitude;
+    }
+
     void OnMouseUp()
     {
-        //if (this.transform.position.z == -1.6f)
-        //{
+    	print(swipeDistance);
+
+        if (swipeDistance < 0.5f)
+        {
             if (tooltipMessage == "Play")
             {
                 Debug.Log("Play pressed");
@@ -131,8 +140,11 @@ public class Card : MonoBehaviour,IComparable {
             {
                 SelectSkin(SkinController.Skins.square);
             }
+        }
 
         spriteRenderer.DOColor(color, 0.1f).SetEase(Ease.InQuad);
+
+        swipeDistance = 0.0f;
     }
 
     private void LockCard () {
