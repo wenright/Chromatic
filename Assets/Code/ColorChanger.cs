@@ -32,6 +32,8 @@ public class ColorChanger : MonoBehaviour {
     void OnTriggerEnter2D (Collider2D other) {
         // Change player color to w/e this is (Or calculate new color based on players color)
         if (other.tag == "Player" && collidable) {
+            AudioSource source = GetComponent<AudioSource>();
+            source.Play();
             GetComponent<SpriteRenderer>().enabled = false;
             collidable = false;
 

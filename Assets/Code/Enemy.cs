@@ -77,7 +77,6 @@ public class Enemy : MonoBehaviour {
     }
 
     public virtual void move()  {
-        //TODO: FIX THIS HORRIBLE MESS
         Quaternion newRotation = Quaternion.LookRotation(transform.position - target, Vector3.forward);
         newRotation.x = 0.0f;
         newRotation.y = 0.0f;
@@ -94,21 +93,20 @@ public class Enemy : MonoBehaviour {
             if (this.color != other.GetComponent<Player>().GetColor()) {
                 other.GetComponent<Player>().Kill();
             } else {
-            	var particleSystemMain = particleSystem.GetComponent<ParticleSystem>().main;
+                var particleSystemMain = particleSystem.GetComponent<ParticleSystem>().main;
                 particleSystemMain.startColor = color;
-				gc.IncreaseScore();
+                gc.IncreaseScore();
                 gc.IncreaseKillCount();
                 Instantiate(particleSystem, transform.position, transform.rotation);
                 gc.hp += 20;
-                Kill();
+                // Set particle system color to player color
+                Instantiate(MultiToolTip, transform.position, new Quaternion(0, 0, 0, 0));
+                this.Kill();
             }
         }
     }
 
     public void Kill () {
-        // Set particle system color to player color
-        Instantiate(MultiToolTip, transform.position,new Quaternion(0, 0, 0, 0));
-
         GameObject.FindGameObjectWithTag ("GameController").GetComponent<Spawner> ().enemycount--;
         Destroy(gameObject);
     }
