@@ -56,7 +56,12 @@ public class Controller : MonoBehaviour {
     
     void Update () {
         if (scoreText != null) {
-            scoreText.text = score.ToString ();
+            scoreText.text = score.ToString();
+        }
+
+        if (waveText != null)
+        {
+            waveText.text = "Wave "+level.ToString();
         }
 
         if (healthSlider) {

@@ -5,8 +5,14 @@ using UnityEngine;
 public class GooglePlayController : MonoBehaviour {
 
 	private GooglePlay googlePlay;
+	private static GooglePlayController gpsingleton;
 
-	void Start () {
+	void Awake () {
+		if (gpsingleton == null)
+			gpsingleton = this;
+		else
+			Destroy(gameObject);
+
 		DontDestroyOnLoad(gameObject);
 
 		googlePlay = new GooglePlay();
@@ -27,7 +33,6 @@ public class GooglePlayController : MonoBehaviour {
 		}
 
 		PlayerPrefs.SetInt(achievementID, 1);
-		
 
 		googlePlay.UnlockAchievement(achievementID);
 	}

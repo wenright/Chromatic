@@ -5,8 +5,13 @@ using UnityEngine;
 public class ScoreCounter : MonoBehaviour {
     public int score;
     public int wave;
-	// Use this for initialization
-	void Awake () {
+    private static ScoreCounter scsingleton;
+    // Use this for initialization
+    void Awake () {
+        if (scsingleton == null)
+            scsingleton = this;
+        else
+            Destroy(gameObject);
         DontDestroyOnLoad(this);
     }
     public void Reset()

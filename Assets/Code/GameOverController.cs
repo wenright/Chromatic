@@ -22,7 +22,7 @@ public class GameOverController : MonoBehaviour {
         "ded on wave:",
         "You died on wave:",
         "You will never pass wave:",
-         "You peaked on wave:"
+        "You peaked on wave:"
 
     };
    
@@ -51,17 +51,11 @@ public class GameOverController : MonoBehaviour {
         GradientAlphaKey[] alpharray = { new GradientAlphaKey(1, 0) };
    
         g.SetKeys(keyarray, alpharray);
-        Time.timeScale = 0.2f;
+        Time.timeScale = 0.1f;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-        
         t += Time.deltaTime;
-        // if (t >= 1f)
-        //   pos = -1;
-        // if (t <= 0)
-        //     pos = 1;
         if (t >= 1f)
             t = 0;
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().backgroundColor = g.Evaluate(t);
